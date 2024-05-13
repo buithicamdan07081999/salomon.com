@@ -8,49 +8,46 @@
 </head>
 
 <body>
-    <h1>Danh sách loại sản phẩm</h1>
+    <h1>Phương thức thanh toán</h1>
     <?php
     // 1. Tạo kết nối
     include_once __DIR__ . '/../dbconnect.php';
 
     // 2. Chuẩn bị câu lệnh SQL Query
     $sql = "SELECT *
-            FROM loaisanpham;";
+            FROM hinhthucthanhtoan;";
 
     // 3. Yêu cầu PHP thực thi query
     $data = mysqli_query($conn, $sql);
 
     // 4. Phân tách dữ liệu
-    $arrDanhSachLSP = [];
+    $arrDanhSachhttt = [];
     while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
-        $arrDanhSachLSP[] = array(
-            'lsp_ma' => $row['lsp_ma'],
-            'lsp_ten' => $row['lsp_ten'],
-            'lsp_mota' => $row['lsp_mota'],
+        $arrDanhSachhttt[] = array(
+            'httt_ma' => $row['httt_ma'],
+            'httt_ten' => $row['httt_ten'],
         );
     }
-    //var_dump($arrDanhSachLSP);
+    //var_dump($arrDanhSachhttt);
     ?>
 
     <a href="create.php">Thêm mới</a>
     <table border="1">
         <tr>
             <th>STT</th>
-            <th>Mã LSP</th>
-            <th>Tên LSP</th>
-            <th>Mô tả LSP</th>
+            <th>Mã httt</th>
+            <th>Tên httt</th>
             <th>EDIT</th>
         </tr>
         <?php $stt=1 ?>
-        <?php foreach ($arrDanhSachLSP as $lsp) : ?>
+        <?php foreach ($arrDanhSachhttt as $httt) : ?>
             <tr>
                 <td><?= $stt ?></td>
-                <td><?= $lsp['lsp_ma'] ?></td>
-                <td><?= $lsp['lsp_ten'] ?></td>
-                <td><?= $lsp['lsp_mota'] ?></td>
+                <td><?= $httt['httt_ma'] ?></td>
+                <td><?= $httt['httt_ten'] ?></td>
                 <td>
-                    <a href="edit.php?lsp_ma=<?= $lsp['lsp_ma'] ?>">Modify</a>
-                    <a href="delete.php?lsp_ma=<?= $lsp['lsp_ma'] ?>">Delete</a>
+                    <a href="edit.php?httt_ma=<?= $httt['httt_ma'] ?>">Modify</a>
+                    <a href="delete.php?httt_ma=<?= $httt['httt_ma'] ?>">Delete</a>
                 </td>                
             </tr>
         <?php 
