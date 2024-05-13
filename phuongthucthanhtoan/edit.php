@@ -31,7 +31,6 @@
         // 1. Mở kết nối
         include_once __DIR__ . '/../dbconnect.php';
         // 2. Chuẩn bị câu lệnh
-        $httt_ma = $_GET['httt_ma'];
         $httt_ma = $_POST['httt_ma'];
         $httt_ten = $_POST['httt_ten'];
 
