@@ -8,7 +8,8 @@
 </head>
 
 <body>
-    <h1>Danh sách loại sản phẩm</h1>
+
+    <h1>Danh sách loại sản phẩm</h1><br/><a href="../index.php">Trang chủ</a>
     <?php
     // 1. Tạo kết nối
     include_once __DIR__ . '/../dbconnect.php';

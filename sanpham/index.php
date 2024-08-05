@@ -9,6 +9,7 @@
 
 <body>
     <h1>Danh sách sản phẩm</h1>
+    <a href="../index.php">Trang chủ</a>
     <?php
     // 1. Tạo kết nối
     include_once __DIR__ . '/../dbconnect.php';
@@ -18,18 +19,18 @@
             FROM sanpham;";
 
     // 3. Yêu cầu PHP thực thi query
-    $data = mysqli_query($conn, $sql);
+    $data = mysqli_query($conn, $sql); // Cái thùng dữ liệu
 
     // 4. Phân tách dữ liệu
-    $arrDanhSachsp = [];
-    while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
+    $arrDanhSachsp = []; // khởi tạo mảng chứa dữ liệu
+    while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) { //
         $arrDanhSachsp[] = array(
             'sp_ma' => $row['sp_ma'],
             'sp_ten' => $row['sp_ten'],
             'sp_gia' => $row['sp_gia']
         );
     }
-    //var_dump($arrDanhSachsp);
+    var_dump($arrDanhSachsp);
     ?>
 
     <a href="create.php">Thêm mới</a>
