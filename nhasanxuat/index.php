@@ -15,7 +15,7 @@
 
     // 2. Chuẩn bị câu lệnh SQL Query
     $sql = "SELECT *
-            FROM loaisanpham;";
+            FROM nhasanxuat;";
 
     // 3. Yêu cầu PHP thực thi query
     $data = mysqli_query($conn, $sql);
@@ -24,9 +24,9 @@
     $arrDanhSachLSP = [];
     while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
         $arrDanhSachLSP[] = array(
-            'lsp_ma' => $row['lsp_ma'],
-            'lsp_ten' => $row['lsp_ten'],
-            'lsp_mota' => $row['lsp_mota'],
+            'nsx_ma' => $row['nsx_ma'],
+            'nsx_ten' => $row['nsx_ten'],
+            'nsx_mota' => $row['nsx_mota'],
         );
     }
     //var_dump($arrDanhSachLSP);
@@ -42,15 +42,15 @@
             <th>EDIT</th>
         </tr>
         <?php $stt=1 ?>
-        <?php foreach ($arrDanhSachLSP as $lsp) : ?>
+        <?php foreach ($arrDanhSachLSP as $nsx) : ?>
             <tr>
                 <td><?= $stt ?></td>
-                <td><?= $lsp['lsp_ma'] ?></td>
-                <td><?= $lsp['lsp_ten'] ?></td>
-                <td><?= $lsp['lsp_mota'] ?></td>
+                <td><?= $nsx['nsx_ma'] ?></td>
+                <td><?= $nsx['nsx_ten'] ?></td>
+                <td><?= $nsx['nsx_mota'] ?></td>
                 <td>
-                    <a href="edit.php?lsp_ma=<?= $lsp['lsp_ma'] ?>">Modify</a>
-                    <a href="delete.php?lsp_ma=<?= $lsp['lsp_ma'] ?>">Delete</a>
+                    <a href="edit.php?nsx_ma=<?= $nsx['nsx_ma'] ?>">Modify</a>
+                    <a href="delete.php?nsx_ma=<?= $nsx['nsx_ma'] ?>">Delete</a>
                 </td>                
             </tr>
         <?php 

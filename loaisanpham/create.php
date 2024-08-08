@@ -12,7 +12,6 @@
     <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
         Tên loại sản phẩm: <input type="text" name="lsp_ten" /><br />
         Mô tả loại sản phẩm: <input type="text" name="lsp_mota" /><br />
-
         <a href="../index.php">Quay về Danh sách</a>
         <button type="submit" name="btnLuu">Lưu dữ liệu</button>
     </form>
