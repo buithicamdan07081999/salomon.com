@@ -50,8 +50,9 @@
                 <td><?= $lsp['lsp_ten'] ?></td>
                 <td><?= $lsp['lsp_mota'] ?></td>
                 <td>
+                <!-- gửi bằng đường GET -->
                     <a href="edit.php?lsp_ma=<?= $lsp['lsp_ma'] ?>">Modify</a>
-                    <a href="delete.php?lsp_ma=<?= $lsp['lsp_ma'] ?>">Delete</a>
+                    <a href="delete.php?lsp_ma=<?= $lsp['lsp_ma'] ?>">Delete</a> 
                 </td>                
             </tr>
         <?php 
