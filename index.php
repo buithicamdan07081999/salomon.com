@@ -25,6 +25,7 @@
     <li><a href="phuongthucthanhtoan/index.php">CRUD-PHUONGTHUCTHANHTOAN</a></li>
     <li><a href="nhasanxuat/index.php">CRUD-NHASANXUAT</a></li>
     <li><a href="sanpham/index.php">CRUD-SANPHAM</a></li>
+    <li><a href="backend/index.php">CRUD-ADMIN</a></li>
     </ol>  
 </body>
 </html>
