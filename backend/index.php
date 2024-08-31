@@ -17,9 +17,9 @@
     ?>
 
     <style>
-        div {
-            /* border: 1px solid red; cho dễ nhìn*/ 
-        }
+        /* div {
+             border: 1px solid red; cho dễ nhìn
+        } */
     </style>
 </head>
 
@@ -49,7 +49,7 @@
                     include_once __DIR__ . '/layouts/partials/sidebar.php';
                 ?>
             </div>
-            <div class="col-9">CONTENT</div>
+            <div class="col-9"></div>
         </div>
     </div>
     <!-- this is contain -->

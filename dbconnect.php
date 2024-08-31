@@ -1,6 +1,6 @@
 <?php
 $conn = mysqli_connect('localhost', 'root', '', 'salomon') or 
-    die('Xin lỗi, database đang bảo trì...');
+    die('Xin lỗi, database đang bảo trì hoặc không kết nối được !');
 
 // Hỗ trợ tiếng việt, tiếng trung, thái, nhật... (tượng hình)
 $conn->query("SET NAMES 'utf8mb4'"); 
