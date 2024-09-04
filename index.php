@@ -10,13 +10,10 @@
     <?php
     // Nhúng đoạn code bên trong file '' vào 
     // trong file đang viết code
-    include_once __DIR__ . '/ham-tien-ich.php';
-
+    include_once __DIR__ . '/backend/function/old/ham-tien-ich.php';
     // Sử dụng hàm
-    chao_mung('Đan');
+    chao_mung('Bùi Đan');
     ?>
-
-
     <h2>Tùy chọn</h2>
     <ol>
     <li><a href="loaisanpham/index.php">CRUD-DANHMUC(LOAI SAN PHAM)</a></li>

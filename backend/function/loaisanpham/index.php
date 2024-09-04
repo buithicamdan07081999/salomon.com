@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý loại sản phẩm</title>
+    <title>LOẠI SẢN PHẨM</title>
     <?php
-    include_once __DIR__ . '/../../dbconnect.php';
+    include_once __DIR__ . '/../../../dbconnect.php';
     ?>
     <?php
-    include_once __DIR__ . '/../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../layouts/partials/styles.php';
     ?>
 </head>
 
 <body>
     <!-- add header -->
     <?php
-    include_once __DIR__ . '/../layouts/partials/header.php'
+    include_once __DIR__ . '/../../layouts/partials/header.php'
     ?>
 
     <!-- this is contain -->
@@ -29,16 +29,16 @@
         <div class="row">
             <div class="col-3">
                 <?php
-                include_once __DIR__ . '/../../backend/layouts/partials/sidebar.php';
+                include_once __DIR__ . '/../../../backend/layouts/partials/sidebar.php';
                 ?>
             </div>
             <div class="col-9">
-                <h3>Danh sách loại sản phẩm</h3><a href="../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
+                <h3>LOẠI SẢN PHẨM</h3><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
                 <?php
                 // 1. Tạo kết nối
-                include_once __DIR__ . '/../../dbconnect.php';
+                include_once __DIR__ . '/../../../dbconnect.php';
                 // 2. Chuẩn bị câu lệnh SQL Query
-                $sql = "SELECT *
+                $sql = "SELECT lsp_ma, lsp_ten, lsp_mota
                 FROM loaisanpham;";
 
                 // 3. Yêu cầu PHP thực thi query
@@ -90,11 +90,11 @@
 
 
     <?php
-    include_once __DIR__ . '/../../backend/layouts/partials/footer.php';
+    include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
     ?>
     <!-- Fix lỗi: Vì sao không load được icon solid vì chưa khai báo ở style , font awesome chia ra nhiều loại nên cần khai báo thêm -->
     <?php
-    include_once __DIR__ . '/../../backend/layouts/partials/script.php';
+    include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
     ?>
 </body>
 

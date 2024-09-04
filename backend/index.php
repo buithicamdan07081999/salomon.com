@@ -27,16 +27,7 @@
     <?php
     include_once __DIR__ . '/layouts/partials/header.php'
     ?>
-    <h2 style="color: red;">Hello Tristan Hella Lovely boy fiends Super Dep Trai nha! <i class="fa-regular fa-face-kiss-wink-heart"></i></h2>
-    <!-- <h3>
-        <i class="fa-solid fa-bars"></i> This one is the choose - First Ex for Font Awesome
-    </h3>
-    <h3>
-        <i class="fa-solid fa-keyboard"></i> This is Keyboard
-    </h3> -->
-
-
-    <!-- this is contain -->
+    <!-- <h2 style="color: red;">Hello Tristan Hella Lovely boy fiends Super Dep Trai nha! <i class="fa-regular fa-face-kiss-wink-heart"></i></h2> -->
     <div class="container-fluid"> 
         <!-- 
             Note: 1. Container-fluid full màn hình 
@@ -49,7 +40,9 @@
                     include_once __DIR__ . '/layouts/partials/sidebar.php';
                 ?>
             </div>
-            <div class="col-9"></div>
+            <div class="col-9">
+            <script>location.href="function/loaisanpham/index.php"</script>
+            </div>
         </div>
     </div>
     <!-- this is contain -->
