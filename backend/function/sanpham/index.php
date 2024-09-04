@@ -39,11 +39,23 @@
                 include_once __DIR__ . '/../../../dbconnect.php';
                 // 2. Chuẩn bị câu lệnh SQL Query
                 $sql = "
-                SELECT
-                B.lsp_ten, A.sp_ma, A.sp_ten, A.sp_gia, A.sp_mota_ngan, A.sp_mota_chitiet, A.sp_soluong
+                SELECT 
+					 A.sp_ma, A.sp_ten,
+					 B.lsp_ten, 
+					 C.th_ten,
+					 A.sp_gia, A.sp_mota_ngan, A.sp_mota_chitiet, A.sp_soluong,
+					 D.npp_ten,
+					 E.km_ten
                 FROM sanpham A
-                LEFT JOIN loaisanpham B 
+                LEFT JOIN loaisanpham B   
                 ON A.lsp_ma = B.lsp_ma
+                LEFT JOIN thuonghieu C
+                ON A.th_ma = C.th_ma
+                LEFT JOIN nhaphanphoi D
+                ON A.npp_ma = D.npp_ma                
+					 LEFT JOIN khuyenmai E
+                ON A.km_ma = E.km_ma
+                
                 ;";
 
                 // 3. Yêu cầu PHP thực thi query
@@ -60,6 +72,10 @@
                         'sp_mota_ngan' => $row['sp_mota_ngan'],
                         'sp_mota_chitiet' => $row['sp_mota_chitiet'],
                         'sp_soluong' => $row['sp_soluong'],
+
+                        'th_ten' => $row['th_ten'],
+                        'npp_ten' => $row['npp_ten'],
+                        'km_ten' => $row['km_ten'],
                     );
                 }
                 //var_dump($arrDanhSachsp);
@@ -77,7 +93,11 @@
                         <th>Mô tả chi tiết</th>
                         <th>Số lượng tồn kho</th>
                         <th>Số lượng đã bán</th>
-                        <th>EDIT</th>
+
+                        <th>Thương hiệu</th>
+                        <th>Nhà phân phối</th>
+                        <th>Khuyến mãi</th>
+                        <th>Tùy chỉnh</th>
                     </tr>
                     <?php $stt = 1 ?>
                     <?php foreach ($arrDanhSachsp as $sp) : ?>
@@ -91,6 +111,10 @@
                             <td><?= $sp['sp_mota_chitiet'] ?></td>
                             <td><?= $sp['sp_soluong'] ?></td>
                             <td>Chưa tính</td>
+                            
+                            <td><?= $sp['th_ten'] ?></td>
+                            <td><?= $sp['npp_ten'] ?></td>
+                            <td><?= $sp['km_ten'] ?></td>
                             <td>
                                 <!-- gửi bằng đường GET -->
                                 <a href="edit.php?sp_ma=<?= $sp['sp_ma'] ?>" class="btn btn-warning">Sửa <i class="fa-regular fa-pen-to-square"></i></a>
