@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THƯƠNG HIỆU</title>
+    <title>KHÁCH HÀNG</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
     ?>
@@ -22,10 +22,16 @@
                 ?>
             </div>
             <div class="col-9">
-                <h1>Thêm Thương hiệu</h1>
+                <h1>Thêm mới Khách hàng</h1>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
-                    Tên: <input type="text" name="th_ten" class="form-control" /><br />
-                    Mô tả: <input type="text" name="th_mota" class="form-control" /><br />
+                    Tên đăng nhập: <input type="text" name="kh_tendangnhap" class="form-control" /><br />
+                    Mật khẩu: <input type="text" name="kh_matkhau" class="form-control" /><br />
+                    Tên: <input type="text" name="kh_ten" class="form-control" /><br />
+                    Giới tính: <input type="text" name="kh_gioitinh" class="form-control" /><br />
+                    Ngày sinh: <input type="text" name="kh_ngaysinh" class="form-control" /><br />
+                    Địa chỉ: <input type="text" name="kh_diachi" class="form-control" /><br />
+                    SĐT: <input type="text" name="kh_dienthoai" class="form-control" /><br />
+                    Email: <input type="text" name="kh_email" class="form-control" /><br />
                     <a href="index.php" class="btn btn-secondary">Quay về Danh sách <i class="fa-solid fa-backward"></i></a>
                     <button type="submit" name="btnLuu" class="btn btn-primary">Lưu dữ liệu <i class="fa-regular fa-floppy-disk"></i></button>
                 </form>
@@ -35,11 +41,17 @@
                     // 1. Mở kết nối
                     include_once __DIR__ . '/../../../dbconnect.php';
                     // 2. Chuẩn bị câu lệnh
-                    $th_ten = $_POST['th_ten'];
-                    $th_mota = $_POST['th_mota'];
-                    if ($th_ten != "" && $th_mota != "") {
-                        $sql = "INSERT INTO thuonghieu(th_ten, th_mota)
-                VALUES ('$th_ten', '$th_mota');";
+                    $kh_tendangnhap = $_POST['kh_tendangnhap'];
+                    $kh_matkhau = $_POST['kh_matkhau'];
+                    $kh_ten = $_POST['kh_ten'];
+                    $kh_gioitinh = $_POST['kh_gioitinh'];
+                    $kh_ngaysinh = $_POST['kh_ngaysinh'];
+                    $kh_diachi = $_POST['kh_diachi'];
+                    $kh_dienthoai = $_POST['kh_dienthoai'];
+                    $kh_email = $_POST['kh_email'];
+                    if ($kh_tendangnhap != "" && $kh_matkhau != "" && $kh_ten != "" && $kh_gioitinh != "" && $kh_ngaysinh != "" && $kh_diachi != "" && $kh_dienthoai != "" && $kh_email != "") {
+                        $sql = "INSERT INTO khachhang(kh_tendangnhap,kh_matkhau,kh_ten, kh_gioitinh, kh_ngaysinh, kh_diachi, kh_dienthoai, kh_email)
+                VALUES ('$kh_tendangnhap', '$kh_matkhau', '$kh_ten', '$kh_gioitinh', '$kh_ngaysinh', '$kh_diachi','$kh_dienthoai', '$kh_email');";
                         // 3. Thực thi câu lệnh
                         mysqli_query($conn, $sql);
                         echo '<script> location.href="index.php"</script>';

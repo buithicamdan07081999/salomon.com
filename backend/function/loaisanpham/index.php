@@ -18,7 +18,6 @@
     <?php
     include_once __DIR__ . '/../../layouts/partials/header.php'
     ?>
-
     <!-- this is contain -->
     <div class="container-fluid">
         <!-- 
@@ -60,10 +59,10 @@
                 <table class="table table-hover table-bordered">
                     <tr>
                         <th>STT</th>
-                        <th>Mã LSP</th>
-                        <th>Tên LSP</th>
-                        <th>Mô tả LSP</th>
-                        <th>EDIT</th>
+                        <th>Mã</th>
+                        <th>Tên</th>
+                        <th>Nội dung</th>
+                        <th>Tùy chỉnh</th>
                     </tr>
                     <?php $stt = 1 ?>
                     <?php foreach ($arrDanhSachLSP as $lsp) : ?>

@@ -14,18 +14,10 @@
 </head>
 
 <body>
-    <!-- add header -->
     <?php
     include_once __DIR__ . '/../../layouts/partials/header.php'
     ?>
-
-    <!-- this is contain -->
     <div class="container-fluid">
-        <!-- 
-            Note: 1. Container-fluid full màn hình 
-                  2. Container nhỏ hơn
-                  3. Dòng với cột cộng lại là 12
-        -->
         <div class="row">
             <div class="col-3">
                 <?php
@@ -55,7 +47,6 @@
                 ON A.npp_ma = D.npp_ma                
 					 LEFT JOIN khuyenmai E
                 ON A.km_ma = E.km_ma
-                
                 ;";
 
                 // 3. Yêu cầu PHP thực thi query
@@ -72,7 +63,6 @@
                         'sp_mota_ngan' => $row['sp_mota_ngan'],
                         'sp_mota_chitiet' => $row['sp_mota_chitiet'],
                         'sp_soluong' => $row['sp_soluong'],
-
                         'th_ten' => $row['th_ten'],
                         'npp_ten' => $row['npp_ten'],
                         'km_ten' => $row['km_ten'],

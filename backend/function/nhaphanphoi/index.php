@@ -61,10 +61,10 @@
                 <table class="table table-hover table-bordered">
                     <tr>
                         <th>STT</th>
-                        <th>Mã npp</th>
-                        <th>Tên npp</th>
-                        <th>Mô tả npp</th>
-                        <th>EDIT</th>
+                        <th>Mã</th>
+                        <th>Tên</th>
+                        <th>Nội dung</th>
+                        <th>Tùy chỉnh</th>
                     </tr>
                     <?php $stt = 1 ?>
                     <?php foreach ($arrDanhSachnpp as $npp) : ?>

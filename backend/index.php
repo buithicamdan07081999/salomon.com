@@ -46,9 +46,6 @@
         </div>
     </div>
     <!-- this is contain -->
-
-
-
     <?php
     include_once __DIR__ . '/layouts/partials/footer.php';
     ?>

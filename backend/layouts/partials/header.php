@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: black; width: 100%">
+<nav class="navbar navbar-expand-lg bg-body-tertiary mb-2" style="background-color: black; width: 100%">
   <div class="container-fluid">
     <a class="navbar-brand" href="/salomon.com/backend/index.php" style="color: white">Home</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

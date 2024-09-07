@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chỉnh sửa sản phẩm</title>
+    <title>SẢN PHẨM</title>
 </head>
 
 <body>
@@ -21,8 +21,8 @@
     <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
         Tên sản phẩm: <input type="text" name="sp_ten" value="<?= $data_array['sp_ten'] ?>" /><br />
         Mô tả sản phẩm: <input type="text" name="sp_mota" value="<?= $data_array['sp_mota'] ?>" /><br />
-        <a href="../create.php">Quay về Danh sách</a>
-        <button type="submit" name="btnLuu">Lưu dữ liệu</button>
+        <a href="index.php" class="btn btn-secondary">Quay về Danh sách <i class="fa-solid fa-backward"></i></a>
+        <button type="submit" name="btnLuu" class="btn btn-primary">Lưu dữ liệu  <i class="fa-regular fa-floppy-disk"></i></button>
     </form>
     <?php
     // Nếu người dùng có bấm nút Lưu -> thì mới xử lý

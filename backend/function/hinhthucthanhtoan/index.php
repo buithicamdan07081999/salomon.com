@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THƯƠNG HIỆU</title>
+    <title>HÌNH THỨC THANH TOÁN</title>
     <?php
     include_once __DIR__ . '/../../../dbconnect.php';
     ?>
@@ -12,7 +12,6 @@
     include_once __DIR__ . '/../../layouts/partials/styles.php';
     ?>
 </head>
-
 <body>
     <?php
     include_once __DIR__ . '/../../layouts/partials/header.php'
@@ -25,47 +24,43 @@
                 ?>
             </div>
             <div class="col-9">
-                <h3>THƯƠNG HIỆU</h3><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
+                <h3>HÌNH THỨC THANH TOÁN</h3><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
                 <?php
                 // 1. Tạo kết nối
                 include_once __DIR__ . '/../../../dbconnect.php';
                 // 2. Chuẩn bị câu lệnh SQL Query
-                $sql = "SELECT th_ma, th_ten, th_mota
-                FROM thuonghieu;";
+                $sql = "SELECT httt_ma, httt_ten
+                FROM hinhthucthanhtoan;";
                 // 3. Yêu cầu PHP thực thi query
                 $data = mysqli_query($conn, $sql);
-
                 // 4. Phân tách dữ liệu
-                $arrDanhSachth = [];
+                $arrDanhSachhttt = [];
                 while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
-                    $arrDanhSachth[] = array(
-                        'th_ma' => $row['th_ma'],
-                        'th_ten' => $row['th_ten'],
-                        'th_mota' => $row['th_mota'],
+                    $arrDanhSachhttt[] = array(
+                        'httt_ma' => $row['httt_ma'],
+                        'httt_ten' => $row['httt_ten'],
                     );
                 }
-                //var_dump($arrDanhSachth);
+                //var_dump($arrDanhSachhttt);
                 ?>
-
                 <a href="create.php" class="btn btn-primary mb-3">Thêm mới <i class="fa-solid fa-plus"></i></a>
                 <table class="table table-hover table-bordered">
                     <tr>
                         <th>STT</th>
-                        <th>Mã thương hiệu</th>
-                        <th>Tên thương hiệu</th>
-                        <th>Nội dung</th>
+                        <th>Mã</th>
+                        <th>Tên</th>
                         <th>Tùy chỉnh</th>
                     </tr>
                     <?php $stt = 1 ?>
-                    <?php foreach ($arrDanhSachth as $th) : ?>
+                    <?php foreach ($arrDanhSachhttt as $httt) : ?>
                         <tr>
                             <td><?= $stt ?></td>
-                            <td><?= $th['th_ma'] ?></td>
-                            <td><?= $th['th_ten'] ?></td>
-                            <td><?= $th['th_mota'] ?></td>
+                            <td><?= $httt['httt_ma'] ?></td>
+                            <td><?= $httt['httt_ten'] ?></td>
                             <td>
-                                <a href="edit.php?th_ma=<?= $th['th_ma'] ?>" class="btn btn-warning">Sửa <i class="fa-regular fa-pen-to-square"></i></a>
-                                <a href="delete.php?th_ma=<?= $th['th_ma'] ?>" class="btn btn-danger">Xóa <i class="fa-regular fa-trash-can"></i></a>
+                                <!-- gửi bằng đường GET -->
+                                <a href="edit.php?httt_ma=<?= $httt['httt_ma'] ?>" class="btn btn-warning">Sửa <i class="fa-regular fa-pen-to-square"></i></a>
+                                <a href="delete.php?httt_ma=<?= $httt['httt_ma'] ?>" class="btn btn-danger">Xóa <i class="fa-regular fa-trash-can"></i></a>
                             </td>
                         </tr>
                     <?php
@@ -83,5 +78,4 @@
     include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
     ?>
 </body>
-
 </html>
