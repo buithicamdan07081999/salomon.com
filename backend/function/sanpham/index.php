@@ -35,7 +35,7 @@
 					 A.sp_ma, A.sp_ten,
 					 B.lsp_ten, 
 					 C.th_ten,
-					 A.sp_gia, A.sp_mota_ngan, A.sp_mota_chitiet, A.sp_soluong,
+					 A.sp_gia, A.sp_giacu, A.sp_mota_ngan, A.sp_mota_chitiet, A.sp_soluong,
 					 D.npp_ten,
 					 E.km_ten
                 FROM sanpham A
@@ -60,6 +60,7 @@
                         'sp_ma' => $row['sp_ma'],
                         'sp_ten' => $row['sp_ten'],
                         'sp_gia' => $row['sp_gia'],
+                        'sp_giacu' => $row['sp_giacu'],
                         'sp_mota_ngan' => $row['sp_mota_ngan'],
                         'sp_mota_chitiet' => $row['sp_mota_chitiet'],
                         'sp_soluong' => $row['sp_soluong'],
@@ -70,7 +71,6 @@
                 }
                 //var_dump($arrDanhSachsp);
                 ?>
-
                 <a href="create.php" class="btn btn-primary mb-3">Thêm mới <i class="fa-solid fa-plus"></i></a>
                 <table class="table table-hover table-bordered">
                     <tr>
@@ -83,7 +83,6 @@
                         <th>Mô tả chi tiết</th>
                         <th>Số lượng tồn kho</th>
                         <th>Số lượng đã bán</th>
-
                         <th>Thương hiệu</th>
                         <th>Nhà phân phối</th>
                         <th>Khuyến mãi</th>
@@ -93,15 +92,24 @@
                     <?php foreach ($arrDanhSachsp as $sp) : ?>
                         <tr>
                             <td><?= $stt ?></td>
-                            <td><?= $sp['lsp_ten'] ?></td>
                             <td><?= $sp['sp_ma'] ?></td>
+                            <td><?= $sp['lsp_ten'] ?></td>
+                            <td>
+                                <del>
+                                    <?=
+                                    number_format($sp['sp_giacu'], 2, ",", ".")
+                                    ?>
+                                </del></br>
+                                <?=
+                                    number_format($sp['sp_gia'], 2, ",", ".")
+                                ?>
+                            </td>
                             <td><?= $sp['sp_ten'] ?></td>
-                            <td><?= $sp['sp_gia'] ?></td>
                             <td><?= $sp['sp_mota_ngan'] ?></td>
                             <td><?= $sp['sp_mota_chitiet'] ?></td>
                             <td><?= $sp['sp_soluong'] ?></td>
                             <td>Chưa tính</td>
-                            
+
                             <td><?= $sp['th_ten'] ?></td>
                             <td><?= $sp['npp_ten'] ?></td>
                             <td><?= $sp['km_ten'] ?></td>

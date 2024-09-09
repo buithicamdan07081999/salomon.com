@@ -25,10 +25,23 @@
                 <h1>Thêm sản phẩm</h1>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
                     <!-- bắt buộc chọn khóa ngoại  -->
-                    Loại sản phẩm: <input type="text" name="sp_ten" class="form-control" /><br />
-                    Nhà sản xuất: <input type="text" name="sp_gia" class="form-control" /><br />
-                    <!-- bắt buộc chọn khóa ngoại  -->
+                    <!-- Loại sản phẩm: <input type="text" name="lsp_ten" class="form-control" /><br /> -->
+                    Loại sản phẩm:
+                    <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                        <?php
+                        <li><a class="dropdown-item" href="#">Action</a></li> ?>
+                    </ul>
 
+
+                   
+
+                    </div>
+                    Nhà phân phối: <input type="text" name="npp_ten" class="form-control" /><br />
+                    <!-- bắt buộc chọn khóa ngoại  -->
                     Tên sản phẩm: <input type="text" name="sp_ten" class="form-control" /><br />
                     Giá sản phẩm: <input type="text" name="sp_gia" class="form-control" /><br />
                     Mô tả ngắn: <input type="text" name="sp_mota_ngan" class="form-control" /><br />
@@ -49,12 +62,20 @@
                     $sp_mota_chitiet = $_POST['sp_mota_chitiet'];
                     $sp_soluong = $_POST['sp_soluong'];
                     if ($sp_ten != "" && $sp_gia != "" && $sp_mota_ngan != "" && $sp_mota_chitiet != "" && $sp_soluong != "") {
-                        $sql = "INSERT INTO sanpham (sp_ten, sp_gia, sp_mota_ngan, sp_mota_chitiet, sp_soluong )
-                VALUES ('$sp_ten', '$sp_gia', '$sp_mota_ngan', '$sp_mota_chitiet', '$sp_soluong');";
+                        $sql = 
+                "INSERT INTO sanpham (sp_ten, sp_gia, sp_mota_ngan, sp_mota_chitiet, sp_soluong )
+                VALUES ('$sp_ten', '$sp_gia', '$sp_mota_ngan', '$sp_mota_chitiet', '$sp_soluong');
+                
+                UPDATE sanpham
+                SET 
+                    sp_giacu = IF(sp_giacu IS NULL, NULL, sp_gia),  -- Nếu sp_giacu đã có giá trị thì cập nhật nó bằng giá hiện tại
+                    sp_gia = '$sp_gia'  -- Cập nhật giá mới vào cột sp_gia
+                WHERE sp_ten = '$sp_ten';  -- Điều kiện để xác định đúng sản phẩm
+                ";
                         // 3. Thực thi câu lệnh
-                        // mysqli_query($conn, $sql);
-                        // echo '<script> location.href="index.php"</script>';
-                        var_dump($sql);
+                        mysqli_query($conn, $sql);
+                        echo '<script> location.href="index.php"</script>';
+                        //var_dump($sql);
                     } else {
                         echo '<script>alert("Dữ liệu không được rỗng!");</script>';
                     }
@@ -70,7 +91,5 @@
     <?php
     include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
     ?>
-
 </body>
-
 </html>
