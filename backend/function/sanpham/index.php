@@ -37,7 +37,11 @@
 					 C.th_ten,
 					 A.sp_gia, A.sp_giacu, A.sp_mota_ngan, A.sp_mota_chitiet, A.sp_soluong,
 					 D.npp_ten,
-					 E.km_ten
+					 E.km_ten,
+					 E.km_noidung,
+					 E.km_tungay,
+					 E.km_denngay,
+                     E.km_noidung
                 FROM sanpham A
                 LEFT JOIN loaisanpham B   
                 ON A.lsp_ma = B.lsp_ma
@@ -67,6 +71,9 @@
                         'th_ten' => $row['th_ten'],
                         'npp_ten' => $row['npp_ten'],
                         'km_ten' => $row['km_ten'],
+                        'km_tungay' => $row['km_tungay'],
+                        'km_denngay' => $row['km_denngay'],
+                        'km_noidung' => $row['km_noidung'],
                     );
                 }
                 //var_dump($arrDanhSachsp);
@@ -76,15 +83,14 @@
                     <tr>
                         <th>STT</th>
                         <th>Danh mục</th>
-                        <th>Số Seri</th>
+                        <!-- <th>Số Seri</th> -->
                         <th>Tên sản phẩm</th>
                         <th>Giá</th>
                         <th>Mô tả</th>
-                        <th>Mô tả chi tiết</th>
-                        <th>Số lượng tồn kho</th>
-                        <th>Số lượng đã bán</th>
-                        <th>Thương hiệu</th>
-                        <th>Nhà phân phối</th>
+                        <!-- <th>Mô tả chi tiết</th> -->
+                        <th>Số lượng</th>
+                        <!-- <th>Thương hiệu</th> -->
+                        <!-- <th>Nhà phân phối</th> -->
                         <th>Khuyến mãi</th>
                         <th>Tùy chỉnh</th>
                     </tr>
@@ -92,8 +98,9 @@
                     <?php foreach ($arrDanhSachsp as $sp) : ?>
                         <tr>
                             <td><?= $stt ?></td>
-                            <td><?= $sp['sp_ma'] ?></td>
                             <td><?= $sp['lsp_ten'] ?></td>
+                            <!-- <td><?= $sp['sp_ma'] ?></td> -->
+                            <td><?= $sp['sp_ten'] ?></td>
                             <td>
                                 <del>
                                     <?=
@@ -101,18 +108,33 @@
                                     ?>
                                 </del></br>
                                 <?=
-                                    number_format($sp['sp_gia'], 2, ",", ".")
+                                number_format($sp['sp_gia'], 2, ",", ".")
                                 ?>
                             </td>
-                            <td><?= $sp['sp_ten'] ?></td>
                             <td><?= $sp['sp_mota_ngan'] ?></td>
-                            <td><?= $sp['sp_mota_chitiet'] ?></td>
-                            <td><?= $sp['sp_soluong'] ?></td>
-                            <td>Chưa tính</td>
+                            <!-- <td><?= $sp['sp_mota_chitiet'] ?></td> -->
+                            <td><?= $sp['sp_soluong'] ?>/1000</td>
+                            <!-- <td><?= $sp['th_ten'] ?></td> -->
+                            <!-- <td><?= $sp['npp_ten'] ?></td> -->
+                            <td>
+                                <!-- https://getbootstrap.com/docs/5.3/components/badge/ -->
+                                <?php if (!empty($sp['km_ten'])) : ?>
+                                    <span class="btn btn-primary badge rounded-pill text-bg-info">
+                                        <?= date('d/m/Y', strtotime($sp['km_tungay'])) ?>
+                                        -
+                                        <?= date('d/m/Y', strtotime($sp['km_denngay'])) ?>
+                                    </span></br>
+                                    <ul>
+                                        <li>
+                                            <?= $sp['km_ten'] ?>
+                                        </li>
+                                        <li>
+                                            <?= $sp['km_noidung'] ?>
+                                        </li>
+                                    </ul>
+                                <?php endif ?>
 
-                            <td><?= $sp['th_ten'] ?></td>
-                            <td><?= $sp['npp_ten'] ?></td>
-                            <td><?= $sp['km_ten'] ?></td>
+                            </td>
                             <td>
                                 <!-- gửi bằng đường GET -->
                                 <a href="edit.php?sp_ma=<?= $sp['sp_ma'] ?>" class="btn btn-warning">Sửa <i class="fa-regular fa-pen-to-square"></i></a>

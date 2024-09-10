@@ -24,10 +24,17 @@
             <div class="col-9">
                 <h1>Thêm mới Loại sản phẩm</h1>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
-                    Tên: <input type="text" name="lsp_ten" class="form-control" /><br />
-                    Mô tả: <input type="text" name="lsp_mota" class="form-control" /><br />
+                    <!-- action "" là tự gửi đến trang hiện tại                     -->
+                    <div class="mb-3">
+                        <label class="form-label">Tên:</label>
+                        <input type="text" name="lsp_ten" id="lsp_ten" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mô tả:</label>
+                        <input type="text" name="lsp_mota" id="lsp_mota" class="form-control">
+                    </div>
                     <a href="index.php" class="btn btn-secondary">Quay về Danh sách <i class="fa-solid fa-backward"></i></a>
-                    <button type="submit" name="btnLuu" class="btn btn-primary">Lưu dữ liệu  <i class="fa-regular fa-floppy-disk"></i></button>
+                    <button type="submit" name="btnLuu" class="btn btn-primary">Lưu dữ liệu <i class="fa-regular fa-floppy-disk"></i></button>
                 </form>
                 <?php
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý

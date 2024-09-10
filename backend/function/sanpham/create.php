@@ -8,6 +8,7 @@
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
     ?>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -23,30 +24,72 @@
             </div>
             <div class="col-9">
                 <h1>Thêm sản phẩm</h1>
+                <!-- 1. Nhờ PHP lấy ra loại sản phẩm -->
+                <?php
+                // mở kết nối                
+                include_once __DIR__ . '/../../../dbconnect.php';
+                // sql
+                $sql = "SELECT A.lsp_ma, A.lsp_ten FROM loaisanpham A";
+                // thực thi
+                $data = mysqli_query($conn, $sql);
+                // array
+                $arrDs_Lsp = [];
+                while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
+                    $arrDs_Lsp[] = array(
+                        'lsp_ma' => $row['lsp_ma'],
+                        'lsp_ten' => $row['lsp_ten'],
+                    );
+                }
+                ?>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
                     <!-- bắt buộc chọn khóa ngoại  -->
                     <!-- Loại sản phẩm: <input type="text" name="lsp_ten" class="form-control" /><br /> -->
-                    Loại sản phẩm:
-                    <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu">
-                        <?php
-                        <li><a class="dropdown-item" href="#">Action</a></li> ?>
-                    </ul>
-
-
-                   
-
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Tên sản phẩm:</label>
+                                <input type="text" name="sp_ten" id="sp_ten" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Loại sản phẩm:</label>
+                                <select name="lsp_ten" id="lsp_ten" class="form-select">
+                                    <?php foreach ($arrDs_Lsp as $lsp): ?>
+                                        <option value="<?= $lsp['lsp_ma'] ?>"><?= $lsp['lsp_ten'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Giá sản phẩm:</label>
+                                <input type="number" name="sp_gia" id="sp_gia" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label class="form-label">Số lượng sản phẩm:</label>
+                                <input type="text" name="sp_soluong" id="sp_soluong" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nhà phân phối:</label>
+                                <input type="text" name="npp_ten" id="npp_ten" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Giá cũ:</label>
+                                <input type="text" name="sp_mota_chitiet" id="sp_mota_chitiet" class="form-control" />
+                            </div>
+                        </div>
                     </div>
-                    Nhà phân phối: <input type="text" name="npp_ten" class="form-control" /><br />
-                    <!-- bắt buộc chọn khóa ngoại  -->
-                    Tên sản phẩm: <input type="text" name="sp_ten" class="form-control" /><br />
-                    Giá sản phẩm: <input type="text" name="sp_gia" class="form-control" /><br />
-                    Mô tả ngắn: <input type="text" name="sp_mota_ngan" class="form-control" /><br />
-                    Mô tả chi tiết: <input type="text" name="sp_mota_chitiet" class="form-control" /><br />
-                    Số lượng sản phẩm: <input type="text" name="sp_soluong" class="form-control" /><br />
+                    <div class="row">
+                        <div class="mb-3 col-12">
+                            <label class="form-label">Mô tả ngắn:</label>
+                            <input type="text" name="sp_mota_ngan" id="sp_mota_ngan" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-12">
+                            <label class="form-label">Mô tả chi tiết:</label>
+                            <textarea type="text" name="sp_mota_chitiet" id="sp_mota_chitiet" rows="5" class="form-control"> </textarea>
+                        </div>
+                    </div>
                     <a href="index.php" class="btn btn-secondary">Quay về Danh sách <i class="fa-solid fa-backward"></i></a>
                     <button type="submit" name="btnLuu" class="btn btn-primary">Lưu dữ liệu <i class="fa-regular fa-floppy-disk"></i></button>
                 </form>
@@ -62,8 +105,8 @@
                     $sp_mota_chitiet = $_POST['sp_mota_chitiet'];
                     $sp_soluong = $_POST['sp_soluong'];
                     if ($sp_ten != "" && $sp_gia != "" && $sp_mota_ngan != "" && $sp_mota_chitiet != "" && $sp_soluong != "") {
-                        $sql = 
-                "INSERT INTO sanpham (sp_ten, sp_gia, sp_mota_ngan, sp_mota_chitiet, sp_soluong )
+                        $sql =
+                            "INSERT INTO sanpham (sp_ten, sp_gia, sp_mota_ngan, sp_mota_chitiet, sp_soluong )
                 VALUES ('$sp_ten', '$sp_gia', '$sp_mota_ngan', '$sp_mota_chitiet', '$sp_soluong');
                 
                 UPDATE sanpham
@@ -92,4 +135,5 @@
     include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
     ?>
 </body>
+
 </html>
