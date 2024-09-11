@@ -29,16 +29,45 @@
                 // mở kết nối                
                 include_once __DIR__ . '/../../../dbconnect.php';
                 // sql
-                $sql = "SELECT A.lsp_ma, A.lsp_ten FROM loaisanpham A";
+                $sql_lsp = "SELECT A.lsp_ma, A.lsp_ten FROM loaisanpham A";
+                $sql_npp = "SELECT A.npp_ma, A.npp_ten FROM nhaphanphoi A";
+                $sql_km = "SELECT A.km_ma, A.km_ten FROM khuyenmai A";
+                $sql_th = "SELECT A.th_ma, A.th_ten FROM thuonghieu A";
                 // thực thi
-                $data = mysqli_query($conn, $sql);
+                $data_lsp = mysqli_query($conn, $sql_lsp);
+                $data_npp = mysqli_query($conn, $sql_npp);
+                $data_km = mysqli_query($conn, $sql_km);
+                $data_th = mysqli_query($conn, $sql_th);
                 // array
                 $arrDs_Lsp = [];
-                while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
+                $arrDs_Npp = [];
+                $arrDs_km = [];
+                $arrDS_th = [];
+                // phân tích khối dữ liệu thành mảng
+                while ($row = mysqli_fetch_array($data_lsp, MYSQLI_ASSOC)) {
                     $arrDs_Lsp[] = array(
                         'lsp_ma' => $row['lsp_ma'],
                         'lsp_ten' => $row['lsp_ten'],
                     );
+                }
+                while ($row = mysqli_fetch_array($data_npp, MYSQLI_ASSOC)) {
+                    $arrDs_Npp[] = array(
+                        'npp_ma' => $row['npp_ma'],
+                        'npp_ten' => $row['npp_ten'],
+                    );
+                }
+                while ($row = mysqli_fetch_array($data_km, MYSQLI_ASSOC)) {
+                    $arrDs_km[] = array(
+                        'km_ma' => $row['km_ma'],
+                        'km_ten' => $row['km_ten'],
+                    );
+                }
+                while ($row = mysqli_fetch_array($data_th, MYSQLI_ASSOC)) {
+                    $arrDs_th[] = array(
+                        'th_ma' => $row['th_ma'],
+                        'th_ten' => $row['th_ten'],
+                    );
+                    //var_dump($arrDs_th);
                 }
                 ?>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
@@ -59,8 +88,16 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Giá sản phẩm:</label>
-                                <input type="number" name="sp_gia" id="sp_gia" class="form-control" />
+                                <label class="form-label">Khuyến mãi:</label>
+                                <select name="km_ma" id="km_ma" class="form-select">
+                                    <?php foreach ($arrDs_km as $km): ?>
+                                        <option value="<?= $km['km_ma'] ?>"><?= $km['km_ten'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Mô tả ngắn:</label>
+                                <input type="text" name="sp_mota_ngan" id="sp_mota_ngan" class="form-control">
                             </div>
                         </div>
                         <div class="col-6">
@@ -70,18 +107,24 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Nhà phân phối:</label>
-                                <input type="text" name="npp_ten" id="npp_ten" class="form-control" />
+                                <select name="npp_ma" id="npp_ma" class="form-select">
+                                    <?php foreach ($arrDs_Npp as $npp): ?>
+                                        <option value="<?= $npp['npp_ten'] ?>"><?= $npp['npp_ten'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Giá cũ:</label>
-                                <input type="text" name="sp_mota_chitiet" id="sp_mota_chitiet" class="form-control" />
+                                <label class="form-label">Thương hiệu:</label>
+                                <select name="th_ma" id="th_ma" class="form-select">
+                                    <?php foreach ($arrDs_th as $th): ?>
+                                        <option value="<?= $th['th_ma'] ?>"><?= $th['th_ten'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-3 col-12">
-                            <label class="form-label">Mô tả ngắn:</label>
-                            <input type="text" name="sp_mota_ngan" id="sp_mota_ngan" class="form-control">
+                            <div class="mb-3">
+                                <label class="form-label">Giá sản phẩm:</label>
+                                <input type="number" name="sp_gia" id="sp_gia" class="form-control" />
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -97,14 +140,20 @@
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
                     // 1. Mở kết nối
-                    include_once __DIR__ . '/../../../dbconnect.php';
+                    // include_once __DIR__ . '/../../../dbconnect.php';
                     // 2. Chuẩn bị câu lệnh
                     $sp_ten = $_POST['sp_ten'];
-                    $sp_gia = $_POST['sp_gia'];
+                    $sp_lsp = $_POST['sp_lsp'];
+                    $sp_km = $_POST['sp_km'];
                     $sp_mota_ngan = $_POST['sp_mota_ngan'];
                     $sp_mota_chitiet = $_POST['sp_mota_chitiet'];
+
                     $sp_soluong = $_POST['sp_soluong'];
-                    if ($sp_ten != "" && $sp_gia != "" && $sp_mota_ngan != "" && $sp_mota_chitiet != "" && $sp_soluong != "") {
+                    $sp_npp = $_POST['sp_npp'];
+                    $sp_th = $_POST['sp_th'];
+                    $sp_gia = $_POST['sp_gia'];
+
+                    if ($sp_ten != "" && $sp_lsp != "" && $sp_km != "" && $sp_mota_ngan != "" && $sp_mota_chitiet != "" && $sp_soluong != "" && $sp_npp != "" && $sp_th != "" && $sp_gia != "") {
                         $sql =
                             "INSERT INTO sanpham (sp_ten, sp_gia, sp_mota_ngan, sp_mota_chitiet, sp_soluong )
                 VALUES ('$sp_ten', '$sp_gia', '$sp_mota_ngan', '$sp_mota_chitiet', '$sp_soluong');
