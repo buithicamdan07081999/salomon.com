@@ -7,6 +7,7 @@
     <title>NHÀ PHÂN PHỐI</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/dbconnect.php';
     ?>
 </head>
 
@@ -24,7 +25,6 @@
             <div class="col-9">
                 <h1>Sửa Nhà phân phối</h1>
                 <?php
-                include_once __DIR__ . '/../../../dbconnect.php';
                 $npp_ma = $_GET['npp_ma'];
                 $sql_select_data_old = "select * from nhaphanphoi where npp_ma = $npp_ma";
                 $sql_data_old = mysqli_query($conn, $sql_select_data_old);
@@ -41,15 +41,11 @@
                 <?php
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
-                    // 1. Mở kết nối
-                    include_once __DIR__ . '/../../dbconnect.php';
-                    // 2. Chuẩn bị câu lệnh
                     $npp_ma = $_GET['npp_ma'];
                     $npp_ten = $_POST['npp_ten'];
                     $npp_mota = $_POST['npp_mota'];
 
                     $sql = "UPDATE nhaphanphoi SET npp_ten = '$npp_ten', npp_mota = '$npp_mota' WHERE npp_ma = $npp_ma;";
-                    // 3. Thực thi câu lệnh
                     mysqli_query($conn, $sql);
                     echo '<script> location.href="index.php"</script>';
                 }

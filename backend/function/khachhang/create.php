@@ -7,6 +7,7 @@
     <title>KHÁCH HÀNG</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/dbconnect.php';
     ?>
 </head>
 
@@ -28,9 +29,9 @@
                     Mật khẩu: <input type="text" name="kh_matkhau" class="form-control" /><br />
                     Tên: <input type="text" name="kh_ten" class="form-control" /><br />
                     Giới tính: <input type="text" name="kh_gioitinh" class="form-control" /><br />
-                    Ngày sinh: <input type="text" name="kh_ngaysinh" class="form-control" /><br />
+                    Ngày sinh: <input type="date" name="kh_ngaysinh" class="form-control" /><br />
                     Địa chỉ: <input type="text" name="kh_diachi" class="form-control" /><br />
-                    SĐT: <input type="text" name="kh_dienthoai" class="form-control" /><br />
+                    SĐT: <input type="number" name="kh_dienthoai" class="form-control" /><br />
                     Email: <input type="text" name="kh_email" class="form-control" /><br />
                     <a href="index.php" class="btn btn-secondary">Quay về Danh sách <i class="fa-solid fa-backward"></i></a>
                     <button type="submit" name="btnLuu" class="btn btn-primary">Lưu dữ liệu <i class="fa-regular fa-floppy-disk"></i></button>

@@ -7,6 +7,7 @@
     <title>THƯƠNG HIỆU</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/dbconnect.php';
     ?>
 </head>
 
@@ -32,15 +33,11 @@
                 <?php
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
-                    // 1. Mở kết nối
-                    include_once __DIR__ . '/../../../dbconnect.php';
-                    // 2. Chuẩn bị câu lệnh
                     $th_ten = $_POST['th_ten'];
                     $th_mota = $_POST['th_mota'];
                     if ($th_ten != "" && $th_mota != "") {
                         $sql = "INSERT INTO thuonghieu(th_ten, th_mota)
                 VALUES ('$th_ten', '$th_mota');";
-                        // 3. Thực thi câu lệnh
                         mysqli_query($conn, $sql);
                         echo '<script> location.href="index.php"</script>';
                     } else {

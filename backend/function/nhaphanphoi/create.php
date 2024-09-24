@@ -7,6 +7,7 @@
     <title>NHÀ PHÂN PHỐI</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/dbconnect.php';
     ?>
 </head>
 
@@ -32,15 +33,11 @@
                 <?php
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
-                    // 1. Mở kết nối
-                    include_once __DIR__ . '/../../../dbconnect.php';
-                    // 2. Chuẩn bị câu lệnh
                     $npp_ten = $_POST['npp_ten'];
                     $npp_mota = $_POST['npp_mota'];
                     if ($npp_ten != "" && $npp_mota != "") {
                         $sql = "INSERT INTO nhaphanphoi(npp_ten, npp_mota)
                 VALUES ('$npp_ten', '$npp_mota');";
-                        // 3. Thực thi câu lệnh
                         mysqli_query($conn, $sql);
                         echo '<script> location.href="index.php"</script>';
                     } else {

@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>THƯƠNG HIỆU</title>
     <?php
-    include_once __DIR__ . '/../../../dbconnect.php';
-    ?>
-    <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/dbconnect.php';
     ?>
 </head>
 
@@ -27,15 +25,9 @@
             <div class="col-9">
                 <h3>THƯƠNG HIỆU</h3><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
                 <?php
-                // 1. Tạo kết nối
-                include_once __DIR__ . '/../../../dbconnect.php';
-                // 2. Chuẩn bị câu lệnh SQL Query
                 $sql = "SELECT th_ma, th_ten, th_mota
                 FROM thuonghieu;";
-                // 3. Yêu cầu PHP thực thi query
                 $data = mysqli_query($conn, $sql);
-
-                // 4. Phân tách dữ liệu
                 $arrDanhSachth = [];
                 while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
                     $arrDanhSachth[] = array(

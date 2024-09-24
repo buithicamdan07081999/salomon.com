@@ -7,6 +7,7 @@
     <title>LOẠI SẢN PHẨM</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/dbconnect.php';
     ?>
 </head>
 
@@ -24,7 +25,6 @@
             <div class="col-9">
                 <h1>Sửa Loại sản phẩm</h1>
                 <?php
-                include_once __DIR__ . '/../../../dbconnect.php';
                 $lsp_ma = $_GET['lsp_ma'];
                 $sql_select_data_old = "select * from loaisanpham where lsp_ma = $lsp_ma";
                 $sql_data_old = mysqli_query($conn, $sql_select_data_old);
@@ -41,9 +41,7 @@
                 <?php
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
-                    // 1. Mở kết nối
-                    include_once __DIR__ . '/../../dbconnect.php';
-                    // 2. Chuẩn bị câu lệnh
+                    // Lấy dữ liệu từ sự kiện GET
                     $lsp_ma = $_GET['lsp_ma'];
                     $lsp_ten = $_POST['lsp_ten'];
                     $lsp_mota = $_POST['lsp_mota'];

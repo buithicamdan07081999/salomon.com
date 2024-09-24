@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHÁCH HÀNG</title>
     <?php
-    include_once __DIR__ . '/../../../dbconnect.php';
-    ?>
-    <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/dbconnect.php';
     ?>
 </head>
 
@@ -27,9 +25,6 @@
             <div class="col-9">
                 <h3>KHÁCH HÀNG</h3><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
                 <?php
-                // 1. Tạo kết nối
-                include_once __DIR__ . '/../../../dbconnect.php';
-                // 2. Chuẩn bị câu lệnh SQL Query
                 $sql = "SELECT 
                     kh_tendangnhap,
                     kh_ten, 
@@ -41,10 +36,7 @@
                     kh_makichhoat, 
                     kh_trangthai
                 FROM khachhang;";
-        //var_dump($sql);
-                // 3. Yêu cầu PHP thực thi query
                 $data = mysqli_query($conn, $sql);
-                // 4. Phân tách dữ liệu
                 $arrDanhSachkh = [];
                 while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
                     $arrDanhSachkh[] = array(
@@ -59,7 +51,7 @@
                         'kh_trangthai' => $row['kh_trangthai'],
                     );
                 }
-                
+
                 ?>
                 <a href="create.php" class="btn btn-primary mb-3">Thêm mới <i class="fa-solid fa-plus"></i></a>
                 <table class="table table-hover table-bordered">
@@ -84,10 +76,8 @@
                             <td><?= $kh['kh_dienthoai'] ?></td>
                             <td><?= $kh['kh_email'] ?></td>
                             <td>
-                                <!-- gửi bằng đường GET -->
                                 <a href="edit.php?kh_tendangnhap=<?= $kh['kh_tendangnhap'] ?>" class="btn btn-warning">Sửa <i class="fa-regular fa-pen-to-square"></i></a>
-                                <!-- <a href="delete.php?kh_tendangnhap=<?= $kh['kh_tendangnhap'] ?>" class="btn btn-danger">Xóa  <?= var_dump($kh['kh_tendangnhap'])?>  <i class="fa-regular fa-trash-can"></i></a> -->
-                                <a href="delete.php?kh_tendangnhap=<?= $kh['kh_tendangnhap'] ?>" class="btn btn-danger">Xóa <i class="fa-regular fa-trash-can"></i></a>                            
+                                <a href="delete.php?kh_tendangnhap=<?= $kh['kh_tendangnhap'] ?>" class="btn btn-danger">Xóa <i class="fa-regular fa-trash-can"></i></a>
                             </td>
                         </tr>
                     <?php

@@ -7,6 +7,7 @@
     <title>LOẠI SẢN PHẨM</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/dbconnect.php';
     ?>
 </head>
 
@@ -39,15 +40,14 @@
                 <?php
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
-                    // 1. Mở kết nối
-                    include_once __DIR__ . '/../../../dbconnect.php';
-                    // 2. Chuẩn bị câu lệnh
+                    // Lấy dữ liệu từ sự kiện POST
                     $lsp_ten = $_POST['lsp_ten'];
                     $lsp_mota = $_POST['lsp_mota'];
                     if ($lsp_ten != "" && $lsp_mota != "") {
-                        $sql = "INSERT INTO loaisanpham(lsp_ten, lsp_mota)
-                VALUES ('$lsp_ten', '$lsp_mota');";
-                        // 3. Thực thi câu lệnh
+                        $sql = 
+                        "   INSERT INTO loaisanpham(lsp_ten, lsp_mota)
+                            VALUES ('$lsp_ten', '$lsp_mota');";
+                            //Thực thi
                         mysqli_query($conn, $sql);
                         echo '<script> location.href="index.php"</script>';
                     } else {

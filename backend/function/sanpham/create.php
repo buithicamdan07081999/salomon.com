@@ -28,50 +28,51 @@
                 <?php
                 // mở kết nối                
                 include_once __DIR__ . '/../../../dbconnect.php';
+                include_once __DIR__ . '/../../../select.php';
                 // sql
-                $sql_lsp = "SELECT A.lsp_ma, A.lsp_ten FROM loaisanpham A";
-                $sql_npp = "SELECT A.npp_ma, A.npp_ten FROM nhaphanphoi A";
-                $sql_km = "SELECT A.km_ma, A.km_ten, A.km_noidung, A.km_tungay, A.km_denngay FROM khuyenmai A";
-                $sql_th = "SELECT A.th_ma, A.th_ten FROM thuonghieu A";
-                // thực thi
-                $data_lsp = mysqli_query($conn, $sql_lsp);
-                $data_npp = mysqli_query($conn, $sql_npp);
-                $data_km = mysqli_query($conn, $sql_km);
-                $data_th = mysqli_query($conn, $sql_th);
-                // array
-                $arrDs_Lsp = [];
-                $arrDs_Npp = [];
-                $arrDs_km = [];
-                $arrDS_th = [];
-                // phân tích khối dữ liệu thành mảng
-                while ($row = mysqli_fetch_array($data_lsp, MYSQLI_ASSOC)) {
-                    $arrDs_Lsp[] = array(
-                        'lsp_ma' => $row['lsp_ma'],
-                        'lsp_ten' => $row['lsp_ten'],
-                    );
-                }
-                while ($row = mysqli_fetch_array($data_npp, MYSQLI_ASSOC)) {
-                    $arrDs_Npp[] = array(
-                        'npp_ma' => $row['npp_ma'],
-                        'npp_ten' => $row['npp_ten'],
-                    );
-                }
-                while ($row = mysqli_fetch_array($data_km, MYSQLI_ASSOC)) {
-                    $arrDs_km[] = array(
-                        'km_ma' => $row['km_ma'],
-                        'km_ten' => $row['km_ten'],
-                        'km_noidung' => $row['km_noidung'],
-                        'km_tungay' => $row['km_tungay'],
-                        'km_denngay' => $row['km_denngay'],
-                    );
-                }
-                while ($row = mysqli_fetch_array($data_th, MYSQLI_ASSOC)) {
-                    $arrDs_th[] = array(
-                        'th_ma' => $row['th_ma'],
-                        'th_ten' => $row['th_ten'],
-                    );
-                    //var_dump($arrDs_th);
-                }
+                // $sql_lsp = "SELECT A.lsp_ma, A.lsp_ten FROM loaisanpham A";
+                // $sql_npp = "SELECT A.npp_ma, A.npp_ten FROM nhaphanphoi A";
+                // $sql_km = "SELECT A.km_ma, A.km_ten, A.km_noidung, A.km_tungay, A.km_denngay FROM khuyenmai A";
+                // $sql_th = "SELECT A.th_ma, A.th_ten FROM thuonghieu A";
+                // // thực thi
+                // $data_lsp = mysqli_query($conn, $sql_lsp);
+                // $data_npp = mysqli_query($conn, $sql_npp);
+                // $data_km = mysqli_query($conn, $sql_km);
+                // $data_th = mysqli_query($conn, $sql_th);
+                // // array
+                // $arrDs_Lsp = [];
+                // $arrDs_Npp = [];
+                // $arrDs_km = [];
+                // $arrDS_th = [];
+                // // phân tích khối dữ liệu thành mảng
+                // while ($row = mysqli_fetch_array($data_lsp, MYSQLI_ASSOC)) {
+                //     $arrDs_Lsp[] = array(
+                //         'lsp_ma' => $row['lsp_ma'],
+                //         'lsp_ten' => $row['lsp_ten'],
+                //     );
+                // }
+                // while ($row = mysqli_fetch_array($data_npp, MYSQLI_ASSOC)) {
+                //     $arrDs_Npp[] = array(
+                //         'npp_ma' => $row['npp_ma'],
+                //         'npp_ten' => $row['npp_ten'],
+                //     );
+                // }
+                // while ($row = mysqli_fetch_array($data_km, MYSQLI_ASSOC)) {
+                //     $arrDs_km[] = array(
+                //         'km_ma' => $row['km_ma'],
+                //         'km_ten' => $row['km_ten'],
+                //         'km_noidung' => $row['km_noidung'],
+                //         'km_tungay' => $row['km_tungay'],
+                //         'km_denngay' => $row['km_denngay'],
+                //     );
+                // }
+                // while ($row = mysqli_fetch_array($data_th, MYSQLI_ASSOC)) {
+                //     $arrDs_th[] = array(
+                //         'th_ma' => $row['th_ma'],
+                //         'th_ten' => $row['th_ten'],
+                //     );
+                //     //var_dump($arrDs_th);
+                // }
                 ?>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
                     <!-- bắt buộc chọn khóa ngoại  -->
@@ -84,7 +85,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Loại sản phẩm:</label>
-                                <select name="lsp_ten" id="lsp_ten" class="form-select">
+                                <select name="lsp_ma" id="lsp_ma" class="form-select">
                                     <?php foreach ($arrDs_Lsp as $lsp): ?>
                                         <option value="<?= $lsp['lsp_ma'] ?>"><?= $lsp['lsp_ten'] ?></option>
                                     <?php endforeach; ?>
@@ -119,7 +120,7 @@
                                 <label class="form-label">Nhà phân phối:</label>
                                 <select name="npp_ma" id="npp_ma" class="form-select">
                                     <?php foreach ($arrDs_Npp as $npp): ?>
-                                        <option value="<?= $npp['npp_ten'] ?>"><?= $npp['npp_ten'] ?></option>
+                                        <option value="<?= $npp['npp_ma'] ?>"><?= $npp['npp_ten'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -140,7 +141,7 @@
                     <div class="row">
                         <div class="mb-3 col-12">
                             <label class="form-label">Mô tả ngắn:</label>
-                            <input type="text" name="sp_mota" id="sp_mota" class="form-control" />
+                            <input type="text" name="sp_mota_ngan" id="sp_mota_ngan" class="form-control" />
 
                         </div>
                     </div>
@@ -156,13 +157,13 @@
                 <?php
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
-                    date_default_timezone_get('Asia/Ho_Chi_Minh');
+                    date_default_timezone_set('Asia/Ho_Chi_Minh'); 
                     // 1. Mở kết nối
                     // include_once __DIR__ . '/../../../dbconnect.php';
                     // 2. Chuẩn bị câu lệnh
                     $sp_ten = $_POST['sp_ten'];
                     $lsp_ma = $_POST['lsp_ma'];
-                    $km_ma = empty($_POST['km_ma']) ? NULL : $_POST['km_ma']; // nếu Km ko chọn thì để null 
+                    $km_ma = empty($_POST['km_ma']) ? 'NULL' : $_POST['km_ma']; // nếu Km ko chọn thì để null 
                     $sp_mota_ngan = $_POST['sp_mota_ngan'];
                     $sp_mota_chitiet = $_POST['sp_mota_chitiet'];
 
@@ -170,17 +171,18 @@
                     $npp_ma = $_POST['npp_ma'];
                     $th_ma = $_POST['th_ma'];
                     $sp_gia = $_POST['sp_gia'];
-                    $sp_giacu = empty($_POST['sp_giacu']) ? NULL : $_POST['sp_giacu'];
+                    $sp_giacu = empty($_POST['sp_giacu']) ? 'NULL' : $_POST['sp_giacu'];
                     $sp_ngaycapnhat = date('Y-m-d H:i:s'); // đưa vào dữ liệu thô trong Database
 
-                    if ($sp_ten != "" && $sp_lsp != "" && $sp_km != "" && $sp_mota_ngan != "" && $sp_mota_chitiet != "" && $sp_soluong != "" && $sp_npp != "" && $sp_th != "" && $sp_gia != "") {
+                    if ($sp_ten != "" && $sp_gia  != "" && $sp_mota_ngan != "" && $sp_mota_chitiet != "" && $sp_ngaycapnhat != "" && $sp_soluong != "" && $lsp_ma != "" && $km_ma != "" && $th_ma != "" && $npp_ma != "") {
                         $sql =
                             "INSERT INTO sanpham
                             (sp_ten, sp_gia, sp_giacu, sp_mota_ngan, sp_mota_chitiet, sp_ngaycapnhat, sp_soluong, lsp_ma, km_ma, th_ma, npp_ma)
-                            VALUES ('$sp_ten', $sp_gia, $sp_giacu, '$sp_mota_ngan', '$sp_mota_chitiet', '$sp_ngaycapnhat', $sp_soluong, '$lsp_ma',  '$km_ma', '$th_ma', '$npp_ma');
+                            VALUES ('$sp_ten', $sp_gia, $sp_giacu, '$sp_mota_ngan', '$sp_mota_chitiet', '$sp_ngaycapnhat', $sp_soluong, $lsp_ma,  $km_ma, $th_ma, $npp_ma);
 
                 ";
                         // 3. Thực thi câu lệnh
+                        //var_dump($sql); die;
                         mysqli_query($conn, $sql);
                         echo '<script> location.href="index.php"</script>';
                     } else {

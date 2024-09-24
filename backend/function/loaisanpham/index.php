@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOẠI SẢN PHẨM</title>
     <?php
-    include_once __DIR__ . '/../../../dbconnect.php';
-    ?>
-    <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/dbconnect.php';
     ?>
 </head>
 
@@ -34,15 +32,12 @@
             <div class="col-9">
                 <h3>LOẠI SẢN PHẨM</h3><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
                 <?php
-                // 1. Tạo kết nối
-                include_once __DIR__ . '/../../../dbconnect.php';
-                // 2. Chuẩn bị câu lệnh SQL Query
-                $sql = "SELECT lsp_ma, lsp_ten, lsp_mota
-                FROM loaisanpham;";
-
-                // 3. Yêu cầu PHP thực thi query
+                //SQL
+                $sql = 
+                "   SELECT lsp_ma, lsp_ten, lsp_mota
+                    FROM loaisanpham;";
+                //Thực thi
                 $data = mysqli_query($conn, $sql);
-
                 // 4. Phân tách dữ liệu
                 $arrDanhSachLSP = [];
                 while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
@@ -54,7 +49,6 @@
                 }
                 //var_dump($arrDanhSachLSP);
                 ?>
-
                 <a href="create.php" class="btn btn-primary mb-3">Thêm mới <i class="fa-solid fa-plus"></i></a>
                 <table class="table table-hover table-bordered">
                     <tr>
@@ -86,12 +80,9 @@
         </div>
     </div>
     <!-- this is contain -->
-
-
     <?php
     include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
     ?>
-    <!-- Fix lỗi: Vì sao không load được icon solid vì chưa khai báo ở style , font awesome chia ra nhiều loại nên cần khai báo thêm -->
     <?php
     include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
     ?>

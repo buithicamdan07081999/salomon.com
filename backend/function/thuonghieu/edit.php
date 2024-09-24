@@ -7,6 +7,7 @@
     <title>THƯƠNG HIỆU</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/dbconnect.php';
     ?>
 </head>
 
@@ -24,7 +25,6 @@
             <div class="col-9">
                 <h1>Sửa Thương hiệu</h1>
                 <?php
-                include_once __DIR__ . '/../../../dbconnect.php';
                 $th_ma = $_GET['th_ma'];
                 $sql_select_data_old = "select * from thuonghieu where th_ma = $th_ma";
                 $sql_data_old = mysqli_query($conn, $sql_select_data_old);
@@ -40,15 +40,11 @@
                 <?php
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
-                    // 1. Mở kết nối
-                    include_once __DIR__ . '/../../dbconnect.php';
-                    // 2. Chuẩn bị câu lệnh
                     $th_ma = $_GET['th_ma'];
                     $th_ten = $_POST['th_ten'];
                     $th_mota = $_POST['th_mota'];
 
-                    $sql = "UPDATE thuonghieu SET th_ten = '$th_ten', th_mota = '$th_mota' WHERE th_ma = $th_ma;";
-                    // 3. Thực thi câu lệnh
+                    $sql = "UPDATE thuonghieu SET th_ten = '$th_ten', th_mota = '$th_mota' WHERE th_ma = $th_ma;";                    
                     mysqli_query($conn, $sql);
                     echo '<script> location.href="index.php"</script>';
                 }

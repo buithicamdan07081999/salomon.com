@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHUYẾN MÃI</title>
     <?php
-    include_once __DIR__ . '/../../../dbconnect.php';
-    ?>
-    <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/dbconnect.php';
     ?>
 </head>
 
@@ -21,11 +19,6 @@
 
     <!-- this is contain -->
     <div class="container-fluid">
-        <!-- 
-            Note: 1. Container-fluid full màn hình 
-                  2. Container nhỏ hơn
-                  3. Dòng với cột cộng lại là 12
-        -->
         <div class="row">
             <div class="col-3">
                 <?php
@@ -35,16 +28,9 @@
             <div class="col-9">
                 <h3>KHUYẾN MÃI</h3><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
                 <?php
-                // 1. Tạo kết nối
-                include_once __DIR__ . '/../../../dbconnect.php';
-                // 2. Chuẩn bị câu lệnh SQL Query
                 $sql = "SELECT km_ma, km_ten, km_noidung, km_tungay, km_denngay
                 FROM khuyenmai;";
-
-                // 3. Yêu cầu PHP thực thi query
                 $data = mysqli_query($conn, $sql);
-
-                // 4. Phân tách dữ liệu
                 $arrDanhSachkm = [];
                 while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
                     $arrDanhSachkm[] = array(
@@ -94,11 +80,9 @@
     </div>
     <!-- this is contain -->
 
-
     <?php
     include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
     ?>
-    <!-- Fix lỗi: Vì sao không load được icon solid vì chưa khai báo ở style , font awesome chia ra nhiều loại nên cần khai báo thêm -->
     <?php
     include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
     ?>
