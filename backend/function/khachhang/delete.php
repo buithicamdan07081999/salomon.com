@@ -1,5 +1,5 @@
 <?php 
-    include_once __DIR__ . '/../../../dbconnect.php';
+    include_once __DIR__ . '/../../../handle/select.php';
     $kh_tendangnhap = $_GET['kh_tendangnhap'];
     $sql = "DELETE FROM khachhang WHERE kh_tendangnhap = '$kh_tendangnhap'";
     mysqli_query($conn , $sql);
