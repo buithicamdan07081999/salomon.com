@@ -7,6 +7,7 @@
     <title>KHÁCH HÀNG</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../layouts/partials/script.php';
     include_once __DIR__ . '/../../../handle/dbconnect.php';
     include_once __DIR__ . '/../../../handle/select.php';
     ?>
@@ -24,7 +25,7 @@
                 ?>
             </div>
             <div class="col-9">
-                <h3>KHÁCH HÀNG</h3><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
+                <h3>KHÁCH HÀNG</h3><span style="color: red;">(CÒN PHẦN MẬT KHẨU VỚI THÔNG BÁO XÁC NHẬN XÓA)</span><br/><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
                 <a href="create.php" class="btn btn-primary mb-3">Thêm mới <i class="fa-solid fa-plus"></i></a>
                 <?php
                 if (is_array($arrDs_kh)) {
@@ -32,6 +33,7 @@
                     <table class="table table-hover table-bordered">
                         <tr>
                             <th>STT</th>
+                            <th>Tên đăng nhập</th>
                             <th>Tên</th>
                             <th>GT</th>
                             <th>Ngày sinh</th>
@@ -48,14 +50,15 @@
 
                                 <td><?= $stt ?></td>
                                 <td><?= $kh['kh_ten'] ?></td>
+                                <td><?= $kh['kh_tendangnhap'] ?></td>
                                 <td><?= ($kh['kh_gioitinh'] == 1) ? 'Nam' : 'Nữ'; ?></td>
                                 <td><?= $kh['kh_ngaysinh'] ?></td>
                                 <td><?= $kh['kh_diachi'] ?></td>
                                 <td><?= $kh['kh_dienthoai'] ?></td>
                                 <td><?= $kh['kh_email'] ?></td>
                                 <td>
-                                    <a href="edit.php?kh_tendangnhap=<?= $kh['kh_tendangnhap'] ?>" class="btn btn-warning">Sửa</a>
-                                    <a href="delete.php?kh_tendangnhap=<?= $kh['kh_tendangnhap'] ?>" class="btn btn-danger">Xóa</a>
+                                    <a href="edit.php?kh_ma=<?= $kh['kh_ma'] ?>" class="btn btn-warning sua">Sửa</a>
+                                    <a href="delete.php?kh_ma=<?= $kh['kh_ma'] ?>" class="btn btn-danger xoa">Xóa</a>
                                 </td>
                             </tr>
                             <?php $stt++; ?>
@@ -75,6 +78,30 @@
     <?php
     include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
     ?>
+
+    <!-- <script>
+        $(document).ready(function() {
+            $('body').on('click', '.sua', function() {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+            });
+        });
+    </script> -->
 </body>
 
 </html>

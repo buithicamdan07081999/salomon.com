@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HÌNH THỨC THANH TOÁN</title>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/styles.php';
+        include_once __DIR__ . '/../../../handle/select.php';
+        include_once __DIR__ . '/../../layouts/partials/styles.php';
     ?>
 </head>
 <body>
@@ -30,13 +31,10 @@
                 <?php
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
-                    // 1. Mở kết nối
-                    include_once __DIR__ . '/../../../dbconnect.php';
-                    // 2. Chuẩn bị câu lệnh
                     $httt_ten = $_POST['httt_ten'];
                     if ($httt_ten != "") {
-                        $sql = "INSERT INTO hinhthucthanhtoan(httt_ten)
-                VALUES ('$httt_ten');";
+                        $sql = "    INSERT INTO hinhthucthanhtoan(httt_ten)
+                                    VALUES ('$httt_ten');";
                         // 3. Thực thi câu lệnh
                         mysqli_query($conn, $sql);
                         echo '<script> location.href="index.php"</script>';

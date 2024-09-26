@@ -27,7 +27,7 @@
                 <h1>Thêm mới Khách hàng</h1>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
                     Tên đăng nhập: <input type="text" name="kh_tendangnhap" class="form-control" /><br />
-                    Mật khẩu: <input type="text" name="kh_matkhau" class="form-control" /><br />
+                    Mật khẩu: <input type="password" name="kh_matkhau" class="form-control" /><br />
                     Tên: <input type="text" name="kh_ten" class="form-control" /><br />
                     Giới tính:
                     <select name="kh_gioitinh" class="form-control">
@@ -71,12 +71,14 @@
                     $kh_trangthai = $_POST['kh_trangthai'];
                     $kh_quantri = $_POST['kh_quantri'];
                     if ($kh_cmnd != "" && $kh_makichhoat != "" && $kh_trangthai != "" && $kh_quantri != "" && $kh_tendangnhap != "" && $kh_matkhau != "" && $kh_ten != "" && $kh_gioitinh != "" && $kh_ngaysinh != "" && $kh_diachi != "" && $kh_dienthoai != "" && $kh_email != "") {
-                        $sql = "INSERT INTO khachhang(kh_cmnd, kh_makichhoat, kh_trangthai, kh_quantri, kh_tendangnhap, kh_matkhau, kh_ten, kh_gioitinh, kh_ngaysinh, kh_diachi, kh_dienthoai, kh_email)
-                VALUES ('$kh_cmnd', '$kh_makichhoat', '$kh_trangthai', '$kh_quantri', '$kh_tendangnhap', '$kh_matkhau', '$kh_ten', '$kh_gioitinh', '$kh_ngaysinh', '$kh_diachi','$kh_dienthoai', '$kh_email');";
+                        $sql = 
+                            "   INSERT INTO thongtinkhachhang
+	                                (kh_tendangnhap, kh_matkhau, kh_ten, kh_gioitinh, kh_diachi, kh_dienthoai, kh_email, kh_ngaysinh, kh_cmnd, kh_makichhoat, kh_trangthai, kh_quantri)
+	                            VALUES ('$kh_tendangnhap', '$kh_matkhau', '$kh_ten', $kh_gioitinh, '$kh_diachi', $kh_dienthoai, '$kh_email', '$kh_ngaysinh', $kh_cmnd, '$kh_makichhoat', $kh_trangthai, $kh_quantri));";
                         // 3. Thực thi câu lệnh
                         mysqli_query($conn, $sql);
                         echo '<script> location.href="index.php"</script>';
-                        //var_dump($sql);
+                        var_dump($sql);
                     } else {
                         echo '<script>alert("Dữ liệu không được rỗng!");</script>';
                     }

@@ -1,7 +1,7 @@
 <?php 
     include_once __DIR__ . '/../../../handle/select.php';
-    $kh_tendangnhap = $_GET['kh_tendangnhap'];
-    $sql = "DELETE FROM khachhang WHERE kh_tendangnhap = '$kh_tendangnhap'";
+    $kh_ma = $_GET['kh_ma'];
+    $sql = "DELETE FROM thongtinkhachhang WHERE kh_ma = '$kh_ma'";
     mysqli_query($conn , $sql);
     echo '<script> location.href="index.php"</script>' // Điều hướng lại trang index
 ?>
