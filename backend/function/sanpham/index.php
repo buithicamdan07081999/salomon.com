@@ -7,7 +7,6 @@
     <title>SẢN PHẨM</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
-    include_once __DIR__ . '/../../layouts/partials/script.php';
     include_once __DIR__ . '/../../../handle/select.php';
     ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -25,7 +24,7 @@
                 ?>
             </div>
             <div class="col-9">
-                <h3>SẢN PHẨM</h3><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>               
+                <h3>SẢN PHẨM</h3><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
                 <a href="create.php" class="btn btn-primary mb-3">Thêm mới <i class="fa-solid fa-plus"></i></a>
                 <table class="table table-hover table-bordered">
                     <tr>
@@ -73,12 +72,13 @@
                                         </li>
                                     </ul>
                                 <?php endif ?>
-
                             </td>
                             <td>
                                 <!-- gửi bằng đường GET -->
-                                <a href="edit.php?sp_ma=<?= $sp['sp_ma'] ?>" class="btn btn-warning">Sửa <i class="fa-regular fa-pen-to-square"></i></a>
-                                <a href="delete.php?sp_ma=<?= $sp['sp_ma'] ?>" class="btn btn-danger">Xóa <i class="fa-regular fa-trash-can"></i></a>
+                                <a href="edit.php?sp_ma=<?= $sp['sp_ma'] ?>" class="btn btn-warning mod">Sửa <i class="fa-regular fa-pen-to-square"></i></a>
+                                <!-- <a href="edit.php?sp_ma=<?= $sp['sp_ma'] ?>" class="btn btn-warning mod">Sửa <i class="fa-regular fa-pen-to-square"></i></a> -->
+                                <a href="#" class="btn btn-danger del" data-sp_ma="<?= $sp['sp_ma'] ?>">Xóa <i class="fa-regular fa-trash-can"></i></a>
+                                <!-- <a href="delete.php?sp_ma=<?= $sp['sp_ma'] ?>" class="btn btn-danger del">Xóa <i class="fa-regular fa-trash-can"></i></a> -->
                             </td>
                         </tr>
                     <?php
@@ -92,10 +92,39 @@
     <!-- this is contain -->
     <?php
     include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
-    ?>
-    <?php
     include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
     ?>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            console.log("Đã load xong!");
+            $('.del').click(function() {
+                var sp_ma = $(this).data('sp_ma');
+                //sweetalert
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Người dùng đã nhấn nút xóa
+                        location.href ="delete.php?sp_ma=" + sp_ma;
+                        // Swal.fire({
+                        //     title: "Deleted!",
+                        //     text: "Your file has been deleted.",
+                        //     icon: "success"
+                        // });
+                    }
+                });
+                //sweetalert
+            });
+        });
+    </script>
+
 </body>
 
 </html>

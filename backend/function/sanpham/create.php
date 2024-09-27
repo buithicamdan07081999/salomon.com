@@ -7,8 +7,8 @@
     <title>SẢN PHẨM</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/select.php';
     ?>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -24,56 +24,6 @@
             </div>
             <div class="col-9">
                 <h1>Thêm sản phẩm</h1>
-                <!-- 1. Nhờ PHP lấy ra loại sản phẩm -->
-                <?php
-                // mở kết nối                
-                include_once __DIR__ . '/../../../dbconnect.php';
-                include_once __DIR__ . '/../../../select.php';
-                // sql
-                // $sql_lsp = "SELECT A.lsp_ma, A.lsp_ten FROM loaisanpham A";
-                // $sql_npp = "SELECT A.npp_ma, A.npp_ten FROM nhaphanphoi A";
-                // $sql_km = "SELECT A.km_ma, A.km_ten, A.km_noidung, A.km_tungay, A.km_denngay FROM khuyenmai A";
-                // $sql_th = "SELECT A.th_ma, A.th_ten FROM thuonghieu A";
-                // // thực thi
-                // $data_lsp = mysqli_query($conn, $sql_lsp);
-                // $data_npp = mysqli_query($conn, $sql_npp);
-                // $data_km = mysqli_query($conn, $sql_km);
-                // $data_th = mysqli_query($conn, $sql_th);
-                // // array
-                // $arrDs_Lsp = [];
-                // $arrDs_Npp = [];
-                // $arrDs_km = [];
-                // $arrDS_th = [];
-                // // phân tích khối dữ liệu thành mảng
-                // while ($row = mysqli_fetch_array($data_lsp, MYSQLI_ASSOC)) {
-                //     $arrDs_Lsp[] = array(
-                //         'lsp_ma' => $row['lsp_ma'],
-                //         'lsp_ten' => $row['lsp_ten'],
-                //     );
-                // }
-                // while ($row = mysqli_fetch_array($data_npp, MYSQLI_ASSOC)) {
-                //     $arrDs_Npp[] = array(
-                //         'npp_ma' => $row['npp_ma'],
-                //         'npp_ten' => $row['npp_ten'],
-                //     );
-                // }
-                // while ($row = mysqli_fetch_array($data_km, MYSQLI_ASSOC)) {
-                //     $arrDs_km[] = array(
-                //         'km_ma' => $row['km_ma'],
-                //         'km_ten' => $row['km_ten'],
-                //         'km_noidung' => $row['km_noidung'],
-                //         'km_tungay' => $row['km_tungay'],
-                //         'km_denngay' => $row['km_denngay'],
-                //     );
-                // }
-                // while ($row = mysqli_fetch_array($data_th, MYSQLI_ASSOC)) {
-                //     $arrDs_th[] = array(
-                //         'th_ma' => $row['th_ma'],
-                //         'th_ten' => $row['th_ten'],
-                //     );
-                //     //var_dump($arrDs_th);
-                // }
-                ?>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
                     <!-- bắt buộc chọn khóa ngoại  -->
                     <!-- Loại sản phẩm: <input type="text" name="lsp_ten" class="form-control" /><br /> -->
@@ -158,9 +108,6 @@
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
                     date_default_timezone_set('Asia/Ho_Chi_Minh'); 
-                    // 1. Mở kết nối
-                    // include_once __DIR__ . '/../../../dbconnect.php';
-                    // 2. Chuẩn bị câu lệnh
                     $sp_ten = $_POST['sp_ten'];
                     $lsp_ma = $_POST['lsp_ma'];
                     $km_ma = empty($_POST['km_ma']) ? 'NULL' : $_POST['km_ma']; // nếu Km ko chọn thì để null 

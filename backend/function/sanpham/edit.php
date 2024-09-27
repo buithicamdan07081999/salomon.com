@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SẢN PHẨM</title>
+    <title>SẢN PHẨM - chưa xong câu update</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../handle/select.php';
     ?>
 </head>
 
@@ -24,48 +25,65 @@
             <div class="col-9">
                 <h1>Sửa sản phẩm</h1>
                 <?php
-                include_once __DIR__ . '/../../../dbconnect.php';
                 $sp_ma = $_GET['sp_ma'];
-                $sql_select_data_old = "SELECT 
-					 A.sp_ma, A.sp_ten,
-					 B.lsp_ten, 
-					 C.th_ten,
-					 A.sp_gia, A.sp_mota_ngan, A.sp_mota_chitiet, A.sp_soluong,
-					 D.npp_ten,
-					 E.km_ten,
-                     A.sp_giacu
-                FROM sanpham A
-                LEFT JOIN loaisanpham B   
-                ON A.lsp_ma = B.lsp_ma
-                LEFT JOIN thuonghieu C
-                ON A.th_ma = C.th_ma
-                LEFT JOIN nhaphanphoi D
-                ON A.npp_ma = D.npp_ma                
-					 LEFT JOIN khuyenmai E
-                ON A.km_ma = E.km_ma
-                WHERE sp_ma = $sp_ma";
-                $sql_data_old = mysqli_query($conn, $sql_select_data_old);
-                $data_array = [];
-                $data_array = mysqli_fetch_array($sql_data_old, MYSQLI_ASSOC);
-                $km_ten = $data_array['km_ten'];
-                // var_dump($sp_mota_chitiet);
+                $sql_sp_edit =
+                    "SELECT 
+                        A.sp_ma, A.sp_ten,
+                        B.lsp_ma, 
+                        B.lsp_ten,
+                        C.th_ma,
+                        C.th_ten,
+                        A.sp_gia, 
+                        A.sp_giacu, 
+                        A.sp_mota_ngan, 
+                        A.sp_mota_chitiet, 
+                        A.sp_soluong,
+                        D.npp_ma,
+                        D.npp_ten,
+                        E.km_ten,
+                        E.km_noidung,
+                        E.km_tungay,
+                        E.km_denngay,
+                        E.km_noidung
+                    FROM sanpham A
+                    LEFT JOIN loaisanpham B   
+                    ON A.lsp_ma = B.lsp_ma
+                    LEFT JOIN thuonghieu C
+                    ON A.th_ma = C.th_ma
+                    LEFT JOIN nhaphanphoi D
+                    ON A.npp_ma = D.npp_ma                
+                        LEFT JOIN khuyenmai E
+                    ON A.km_ma = E.km_ma
+                        WHERE sp_ma = $sp_ma";
+                $sql_sp_edit = mysqli_query($conn, $sql_sp_edit);
+                $data_array_sp_edit = [];
+                $data_array_sp_edit = mysqli_fetch_array($sql_sp_edit, MYSQLI_ASSOC);
                 ?>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
                     <div class="row">
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Tên sản phẩm:</label>
-                                <input type="text" name="sp_ten" value="<?= $data_array['sp_ten'] ?>" class="form-control" />
+                                <input type="text" name="sp_ten" value="<?= $data_array_sp_edit['sp_ten'] ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Loại sản phẩm:</label>
-                                <input type="text" name="lsp_ten" value="<?= $data_array['lsp_ten'] ?>" class="form-control" />
+                                <select name="lsp_ma" id="lsp_ma" class="form-select">
+                                    <option value="<?= $lsp['lsp_ma'] ?>"><?= $data_array_sp_edit['lsp_ten'] ?></option>
+                                    <?php foreach ($arrDs_Lsp as $lsp): ?>
+                                        <!-- loại bỏ dòng loại sản phẩm cũ -->
+                                        <?php if ($lsp['lsp_ma'] != $data_array_sp_edit['lsp_ma']) : ?>
+                                            <option value="<?= $lsp['lsp_ma'] ?>"><?= $lsp['lsp_ten'] ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
+                            <!-- <?php var_dump($data_array_sp_edit['km_ten']) ?> -->
                             <div class="mb-3">
-                                <label class="form-label">Khuyến mãi:</label>
+                                <label class="form-label">Khuyến mãi: <?= $data_array_sp_edit['km_ten'] ?></label>
                                 <?php
-                                if ($km_ten != "") { ?>
-                                    <input type="text" name="km_ten" value="<?= $data_array['km_ten'] ?>" class="form-control" />
+                                if ($data_array_sp_edit['km_ten'] != "") { ?>
+                                    <input type="text" name="km_ma" value="<?= $data_array_sp_edit['km_ten'] ?>" class="form-control" />
                                 <?php
                                 } else {
                                 ?>
@@ -87,38 +105,52 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Giá cũ:</label>
-                                <input type="text" name="sp_giacu" value="<?= $data_array['sp_giacu'] ?>" class="form-control" />
+                                <input type="text" name="sp_giacu" value="<?= $data_array_sp_edit['sp_giacu'] ?>" class="form-control" />
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="form-label">Số lượng sản phẩm:</label>
-                                <input type="text" name="sp_soluong" value="<?= $data_array['sp_soluong'] ?>" class="form-control" />
+                                <input type="text" name="sp_soluong" value="<?= $data_array_sp_edit['sp_soluong'] ?>" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Nhà phân phối:</label>
-                                <input type="text" name="npp_ten" value="<?= $data_array['npp_ten'] ?>" class="form-control" />
+                                <select name="npp_ma" id="npp_ma" class="form-select">
+                                <option value="<?= $lsp['npp_ma'] ?>"><?= $data_array_sp_edit['npp_ten'] ?></option>
+                                <?php foreach ($arrDs_Npp as $npp): ?>
+                                    <?php if($data_array_sp_edit['npp_ma'] != $npp['npp_ma']): ?>
+                                        <option value="<?= $npp['npp_ma'] ?>"><?= $npp['npp_ten'] ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Thương hiệu:</label>
-                                <input type="text" name="th_ten" value="<?= $data_array['th_ten'] ?>" class="form-control" />
+                                <select name="th_ma" id="th_ma" class="form-select">
+                                <option value="<?= $lsp['th_ma'] ?>"><?= $data_array_sp_edit['th_ten'] ?></option>
+                                <?php foreach ($arrDs_th as $th): ?>
+                                    <?php if($data_array_sp_edit['th_ma'] != $th['th_ma']): ?>
+                                        <option value="<?= $th['th_ma'] ?>"><?= $th['th_ten'] ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Giá mới:</label>
-                                <input type="text" name="sp_gia" value="<?= $data_array['sp_gia'] ?>" class="form-control" />
+                                <input type="text" name="sp_gia" value="<?= $data_array_sp_edit['sp_gia'] ?>" class="form-control" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-12">
                                 <label class="form-label">Mô tả ngắn:</label>
-                                <input type="text" name="sp_mota_ngan" value="<?= $data_array['sp_mota_ngan'] ?>" class="form-control" />
+                                <input type="text" name="sp_mota_ngan" value="<?= $data_array_sp_edit['sp_mota_ngan'] ?>" class="form-control" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-12">
                             <label class="form-label">Mô tả chi tiết:</label>
-                            <textarea type="text" name="sp_mota_chitiet" id="sp_mota_chitiet" rows="5" class="form-control"><?= $data_array['sp_mota_chitiet'] ?></textarea>
+                            <textarea type="text" name="sp_mota_chitiet" id="sp_mota_chitiet" rows="5" class="form-control"><?= $data_array_sp_edit['sp_mota_chitiet'] ?></textarea>
                         </div>
                     </div>
                     <a href="index.php" class="btn btn-secondary">Quay về Danh sách <i class="fa-solid fa-backward"></i></a>
@@ -128,42 +160,42 @@
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
                     date_default_timezone_set('Asia/Ho_Chi_Minh');
-                    // 1. Mở kết nối
-                    include_once __DIR__ . '/../../../dbconnect.php';
-                    // 2. Chuẩn bị câu lệnh
                     $sp_ten = $_POST['sp_ten'];
-                    $sp_gia = $_POST['sp_gia'];
-                    $sp_giacu = $_POST['sp_giacu'];
+                    $lsp_ma = $_POST['lsp_ma'];
+                    $km_ma = empty($_POST['km_ma']) ? 'NULL' : $_POST['km_ma']; // nếu Km ko chọn thì để null 
                     $sp_mota_ngan = $_POST['sp_mota_ngan'];
                     $sp_mota_chitiet = $_POST['sp_mota_chitiet'];
-                    $sp_ngaycapnhat = date('Y-m-d H:i:s');
+
                     $sp_soluong = $_POST['sp_soluong'];
-                    $lsp_ma = $_POST['lsp_ma'];
-                    $km_ma = $_POST['km_ma'];
-                    $th_ma = $_POST['th_ma'];
                     $npp_ma = $_POST['npp_ma'];
-                    if ($sp_ten != "" && $sp_gia != "" && $sp_mota_ngan != "" && $sp_mota_chitiet != "" && $sp_soluong != "" && $lsp_ma != "" && $km_ma != "" && $th_ma != "" && $npp_ma != "") {
-                        $sql =
-                            "UPDATE sanpham
-                                SET
-                                    sp_ten='$sp_ten',
-                                    sp_gia=$sp_gia,
-                                    sp_giacu=$sp_giacu,
-                                    sp_mota_ngan='$sp_mota_ngan',
-                                    sp_mota_chitiet='$sp_mota_chitiet',
-                                    sp_ngaycapnhat=NOW(),
-                                    sp_soluong=0,
-                                    lsp_ma=0,
-                                    km_ma=0,
-                                    th_ma=0,
-                                    npp_ma=0
-                                WHERE sp_ma= $sp_ma;";
+                    $th_ma = $_POST['th_ma'];
+                    $sp_gia = $_POST['sp_gia'];
+                    $sp_giacu = empty($_POST['sp_giacu']) ? 'NULL' : $_POST['sp_giacu'];
+                    $sp_ngaycapnhat = date('Y-m-d H:i:s'); // đưa vào dữ liệu thô trong Database
+                    $sql =
+                        "UPDATE sanpham
+                        SET
+                            sp_ten='$sp_ten',
+                            sp_gia=$sp_gia,
+                            sp_giacu=$sp_giacu,
+                            sp_mota_ngan='$sp_mota_ngan',
+                            sp_mota_chitiet='$sp_mota_chitiet',
+                            sp_ngaycapnhat='$sp_ngaycapnhat',
+                            sp_soluong=$sp_soluong,
+                            lsp_ma=$lsp_ma,
+                            km_ma=$km_ma,
+                            th_ma=$th_ma,
+                            npp_ma=$npp_ma
+                        WHERE sp_ma= $sp_ma;";
+                    if ($sp_ten != "" && $sp_gia  != "" && $sp_mota_ngan != "" && $sp_mota_chitiet != "" && $sp_ngaycapnhat != "" && $sp_soluong != "" && $lsp_ma != "" && $km_ma != "" && $th_ma != "" && $npp_ma != "") {
                         // 3. Thực thi câu lệnh
-                        mysqli_query($conn, $sql);
-                        echo '<script> location.href="index.php"</script>';
+                        // mysqli_query($conn, $sql);
+                        // echo '<script> location.href="index.php"</script>';
                         //var_dump($sql);
+                        var_dump($sql);
                     } else {
-                        echo '<script>alert("Dữ liệu không được rỗng!");</script>';
+                        //echo '<script>alert("Dữ liệu không được rỗng!");</script>';
+                        var_dump($sql);
                     }
                 }
                 ?>

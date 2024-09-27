@@ -1,19 +1,59 @@
 <?php
 include_once __DIR__ . '/dbconnect.php';
 
-$sql_lsp = "SELECT A.lsp_ma, A.lsp_ten FROM loaisanpham A";
-$sql_npp = "SELECT A.npp_ma, A.npp_ten FROM nhaphanphoi A";
-$sql_km = "SELECT A.km_ma, A.km_ten, A.km_noidung, A.km_tungay, A.km_denngay FROM khuyenmai A";
-$sql_th = "SELECT A.th_ma, A.th_ten FROM thuonghieu A";
-$sql_kh = " SELECT A.kh_ma, A.kh_tendangnhap, A.kh_ten, A.kh_gioitinh, A.kh_diachi, A.kh_dienthoai, A.kh_email, A.kh_ngaysinh, A.kh_cmnd, A.kh_makichhoat, A.kh_trangthai, A.kh_quantri 
-            FROM thongtinkhachhang A
-            ORDER BY A.kh_ma asc";
-$sql_httt = "SELECT A.httt_ma, A.httt_ten FROM hinhthucthanhtoan A";
-$sql_sp = " SELECT 
+$sql_lsp =  "SELECT 
+                A.lsp_ma, 
+                A.lsp_ten 
+            FROM loaisanpham A";
+
+$sql_npp =  "SELECT 
+                    A.npp_ma, 
+                    A.npp_ten 
+                FROM nhaphanphoi A";
+
+$sql_km =   "SELECT 
+                    A.km_ma, 
+                    A.km_ten, 
+                    A.km_noidung, 
+                    A.km_tungay, 
+                    A.km_denngay 
+                FROM khuyenmai A";
+
+$sql_th =   "SELECT 
+                    A.th_ma, 
+                    A.th_ten 
+                FROM thuonghieu A";
+
+$sql_kh =   "SELECT 
+                    A.kh_ma, 
+                    A.kh_tendangnhap, 
+                    A.kh_ten, 
+                    A.kh_gioitinh, 
+                    A.kh_diachi, 
+                    A.kh_dienthoai, 
+                    A.kh_email, 
+                    A.kh_ngaysinh, 
+                    A.kh_cmnd, 
+                    A.kh_makichhoat, 
+                    A.kh_trangthai, 
+                    A.kh_quantri 
+                FROM thongtinkhachhang A
+                ORDER BY A.kh_ma asc";
+
+$sql_httt = "SELECT 
+                    A.httt_ma, 
+                    A.httt_ten
+                FROM hinhthucthanhtoan A";
+
+$sql_sp =   "SELECT 
 					 A.sp_ma, A.sp_ten,
 					 B.lsp_ten, 
 					 C.th_ten,
-					 A.sp_gia, A.sp_giacu, A.sp_mota_ngan, A.sp_mota_chitiet, A.sp_soluong,
+					 A.sp_gia, 
+                     A.sp_giacu, 
+                     A.sp_mota_ngan, 
+                     A.sp_mota_chitiet, 
+                     A.sp_soluong,
 					 D.npp_ten,
 					 E.km_ten,
 					 E.km_noidung,
@@ -22,13 +62,13 @@ $sql_sp = " SELECT
                      E.km_noidung
                 FROM sanpham A
                 LEFT JOIN loaisanpham B   
-                ON A.lsp_ma = B.lsp_ma
+                    ON A.lsp_ma = B.lsp_ma
                 LEFT JOIN thuonghieu C
-                ON A.th_ma = C.th_ma
+                    ON A.th_ma = C.th_ma
                 LEFT JOIN nhaphanphoi D
-                ON A.npp_ma = D.npp_ma                
-					 LEFT JOIN khuyenmai E
-                ON A.km_ma = E.km_ma";
+                    ON A.npp_ma = D.npp_ma                
+				LEFT JOIN khuyenmai E
+                    ON A.km_ma = E.km_ma";
 
 $data_lsp = mysqli_query($conn, $sql_lsp);
 $data_npp = mysqli_query($conn, $sql_npp);
