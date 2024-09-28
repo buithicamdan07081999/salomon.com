@@ -69,7 +69,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Loại sản phẩm:</label>
                                 <select name="lsp_ma" id="lsp_ma" class="form-select">
-                                    <option value="<?= $lsp['lsp_ma'] ?>"><?= $data_array_sp_edit['lsp_ten'] ?></option>
+                                    <option value="<?= $data_array_sp_edit['lsp_ma'] ?>"><?= $data_array_sp_edit['lsp_ten'] ?></option>
                                     <?php foreach ($arrDs_Lsp as $lsp): ?>
                                         <!-- loại bỏ dòng loại sản phẩm cũ -->
                                         <?php if ($lsp['lsp_ma'] != $data_array_sp_edit['lsp_ma']) : ?>
@@ -88,7 +88,7 @@
                                 } else {
                                 ?>
                                     <select name="km_ma" id="km_ma" class="form-select">
-                                        <option value="">Chọn hình thức khuyến mãi</option>
+                                        <option value="">Khuyến mãi cũ (nếu có)</option>
                                         <!-- option: Lý do là có thể chọn khuyến mãi hoặc không -->
                                         <?php foreach ($arrDs_km as $km): ?>
                                             <option value="<?= $km['km_ma'] ?>">
@@ -116,7 +116,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Nhà phân phối:</label>
                                 <select name="npp_ma" id="npp_ma" class="form-select">
-                                <option value="<?= $lsp['npp_ma'] ?>"><?= $data_array_sp_edit['npp_ten'] ?></option>
+                                <option value="<?= $data_array_sp_edit['npp_ma'] ?>"><?= $data_array_sp_edit['npp_ten'] ?></option>
                                 <?php foreach ($arrDs_Npp as $npp): ?>
                                     <?php if($data_array_sp_edit['npp_ma'] != $npp['npp_ma']): ?>
                                         <option value="<?= $npp['npp_ma'] ?>"><?= $npp['npp_ten'] ?></option>
@@ -127,7 +127,7 @@
                             <div class="mb-3">
                                 <label class="form-label">Thương hiệu:</label>
                                 <select name="th_ma" id="th_ma" class="form-select">
-                                <option value="<?= $lsp['th_ma'] ?>"><?= $data_array_sp_edit['th_ten'] ?></option>
+                                <option value="<?= $data_array_sp_edit['th_ma'] ?>"><?= $data_array_sp_edit['th_ten'] ?></option>
                                 <?php foreach ($arrDs_th as $th): ?>
                                     <?php if($data_array_sp_edit['th_ma'] != $th['th_ma']): ?>
                                         <option value="<?= $th['th_ma'] ?>"><?= $th['th_ten'] ?></option>
@@ -189,13 +189,13 @@
                         WHERE sp_ma= $sp_ma;";
                     if ($sp_ten != "" && $sp_gia  != "" && $sp_mota_ngan != "" && $sp_mota_chitiet != "" && $sp_ngaycapnhat != "" && $sp_soluong != "" && $lsp_ma != "" && $km_ma != "" && $th_ma != "" && $npp_ma != "") {
                         // 3. Thực thi câu lệnh
-                        // mysqli_query($conn, $sql);
-                        // echo '<script> location.href="index.php"</script>';
+                        mysqli_query($conn, $sql);
+                        echo '<script> location.href="index.php"</script>';
                         //var_dump($sql);
-                        var_dump($sql);
+                        //var_dump($sql);
                     } else {
-                        //echo '<script>alert("Dữ liệu không được rỗng!");</script>';
-                        var_dump($sql);
+                        echo '<script>alert("Dữ liệu không được rỗng!");</script>';
+                        //var_dump($sql);
                     }
                 }
                 ?>
