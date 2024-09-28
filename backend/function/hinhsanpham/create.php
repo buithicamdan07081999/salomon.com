@@ -66,7 +66,7 @@
                                             VALUES ('$hsp_tentaptin', $sp_ma)";
                                             mysqli_query($conn,$sql_Insert_hinhsanpham);
                                             //var_dump($sql_Insert_hinhsanpham);
-                                            //echo '<script>location.href="google.com"</script>';
+                                            echo '<script>location.href="google.com"</script>';
                         }
                     }
                 }
