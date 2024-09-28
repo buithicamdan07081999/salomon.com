@@ -69,7 +69,15 @@ $sql_sp =   "SELECT
                     ON A.npp_ma = D.npp_ma                
 				LEFT JOIN khuyenmai E
                     ON A.km_ma = E.km_ma";
-
+$sql_hsp =  "SELECT 
+                A.hsp_ma,
+                A.hsp_tentaptin,
+                A.sp_ma,
+                B.sp_ten,
+                B.sp_gia
+            FROM hinhsanpham A
+            LEFT JOIN sanpham B
+            ON A.sp_ma = B.sp_ma";
 $data_lsp = mysqli_query($conn, $sql_lsp);
 $data_npp = mysqli_query($conn, $sql_npp);
 $data_km = mysqli_query($conn, $sql_km);
@@ -77,6 +85,7 @@ $data_th = mysqli_query($conn, $sql_th);
 $data_kh = mysqli_query($conn, $sql_kh);
 $data_httt = mysqli_query($conn, $sql_httt);
 $data_sp = mysqli_query($conn, $sql_sp);
+$data_hsp = mysqli_query($conn, $sql_hsp);
 
 // array
 $arrDs_Lsp = [];
@@ -86,6 +95,7 @@ $arrDs_th = [];
 $arrDs_kh = [];
 $arrDs_httt = [];
 $arrDs_sp = [];
+$arrDs_hsp = [];
 
 // phân tích khối dữ liệu thành mảng
 while ($row = mysqli_fetch_array($data_lsp, MYSQLI_ASSOC)) {
@@ -156,6 +166,15 @@ while ($row = mysqli_fetch_array($data_sp, MYSQLI_ASSOC)) {
         'km_noidung' => $row['km_noidung'],
     );
 }
+while ($row = mysqli_fetch_array($data_hsp, MYSQLI_ASSOC)) {
+    $arrDs_hsp[] = array(
+        'hsp_ma' => $row['hsp_ma'],
+        'hsp_tentaptin' => $row['hsp_tentaptin'],
+        'sp_ma' => $row['sp_ma'],
+        'sp_ten' => $row['sp_ten'],
+        'sp_gia' => $row['sp_gia'],
+    );
+}
 return [
     'arrDs_Lsp' => $arrDs_Lsp,
     'arrDs_Npp' => $arrDs_Npp,
@@ -163,5 +182,6 @@ return [
     'arrDs_th' => $arrDs_th,
     'arrDs_kh' => $arrDs_kh,
     'arrDs_httt' => $arrDs_httt,
+    'arrDs_hsp' => $arrDs_hsp,
 ];
 ?>

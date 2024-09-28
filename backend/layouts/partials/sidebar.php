@@ -7,7 +7,7 @@
   <a href="/../salomon.com/backend/function/khuyenmai/index.php" class="list-group-item list-group-item-action">Khuyến mãi</a>
   <a href="/../salomon.com/backend/function/khachhang/index.php" class="list-group-item list-group-item-action">Khách hàng</a>
   <a href="/../salomon.com/backend/function/hinhthucthanhtoan/index.php" class="list-group-item list-group-item-action">Hình thức thanh toán</a>
-  <a href="/../salomon.com/backend/function/hinhsanpham/create.php" class="list-group-item list-group-item-action">Hình sản phẩm</a>
+  <a href="/../salomon.com/backend/function/hinhsanpham/index.php" class="list-group-item list-group-item-action">Hình sản phẩm</a>
   <!-- chưa code -->
   <a href="#" class="list-group-item list-group-item-action">Đơn đặt hàng</a>
 
