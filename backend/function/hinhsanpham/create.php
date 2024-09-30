@@ -76,8 +76,6 @@
     </div>
     <?php
     include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
-    ?>
-    <?php
     include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
     ?>
 </body>

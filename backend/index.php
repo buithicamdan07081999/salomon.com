@@ -41,7 +41,7 @@
                 ?>
             </div>
             <div class="col-9">
-            <script>location.href="function/loaisanpham/index.php"</script>
+            <script>location.href="function/sanpham/index.php"</script>
             </div>
         </div>
     </div>

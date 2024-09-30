@@ -8,6 +8,7 @@
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
     include_once __DIR__ . '/../../../handle/select.php';
+    include_once __DIR__ . '/../../layouts/partials/script.php';
     ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -20,7 +21,7 @@
         <div class="row">
             <div class="col-3">
                 <?php
-                include_once __DIR__ . '/../../../backend/layouts/partials/sidebar.php';
+                include_once __DIR__ . '/../../layouts/partials/sidebar.php';
                 ?>
             </div>
             <div class="col-9">
@@ -91,10 +92,8 @@
     </div>
     <!-- this is contain -->
     <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
-    include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
+    include_once __DIR__ . '/../../layouts/partials/footer.php';
     ?>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
             console.log("Đã load xong!");
@@ -124,7 +123,6 @@
             });
         });
     </script>
-
 </body>
 
 </html>
