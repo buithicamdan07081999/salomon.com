@@ -4,5 +4,9 @@
 <style>
     .hinh-sanpham {
         width: 120px;
+        height: 240px;
+        border: 3px dashed red;
+        padding: 3px;
+        margin: 10px;
     }
 </style>
