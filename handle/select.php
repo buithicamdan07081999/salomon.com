@@ -1,6 +1,9 @@
 <?php
+//  1. Mở kết nối ( Kết nối với Database )
 include_once __DIR__ . '/dbconnect.php';
 
+
+// 2. Chuẩn bị câu lệnh ( Các bảng dữ liệu )
 $sql_lsp =  "SELECT 
                 A.lsp_ma, 
                 A.lsp_ten 
@@ -78,6 +81,9 @@ $sql_hsp =  "SELECT
             FROM hinhsanpham A
             LEFT JOIN sanpham B
             ON A.sp_ma = B.sp_ma";
+
+
+// 3. Thực thi câu lệnh
 $data_lsp = mysqli_query($conn, $sql_lsp);
 $data_npp = mysqli_query($conn, $sql_npp);
 $data_km = mysqli_query($conn, $sql_km);
@@ -87,7 +93,7 @@ $data_httt = mysqli_query($conn, $sql_httt);
 $data_sp = mysqli_query($conn, $sql_sp);
 $data_hsp = mysqli_query($conn, $sql_hsp);
 
-// array
+// 4. Trả về mảng dữ liệu
 $arrDs_Lsp = [];
 $arrDs_Npp = [];
 $arrDs_km = [];
@@ -97,7 +103,7 @@ $arrDs_httt = [];
 $arrDs_sp = [];
 $arrDs_hsp = [];
 
-// phân tích khối dữ liệu thành mảng
+// 5. Phân tích khối dữ liệu trong mảng thành từng cột
 while ($row = mysqli_fetch_array($data_lsp, MYSQLI_ASSOC)) {
     $arrDs_Lsp[] = array(
         'lsp_ma' => $row['lsp_ma'],

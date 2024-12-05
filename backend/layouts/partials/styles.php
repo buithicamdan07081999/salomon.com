@@ -5,7 +5,8 @@
     .hinh-sanpham {
         width: 120px;
         height: 120px;
-        border: 3px dashed red;
+        /* border: 1px dashed red; */
+        border: 1px solid red;
         padding: 3px;
         margin: 10px;
     }

@@ -16,10 +16,11 @@
     include_once __DIR__ . '/../../layouts/partials/header.php'
     ?>
     <?php
+    // lấy lại sản phẩm muốn sửa
     $hsp_ma = $_GET['hsp_ma'];
     $sql_hsp_mod =
         "SELECT 
-            A.hsp_tentaptin 
+            A.hsp_tentaptin
         FROM hinhsanpham A 
         WHERE hsp_ma = $hsp_ma";
     $data_hsp_mod = mysqli_query($conn, $sql_hsp_mod);
@@ -99,7 +100,7 @@
                             // **** Di chuyển file
                             // File đã up lên server với tên tạm gì đó XAMPP tự sinh
                             $hsp_tentaptin = date('Ymd_His') . '_' . $_FILES['hsp_tentaptin']['name'];
-                            // Di chuyển file vào thư mục mong đợi
+                            // Di chuyển file vào thư mục monlkjokl[jiopkjopkploklpklpklpkopkplpo[lkop[kop[kpp[g đợi
                             move_uploaded_file($_FILES['hsp_tentaptin']['tmp_name'], $upload_dir . $hsp_tentaptin);
                             // Lưu thông tin vào Database
 

@@ -57,10 +57,11 @@
                         } else {
                             // File đã up lên server với tên tạm gì đó XAMPP tự sinh
                             $hsp_tentaptin = date('Ymd_His') . '_' . $_FILES['hsp_tentaptin']['name'];
-                            // Di chuyển file vào thư mục mong đợi
+                            // 1. Di chuyển file vào thư mục mong đợi
                             move_uploaded_file($_FILES['hsp_tentaptin']['tmp_name'], $upload_dir . $hsp_tentaptin);
-                            // Lưu thông tin vào Database
+                            // 2. Lưu thông tin vào Database
                             $sp_ma = $_POST['sp_ma'];
+                            // Chuẩn bị câu lệnh Insert
                             $sql_Insert_hinhsanpham = "INSERT INTO hinhsanpham
                                             (hsp_tentaptin, sp_ma)
                                             VALUES ('$hsp_tentaptin', $sp_ma)";
@@ -68,7 +69,7 @@
                                             //var_dump($sql_Insert_hinhsanpham);
                                             echo '<script>location.href="index.php"</script>';
                         }
-                    }
+                    } 
                 }
                 ?>
             </div>
