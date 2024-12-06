@@ -6,8 +6,10 @@ include_once __DIR__ . '/dbconnect.php';
 // 2. Chuẩn bị câu lệnh ( Các bảng dữ liệu )
 $sql_lsp =  "SELECT 
                 A.lsp_ma, 
-                A.lsp_ten 
-            FROM loaisanpham A";
+                A.lsp_ten,
+                A.lsp_mota
+            FROM loaisanpham A
+            ";
 
 $sql_npp =  "SELECT 
                     A.npp_ma, 
@@ -81,6 +83,10 @@ $sql_hsp =  "SELECT
             FROM hinhsanpham A
             LEFT JOIN sanpham B
             ON A.sp_ma = B.sp_ma";
+$sql_ddh =
+    "SELECT dh_ma, dh_ngaylap, dh_ngaygiao, dh_noigiao, dh_trangthaithanhtoan, httt_ma, kh_tendangnhap
+ FROM dondathang             
+";
 
 
 // 3. Thực thi câu lệnh
@@ -92,6 +98,7 @@ $data_kh = mysqli_query($conn, $sql_kh);
 $data_httt = mysqli_query($conn, $sql_httt);
 $data_sp = mysqli_query($conn, $sql_sp);
 $data_hsp = mysqli_query($conn, $sql_hsp);
+$data_ddh = mysqli_query($conn, $sql_ddh);
 
 // 4. Trả về mảng dữ liệu
 $arrDs_Lsp = [];
@@ -102,12 +109,14 @@ $arrDs_kh = [];
 $arrDs_httt = [];
 $arrDs_sp = [];
 $arrDs_hsp = [];
+$arrDs_ddh = [];
 
 // 5. Phân tích khối dữ liệu trong mảng thành từng cột
 while ($row = mysqli_fetch_array($data_lsp, MYSQLI_ASSOC)) {
     $arrDs_Lsp[] = array(
         'lsp_ma' => $row['lsp_ma'],
         'lsp_ten' => $row['lsp_ten'],
+        'lsp_mota' => $row['lsp_mota'],
     );
 }
 while ($row = mysqli_fetch_array($data_npp, MYSQLI_ASSOC)) {
@@ -132,23 +141,22 @@ while ($row = mysqli_fetch_array($data_th, MYSQLI_ASSOC)) {
     );
 }
 while ($row = mysqli_fetch_array($data_kh, MYSQLI_ASSOC)) {
-    $arrDs_kh[] = array(    
+    $arrDs_kh[] = array(
         'kh_ma' => $row['kh_ma'],
         'kh_tendangnhap' => $row['kh_tendangnhap'],
         'kh_ten' => $row['kh_ten'],
         'kh_gioitinh' => $row['kh_gioitinh'],
         'kh_diachi' => $row['kh_diachi'],
         'kh_dienthoai' => $row['kh_dienthoai'],
-        'kh_email' => $row['kh_email'],        
-        'kh_ngaysinh' => $row['kh_ngaysinh'],        
+        'kh_email' => $row['kh_email'],
+        'kh_ngaysinh' => $row['kh_ngaysinh'],
         'kh_cmnd' => $row['kh_cmnd'],
         'kh_makichhoat' => $row['kh_makichhoat'],
         'kh_trangthai' => $row['kh_trangthai'],
         'kh_quantri' => $row['kh_quantri'],
     );
 }
-while ($row = mysqli_fetch_array($data_httt, MYSQLI_ASSOC))
-{
+while ($row = mysqli_fetch_array($data_httt, MYSQLI_ASSOC)) {
     $arrDs_httt[] = array(
         'httt_ma' => $row['httt_ma'],
         'httt_ten' => $row['httt_ten'],
@@ -181,6 +189,18 @@ while ($row = mysqli_fetch_array($data_hsp, MYSQLI_ASSOC)) {
         'sp_gia' => $row['sp_gia'],
     );
 }
+while ($row = mysqli_fetch_array($data_ddh, MYSQLI_ASSOC)) {
+    $arrDs_ddh[] = array(
+        'dh_ma' => $row['dh_ma'],
+        'dh_ngaylap' => $row['dh_ngaylap'],
+        'dh_ngaygiao' => $row['dh_ngaygiao'],
+        'dh_noigiao' => $row['dh_noigiao'],
+        'dh_trangthaithanhtoan' => $row['dh_trangthaithanhtoan'],
+        'httt_ma' => $row['httt_ma'],
+        'kh_tendangnhap' => $row['kh_tendangnhap'],
+    );
+}
+
 return [
     'arrDs_Lsp' => $arrDs_Lsp,
     'arrDs_Npp' => $arrDs_Npp,
@@ -189,5 +209,7 @@ return [
     'arrDs_kh' => $arrDs_kh,
     'arrDs_httt' => $arrDs_httt,
     'arrDs_hsp' => $arrDs_hsp,
+    'arrDs_ddh' => $arrDs_ddh,
 ];
-?>
+
+
