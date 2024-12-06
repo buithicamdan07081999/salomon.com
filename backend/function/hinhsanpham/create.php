@@ -15,6 +15,7 @@
     <?php
     include_once __DIR__ . '/../../layouts/partials/header.php'
     ?>
+    <!-- include_once __DIR__ . '/../../../handle/select.php'; để lấy lại dữ liệu cũ  -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">

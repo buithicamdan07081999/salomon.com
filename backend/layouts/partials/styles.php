@@ -5,9 +5,16 @@
     .hinh-sanpham {
         width: 120px;
         height: 120px;
-        /* border: 1px dashed red; */
-        border: 1px solid red;
+        border: 2px solid red;  /* dashed */
         padding: 3px;
         margin: 10px;
+    }
+
+    .hinh-daidien {
+        width: 400px;
+        height: 400px;       
+        border: 2px solid red;  /* dashed */
+        padding: 3px; /* khoảng cách phía trong */
+        margin: 10px;  /* khoảng cách xung quanh */
     }
 </style>

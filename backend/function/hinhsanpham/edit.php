@@ -16,17 +16,17 @@
     include_once __DIR__ . '/../../layouts/partials/header.php'
     ?>
     <?php
-    // lấy lại sản phẩm muốn sửa
+    // Lấy lại dữ liệu cũ
     $hsp_ma = $_GET['hsp_ma'];
     $sql_hsp_mod =
         "SELECT 
-            A.hsp_tentaptin
+            A.hsp_tentaptin, A.sp_ma
         FROM hinhsanpham A 
         WHERE hsp_ma = $hsp_ma";
     $data_hsp_mod = mysqli_query($conn, $sql_hsp_mod);
-    $array_hsp_mod = mysqli_fetch_array($data_hsp_mod, MYSQLI_ASSOC);
-
+    $row_hsp_mod = mysqli_fetch_array($data_hsp_mod, MYSQLI_ASSOC);
     ?>
+    <!-- Lấy lại dữ liệu cũ -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">
@@ -40,9 +40,11 @@
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="" enctype="multipart/form-data">
                     <div>
                         <label class="form-label">Tên sản phẩm:</label>
+                        <!-- Danh sách tên sản phẩm -->
                         <select name="sp_ma" id="sp_ma" class="form-select">
                             <?php foreach ($arrDs_sp as $sp): ?>
-                                <?php if ($sp['sp_ma'] == $array_hsp_mod['sp_ma']): ?>
+                                <?php if ($sp['sp_ma'] == $row_hsp_mod['sp_ma']): ?>
+                                    <!-- Tìm sản phẩm nào có mã bằng mã sp đang chỉnh sửa (chọn selected) -->
                                     <option value="<?= $sp['sp_ma'] ?>" selected>
                                         <?= $sp['sp_ten'] ?> -
                                         (<?= number_format($sp['sp_gia'], 0, '.', ',') ?> VNĐ)
@@ -55,11 +57,13 @@
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
+                        <!-- Danh sách tên sản phẩm -->
                     </div>
                     <div class="mt-3">
                         <label class="form-label">Hình sản phẩm:</label>
                         <div>
-                            <img class="hinh-daidien" src="/salomon.com/uploads/<?= $array_hsp_mod['hsp_tentaptin'] ?>" alt="">
+                            <img class="hinh-daidien" src="/salomon.com/uploads/<?= $row_hsp_mod['hsp_tentaptin'] ?>" alt="hinhsanpham">
+                            <!-- đường dẫn thư mục gốc / Tên row cần sửa nhờ PHP in dùm -->
                         </div>
                         <input type="file" name="hsp_tentaptin" id="hsp_tentaptin">
                     </div>
@@ -69,51 +73,54 @@
                 <?php
 
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý 
+                // UPDATE hình
+                // 1. Xóa file rác
+                // 2. Cập nhật SQL
+                // 3. Thêm 1 file mới 
                 if (isset($_POST['btnLuu'])) {
-                    //Lay ten hinh cu
-                    $hsp_tentaptin = $array_hsp_mod['hsp_tentaptin'];
+                    // 1. Lay ten hinh cu / Lưu trữ lại tên hình cũ
+                    $hsp_tentaptin = $row_hsp_mod['hsp_tentaptin'];
+                    // if (isset($_FILES['hsp_tentaptin']) nếu người dùng chọn hình (tồn tại file tập tin) -> luôn tồn tại
+                    // if !empty($_FILE['hsp_tentaptin']['name'] nếu người dùng chọn tên hình (đã chọn file) -> có chọn thì mới cập nhật tên hình
+                    //var_dump(isset($_FILES['hsp_tentaptin']));die;
+                    var_dump(!empty($_FILE['hsp_tentaptin']['name'])); //;die;
                     if (
-                        isset($_FILES['hsp_tentaptin'])
-                        && !empty($_FILE['hsp_tentaptin']['name'])
+                        isset($_FILES['hsp_tentaptin']) && !empty($_FILES['hsp_tentaptin']['name'])
                     ) {
+                        // Thiết lập giờ Việt Nam
                         date_default_timezone_set('Asia/Ho_Chi_Minh');
-                        $upload_dir = __DIR__ . '/../../../uploads/';
-                        //Đối với file có các thuộc tính sau
-                        // $_FILE['hsp_tentaptin']['name'] : 
-                        // $_FILE['hsp_tentaptin']['type'] : Kiểu của file
-                        // $_FILE['hsp_tentaptin']['tmp_name'] : Đường dẫn đến file
-                        // $_FILE['hsp_tentaptin']['error'] : Trạng thái
-                        // $_FILE['hsp_tentaptin']['size'] : 
+                        // Chuẩn bị đường dẫn đến thư mục mong đợi
+                        //$upload_dir2 = __DIR__ . '/../../../uploads/';
                         if ($_FILES['hsp_tentaptin']['error'] > 0) {
                             echo 'File upload bị lỗi';
                             die;
                         } else {
-                            //Xóa file hiện tại để tránh rác
-                            $upload_dir2 = realpath(__DIR__ . '/../../../uploads') . DIRECTORY_SEPARATOR; // fix lỗi đường dẫn "$upload_dir = __DIR__ . '/../../../uploads' " ko đúng
-                            $file_path_delete = $upload_dir2 . $array_hsp_del['hsp_tentaptin'];
-                            //var_dump($file_path_delete);
-
-                            if (file_exists($file_path_delete)) {
-                                unlink(($file_path_delete));
-                            }
-
-                            // **** Di chuyển file
-                            // File đã up lên server với tên tạm gì đó XAMPP tự sinh
-                            $hsp_tentaptin = date('Ymd_His') . '_' . $_FILES['hsp_tentaptin']['name'];
-                            // Di chuyển file vào thư mục monlkjokl[jiopkjopkploklpklpklpkopkplpo[lkop[kop[kpp[g đợi
-                            move_uploaded_file($_FILES['hsp_tentaptin']['tmp_name'], $upload_dir . $hsp_tentaptin);
-                            // Lưu thông tin vào Database
-
+                        // Xóa file hiện tại để tránh rác
+                            $upload_dir = realpath(__DIR__ . '/../../../uploads') . DIRECTORY_SEPARATOR; // fix lỗi đường dẫn "$upload_dir = __DIR__ . '/../../../uploads' " ko đúng
+                            $file_path_delete = $upload_dir . $row_hsp_mod['hsp_tentaptin'];
+                            //var_dump($file_path_delete); die;
                         }
+                        if (file_exists($file_path_delete)) {
+                            unlink(($file_path_delete));
+                        }
+                        // END - Xóa file hiện tại để tránh rác
+
+                        //     // 1. Di chuyển file
+                        //     // File đã up lên server với tên tạm gì đó XAMPP tự sinh
+                        $hsp_tentaptin = date('Ymd_His') . '_' . $_FILES['hsp_tentaptin']['name'];
+                        //     // Di chuyển file vào thư mục mong đợi
+                        move_uploaded_file($_FILES['hsp_tentaptin']['tmp_name'], $upload_dir . $hsp_tentaptin);
+                        //     // Lưu thông tin vào Database
+                        // }
                     }
+                    // 2. Lưu thông tin vào Database / Thực hiện update dữ liệu
                     $sp_ma = $_POST['sp_ma'];
-                    $sql_Insert_hinhsanpham = " UPDATE hinhsanpham
+                    $sql_Update_hinhsanpham = " UPDATE hinhsanpham
                                                 SET
-                                                    hsp_tentaptin=' $hsp_tentaptin,
+                                                    hsp_tentaptin='$hsp_tentaptin',
                                                     sp_ma=$sp_ma
                                                 WHERE hsp_ma=$hsp_ma";
-                    mysqli_query($conn, $sql_Insert_hinhsanpham);
-                    //var_dump($sql_Insert_hinhsanpham);
+                    mysqli_query($conn, $sql_Update_hinhsanpham);
                     echo '<script>location.href="index.php"</script>';
                 }
                 ?>
