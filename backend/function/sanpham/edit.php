@@ -86,7 +86,7 @@
                             <!-- Danh sách tên loại sản phẩm -->
                             <!-- Danh sách tên Khuyến mãi -->
                             <div class="mb-3">
-                                <label class="form-label">Khuyến mãi:</label>
+                                <div><div style="float: left; width: 50%"><label class="form-label">Khuyến mãi:</label></div><div style="float: left; text-align: right; width: 50%"><span style="text-align: right;">Kết thúc khuyến mãi <input type="checkbox" id="off_km" name="off_km" value="Tắt khuyến mãi"></span></div></div>
                                 <select name="km_ma" id="km_ma" class="form-select">
                                     <!-- 1 thêm điều kiện Chưa chọn Khuyến mãi trước đó -->
                                     <?php if ($row_sp_mod['km_ma'] == NULL) : ?>
