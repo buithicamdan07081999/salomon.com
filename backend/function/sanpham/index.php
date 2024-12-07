@@ -30,7 +30,7 @@
                 <table class="table table-hover table-bordered">
                     <tr>
                         <th>STT</th>
-                        <th>Danh mục</th>
+                        <!-- <th>Danh mục</th> -->
                         <th>Tên sản phẩm</th>
                         <th>Giá</th>
                         <th>Mô tả</th>
@@ -42,8 +42,8 @@
                     <?php foreach ($arrDs_sp as $sp) : ?>
                         <tr>
                             <td><?= $stt ?></td>
-                            <td><?= $sp['lsp_ten'] ?></td>
-                            <td><?= $sp['sp_ten'] ?></td>
+                            <!-- <td><?= $sp['lsp_ten'] ?></td> -->
+                            <td><?= $sp['sp_ten'] ?><br /><i><?= $sp['lsp_ten'] ?></i></td>
                             <td>
                                 <del>
                                     <?=
@@ -54,7 +54,13 @@
                                 number_format($sp['sp_gia'], 2, ",", ".")
                                 ?>
                             </td>
-                            <td><?= $sp['sp_mota_ngan'] ?></td>
+                            <td><?= $sp['sp_mota_ngan'] ?><br /><i>
+                                    <ul>
+                                        <li>
+                                            <?= $sp['sp_mota_chitiet'] ?>
+                                        </li>
+                                    </ul>
+                                </i></td>
                             <td><?= $sp['sp_soluong'] ?>/1000</td>
                             <td>
                                 <!-- https://getbootstrap.com/docs/5.3/components/badge/ -->
@@ -111,7 +117,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // Người dùng đã nhấn nút xóa
-                        location.href ="delete.php?sp_ma=" + sp_ma;
+                        location.href = "delete.php?sp_ma=" + sp_ma;
                         // Swal.fire({
                         //     title: "Deleted!",
                         //     text: "Your file has been deleted.",
