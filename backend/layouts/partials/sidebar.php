@@ -9,7 +9,7 @@
   <a href="/salomon.com/backend/function/hinhthucthanhtoan/index.php" class="list-group-item list-group-item-action">Hình thức thanh toán</a>
   <a href="/salomon.com/backend/function/hinhsanpham/index.php" class="list-group-item list-group-item-action">Hình sản phẩm</a>
   <!-- chưa code -->
-  <a href="#" class="list-group-item list-group-item-action">Đơn đặt hàng</a>
+  <a href="/salomon.com/backend/function/dondathang/index.php" class="list-group-item list-group-item-action">Đơn đặt hàng</a>
   <a href="#" class="list-group-item list-group-item-action">Báo cáo</a>
  
   <!-- đường dẫn viết trong PHP là đường dẫn thư mục -->

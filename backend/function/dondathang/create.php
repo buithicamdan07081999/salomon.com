@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOẠI SẢN PHẨM</title>
+    <title>ĐƠN ĐẶT HÀNG</title>
     <?php
     include_once __DIR__ . '/../../layouts/partials/styles.php';
     include_once __DIR__ . '/../../../handle/dbconnect.php';
@@ -23,7 +23,7 @@
                 ?>
             </div>
             <div class="col-9">
-                <h1>Thêm mới Loại sản phẩm</h1>
+                <h1>Thêm mới đơn đặt hàng</h1>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
                     <!-- action "" là tự gửi đến trang hiện tại                     -->
                     <div class="mb-3">
@@ -45,8 +45,8 @@
                     $lsp_mota = $_POST['lsp_mota'];
                     if ($lsp_ten != "" && $lsp_mota != "") {
                         $sql = 
-                        "   INSERT INTO loaisanpham(lsp_ten, lsp_mota)
-                            VALUES ('$lsp_ten', '$lsp_mota');";
+                        "INSERT INTO dondathang(dh_ngaylap, dh_ngaygiao, dh_noigiao, dh_trangthaithanhtoan, kh_ma, sp_ma)
+                        VALUES (NOW(),'$dh_ngaygiao','$dh_noigiao','$dh_trangthaithanhtoan','$kh_ma', '$sp_ma')   ";
                             //Thực thi
                         mysqli_query($conn, $sql);
                         echo '<script> location.href="index.php"</script>';

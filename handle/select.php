@@ -84,8 +84,43 @@ $sql_hsp =  "SELECT
             LEFT JOIN sanpham B
             ON A.sp_ma = B.sp_ma";
 $sql_ddh =
-    "SELECT dh_ma, dh_ngaylap, dh_ngaygiao, dh_noigiao, dh_trangthaithanhtoan, httt_ma, kh_tendangnhap
- FROM dondathang             
+    
+"SELECT 
+        A.dh_ma, 
+        A.dh_ngaylap, 
+        A.dh_ngaygiao, 
+        A.dh_noigiao, 
+        A.httt_ma,
+        A.kh_ma, 
+        A.sp_ma,
+        A.tttt_ma,
+        B.httt_ma,
+        B.httt_ten,
+        C.kh_ten, 
+        D.sp_ten,
+        D.sp_gia,
+        E.tttt_ten, SUM(F.sp_dh_soluong * F.sp_dh_dongia) tongthanhtien
+FROM dondathang A
+LEFT JOIN hinhthucthanhtoan B ON A.httt_ma = B.httt_ma
+LEFT JOIN thongtinkhachhang C ON A.kh_ma = C.kh_ma
+LEFT JOIN sanpham D ON A.sp_ma = D.sp_ma
+LEFT JOIN trangthaithanhtoan E ON A.tttt_ma = E.tttt_ma 
+LEFT JOIN sanpham_dondathang F ON A.dh_ma = F.dh_ma
+GROUP BY         
+        A.dh_ma, 
+        A.dh_ngaylap, 
+        A.dh_ngaygiao, 
+        A.dh_noigiao, 
+        A.httt_ma,
+        A.kh_ma, 
+        A.sp_ma,
+        A.tttt_ma,
+        B.httt_ma,
+        B.httt_ten,
+        C.kh_ten, 
+        D.sp_ten,
+        D.sp_gia,
+        E.tttt_ten
 ";
 
 
@@ -195,9 +230,17 @@ while ($row = mysqli_fetch_array($data_ddh, MYSQLI_ASSOC)) {
         'dh_ngaylap' => $row['dh_ngaylap'],
         'dh_ngaygiao' => $row['dh_ngaygiao'],
         'dh_noigiao' => $row['dh_noigiao'],
-        'dh_trangthaithanhtoan' => $row['dh_trangthaithanhtoan'],
         'httt_ma' => $row['httt_ma'],
-        'kh_tendangnhap' => $row['kh_tendangnhap'],
+        'kh_ma' => $row['kh_ma'],
+        'sp_ma' => $row['sp_ma'],
+        'tttt_ma' => $row['tttt_ma'],
+        'httt_ma' => $row['httt_ma'],
+        'kh_ten' => $row['kh_ten'],
+        'sp_ten' => $row['sp_ten'],
+        'sp_gia' => $row['sp_gia'],
+        'tttt_ten' => $row['tttt_ten'],
+        'httt_ten' => $row['httt_ten'],
+        'tongthanhtien' => $row['tongthanhtien'],
     );
 }
 
