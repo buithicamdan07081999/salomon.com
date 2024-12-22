@@ -74,10 +74,9 @@
                                     <a href="edit.php?dh_ma=<?= $ddh['dh_ma'] ?>" class="btn btn-warning">Sửa <i class="fa-regular fa-pen-to-square"></i></a>
                                     <a href="delete.php?dh_ma=<?= $ddh['dh_ma'] ?>" class="btn btn-danger">Xóa <i class="fa-regular fa-trash-can"></i></a>
                                     <?php else: ?>
-                                        <a href="print.php" class="btn btn-success">In<i class="fa-regular fa-pen-to-square"></i></a>
+                                        <a href="print.php?dh_ma=<?= $ddh['dh_ma'] ?>" class="btn btn-success">In<i class="fa-regular fa-pen-to-square"></i></a>
                                 <?php endif;?>
                                 <!-- gửi bằng đường GET -->
-
                             </td>
                         </tr>
                     <?php

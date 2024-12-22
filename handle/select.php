@@ -83,45 +83,43 @@ $sql_hsp =  "SELECT
             FROM hinhsanpham A
             LEFT JOIN sanpham B
             ON A.sp_ma = B.sp_ma";
-$sql_ddh =
-    
-"SELECT 
-        A.dh_ma, 
-        A.dh_ngaylap, 
-        A.dh_ngaygiao, 
-        A.dh_noigiao, 
-        A.httt_ma,
-        A.kh_ma, 
-        A.sp_ma,
-        A.tttt_ma,
-        B.httt_ma,
-        B.httt_ten,
-        C.kh_ten, 
-        D.sp_ten,
-        D.sp_gia,
-        E.tttt_ten, SUM(F.sp_dh_soluong * F.sp_dh_dongia) tongthanhtien
-FROM dondathang A
-LEFT JOIN hinhthucthanhtoan B ON A.httt_ma = B.httt_ma
-LEFT JOIN thongtinkhachhang C ON A.kh_ma = C.kh_ma
-LEFT JOIN sanpham D ON A.sp_ma = D.sp_ma
-LEFT JOIN trangthaithanhtoan E ON A.tttt_ma = E.tttt_ma 
-LEFT JOIN sanpham_dondathang F ON A.dh_ma = F.dh_ma
-GROUP BY         
-        A.dh_ma, 
-        A.dh_ngaylap, 
-        A.dh_ngaygiao, 
-        A.dh_noigiao, 
-        A.httt_ma,
-        A.kh_ma, 
-        A.sp_ma,
-        A.tttt_ma,
-        B.httt_ma,
-        B.httt_ten,
-        C.kh_ten, 
-        D.sp_ten,
-        D.sp_gia,
-        E.tttt_ten
-";
+$sql_ddh =  "SELECT 
+                    A.dh_ma, 
+                    A.dh_ngaylap, 
+                    A.dh_ngaygiao, 
+                    A.dh_noigiao, 
+                    A.httt_ma,
+                    A.kh_ma, 
+                    A.sp_ma,
+                    A.tttt_ma,
+                    B.httt_ma,
+                    B.httt_ten,
+                    C.kh_ten, 
+                    D.sp_ten,
+                    D.sp_gia,
+                    E.tttt_ten, SUM(F.sp_dh_soluong * F.sp_dh_dongia) tongthanhtien
+            FROM dondathang A
+            LEFT JOIN hinhthucthanhtoan B ON A.httt_ma = B.httt_ma
+            LEFT JOIN thongtinkhachhang C ON A.kh_ma = C.kh_ma
+            LEFT JOIN sanpham D ON A.sp_ma = D.sp_ma
+            LEFT JOIN trangthaithanhtoan E ON A.tttt_ma = E.tttt_ma 
+            LEFT JOIN sanpham_dondathang F ON A.dh_ma = F.dh_ma
+            GROUP BY         
+                    A.dh_ma, 
+                    A.dh_ngaylap, 
+                    A.dh_ngaygiao, 
+                    A.dh_noigiao, 
+                    A.httt_ma,
+                    A.kh_ma, 
+                    A.sp_ma,
+                    A.tttt_ma,
+                    B.httt_ma,
+                    B.httt_ten,
+                    C.kh_ten, 
+                    D.sp_ten,
+                    D.sp_gia,
+                    E.tttt_ten
+            ";
 
 
 // 3. Thực thi câu lệnh
