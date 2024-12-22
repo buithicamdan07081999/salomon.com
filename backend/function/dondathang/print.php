@@ -138,6 +138,7 @@ while ($row = mysqli_fetch_array($sql_data_detail, MYSQLI_ASSOC)) {
             </tr>
         </table>
         <p>Chi tiết đơn hàng:</p>
+
         <table class="vonglap" style="width: 100%;" border="1">
             <tr>
                 <th class="left-center">STT</th>
@@ -152,8 +153,8 @@ while ($row = mysqli_fetch_array($sql_data_detail, MYSQLI_ASSOC)) {
                     <td class="center-css"><?= $index + 1 ?></td>
                     <td>
                         <b><?= $detail['sp_ten'] ?></b>
-                        <i style="font-size 0.8mm"><?= $detail['lsp_ten'] ?></i>
-                        <i style="font-size 0.8mm"><?= $detail['npp_ten'] ?></i>
+                        <i style="font-size: 0.8mm"><?= $detail['lsp_ten'] ?></i>
+                        <i style="font-size: 0.8mm"><?= $detail['npp_ten'] ?></i>
                     </td>
                     <td  class="right-css">
                         <?= number_format($detail['soluong'], 0, '.', ',') ?>
@@ -173,7 +174,8 @@ while ($row = mysqli_fetch_array($sql_data_detail, MYSQLI_ASSOC)) {
                 </td>
             </tr>
         </table>
+
+
     </section>
 </body>
-
 </html>
