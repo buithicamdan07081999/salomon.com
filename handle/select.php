@@ -45,10 +45,16 @@ $sql_kh =   "SELECT
                 FROM thongtinkhachhang A
                 ORDER BY A.kh_ma asc";
 
+$sql_tttt = "SELECT A.tttt_ma,
+       A.tttt_ten,
+       A.tttt_diengiai
+FROM trangthaithanhtoan A";
+
 $sql_httt = "SELECT 
-                    A.httt_ma, 
-                    A.httt_ten
-                FROM hinhthucthanhtoan A";
+A.httt_ma, 
+A.httt_ten,
+A.httt_diengiai
+FROM hinhthucthanhtoan A";
 
 $sql_sp =   "SELECT 
 					 A.sp_ma, A.sp_ten,
@@ -129,6 +135,7 @@ $data_km = mysqli_query($conn, $sql_km);
 $data_th = mysqli_query($conn, $sql_th);
 $data_kh = mysqli_query($conn, $sql_kh);
 $data_httt = mysqli_query($conn, $sql_httt);
+$data_tttt = mysqli_query($conn, $sql_tttt);
 $data_sp = mysqli_query($conn, $sql_sp);
 $data_hsp = mysqli_query($conn, $sql_hsp);
 $data_ddh = mysqli_query($conn, $sql_ddh);
@@ -140,6 +147,7 @@ $arrDs_km = [];
 $arrDs_th = [];
 $arrDs_kh = [];
 $arrDs_httt = [];
+$arrDs_tttt = [];
 $arrDs_sp = [];
 $arrDs_hsp = [];
 $arrDs_ddh = [];
@@ -193,6 +201,14 @@ while ($row = mysqli_fetch_array($data_httt, MYSQLI_ASSOC)) {
     $arrDs_httt[] = array(
         'httt_ma' => $row['httt_ma'],
         'httt_ten' => $row['httt_ten'],
+        'httt_diengiai' => $row['httt_diengiai'],
+    );
+}
+while ($row = mysqli_fetch_array($data_tttt, MYSQLI_ASSOC)) {
+    $arrDs_tttt[] = array(
+        'tttt_ma' => $row['tttt_ma'],
+        'tttt_ten' => $row['tttt_ten'],
+        'tttt_diengiai' => $row['tttt_diengiai'],
     );
 }
 while ($row = mysqli_fetch_array($data_sp, MYSQLI_ASSOC)) {
@@ -249,8 +265,7 @@ return [
     'arrDs_th' => $arrDs_th,
     'arrDs_kh' => $arrDs_kh,
     'arrDs_httt' => $arrDs_httt,
+    'arrDs_tttt' => $arrDs_tttt,
     'arrDs_hsp' => $arrDs_hsp,
     'arrDs_ddh' => $arrDs_ddh,
 ];
-
-
