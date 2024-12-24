@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- https://www.youtube.com/watch?v=0V8BTdIcuRs&t=2576s -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -92,7 +92,7 @@
                             <select name="sp_ma" id="sp_ma" class="form-select">
                                 <option value="">Chọn sản phẩm</option>
                                 <?php foreach ($arrDs_sp as $sp): ?>
-                                    <option value="<?= $sp['sp_ma'] ?>" data-sp_gia="<?= $sp['sp_gia'] ?>"> 
+                                    <option value="<?= $sp['sp_ma'] ?>" data-sp_gia="<?= $sp['sp_gia'] ?>">
                                         <!-- data-sp_ma="<?= $sp['sp_ma'] ?>" để dùng trong jQuery -->
                                         <?= $sp['sp_ten'] ?> (<?= number_format($sp['sp_gia'], 0, '.', ',') ?>)
                                     </option>
@@ -112,7 +112,7 @@
                     <!-- Thông tin hiển thị -->
                     <div class="row">
                         <div class="col-12">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="tblDetail">
                                 <thead>
                                     <tr>
                                         <th>Sản phẩm</th>
@@ -123,7 +123,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    <!-- jQuery -->
                                 </tbody>
                             </table>
                         </div>
@@ -162,13 +162,31 @@
         $(function() {
             $('#btnAdd').click(function() {
                 // Lấy thông tin Option nào đang được chọn
-               // $('select#sp_ma '); // tìm cha
+                // $('select#sp_ma '); // tìm cha
                 var sp_ma = $('select#sp_ma option:selected').val(); // tìm con (tìm option đang được chọn)
                 // Truyền dữ liệu từ HTML qua JS thì được quyền thêm thuộc tính vào HTML Data-(tên) vào thẻ Option
-                var sp_ma = $('select#sp_ma option:selected').data('sp_gia');                
-                var soluong = $($soluong).val();
-                console.log(soluong);
+                var sp_ten = $('select#sp_ma option:selected').text(); // Thẻ option                
+                var sp_gia = $('select#sp_ma option:selected').data('sp_gia');
+                var soluong = $('#soluong').val(); // Thẻ input
+                //Tạo template HTML tr
+                var htmltemplate = '<tr>';
+                htmltemplate += '<td>' + sp_ten + '<input type="hidden" name="sp_ma[]" value="' + sp_ma + '"/> </td>';
+                htmltemplate += '<td>' + soluong + '<input type="hidden" name="sp_dh_soluong[]" value="' + soluong + '"/> </td>';
+                htmltemplate += '<td>' + sp_gia + '<input type="hidden" name="sp_dh_dongia" value="' + sp_gia + '"/> </td>';
+                htmltemplate += '<td>' + soluong * sp_gia + ' </td>';
+                htmltemplate += '<td><button type="button" class="btn btn-danger btn-delete-row">Xóa</button></td>';
+                htmltemplate += '</tr>';
+                // Chèn Html vào Table
+                // $('#tblDetail tbody').html(htmltemplate); // Tìm đúng tbody nhét vào bên trong
+                $('#tblDetail tbody').append(htmltemplate); // Tiếp nối dòng phía trên
+                // Lưu cơ sở dữ liệu (Input Hidden)
+                // Đăng ký sự kiện cho nút Delete                
             });
+            // (Giao diện Động) Dùng on vì trạng thái ban đầu không có, khi thêm 1 dòng mới có nút Delete
+            $('#tblDetail').on('click', '.btn-delete-row', function() // Đăng ký sự kiên Click cho nnguyeen table
+                { // jQuery Delete
+                    $(this).parent().parent()[0].remove(); // Tìm lên trên 1 cấp btnDel -> td -> tr
+                });
         });
     </script>
 </body>
