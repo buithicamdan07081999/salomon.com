@@ -16,13 +16,10 @@
     ?>
     <h2>Tùy chọn</h2>
     <ol>
-    <li><a href="loaisanpham/index.php">CRUD-DANHMUC(LOAI SAN PHAM)</a></li>
-    <li><a href="nhasanxuat/index.php">CRUD-NHASANXUAT</a></li>
-    <li><a href="khachhang/index.php">CRUD-KHACHHANG</a></li>
-    <li><a href="phuongthucthanhtoan/index.php">CRUD-PHUONGTHUCTHANHTOAN</a></li>
-    <li><a href="nhasanxuat/index.php">CRUD-NHASANXUAT</a></li>
-    <li><a href="sanpham/index.php">CRUD-SANPHAM</a></li>
     <li><a href="backend/index.php">CRUD-ADMIN</a></li>
+    <li><a href="frontend/index.php">Front End  PHP</a></li>
+    <li><a href="frontend/freshshop/index.html">CRUD-ADMIN</a></li>
+    <li><a href="frontend/store/index.html">CRUD-ADMIN</a></li>
     </ol>  
 </body>
 </html>

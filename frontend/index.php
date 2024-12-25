@@ -2,6 +2,8 @@
 <html lang="en">
 <!-- https://www.youtube.com/watch?v=YLs4KCw9sEk&list=PLvS5p7fBPUMqsrL7MFQWBihk0SOaOpZZK -->
 <!-- https://www.w3schools.com/css/css_pseudo_classes.asp -->
+<!-- https://themewagon.com/themes/free-html5-ecommerce-website-template/ -->
+<!-- https://themewagon.com/themes/free-bootstrap-4-html5-ecommerce-website-template-freshshop/ -->
 
 <head>
     <meta charset="UTF-8">
