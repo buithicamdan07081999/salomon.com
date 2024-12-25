@@ -17,9 +17,9 @@
     <h2>Tùy chọn</h2>
     <ol>
     <li><a href="backend/index.php">CRUD-ADMIN</a></li>
-    <li><a href="frontend/index.php">Front End  PHP</a></li>
-    <li><a href="frontend/freshshop/index.html">CRUD-ADMIN</a></li>
-    <li><a href="frontend/store/index.html">CRUD-ADMIN</a></li>
+    <li><a href="frontend/index.php">FRONT END PHP</a></li>
+    <li><a href="frontend/freshshop/index.html">FRONT END FRESH SHOP</a></li>
+    <li><a href="frontend/shop/index.html">FRONT END SHOP</a></li>
     </ol>  
 </body>
 </html>
