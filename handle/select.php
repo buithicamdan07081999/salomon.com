@@ -127,12 +127,6 @@ $sql_ddh =  "SELECT
                     E.tttt_ten
             ";
 
-// //API
-// $sql_sp_api =  "SELECT count(*) as SoLuong from sanpham;";
-// $sql_sp_kh =  "SELECT count(*) as SoLuong from thongtinkhachhang;";
-// $sql_sp_dh =  "SELECT count(*) as SoLuong from dondathang;";
-// $sql_sp_dh =  "SELECT count(*) as SoLuong from loaisanpham;";
-// //API
 
 // 3. Thực thi câu lệnh
 $data_lsp = mysqli_query($conn, $sql_lsp);

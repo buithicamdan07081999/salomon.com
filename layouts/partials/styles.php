@@ -1,8 +1,6 @@
 <link href="/salomon.com/vendor/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
 <link href="/salomon.com/vendor/fontawesome/js/all.min.js" type="text/css" rel="stylesheet">
-
 <!-- https://bootstrapstudio.io/ -->
-
 <style>
     .clear-fix {
         clear: both;
@@ -21,10 +19,44 @@
         /* reset hết giá trị mặc định */
     }
 
+    .hinh-sanpham {
+        width: 120px;
+        height: 120px;
+        border: 2px solid red;
+        /* dashed */
+        padding: 3px;
+        margin: 10px;
+    }
+
+    .hinh-daidien {
+        width: 400px;
+        height: 400px;
+        border: 2px solid red;
+        /* dashed */
+        padding: 3px;
+        /* khoảng cách phía trong */
+        margin: 10px;
+        /* khoảng cách xung quanh */
+    }
+
+    .center-css {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .left-css {
+        text-align: left;
+        margin-left: 5px;
+    }
+
+    .right-css {
+        text-align: right;
+        margin-right: 5px;
+    }
+
     #topbar {
         border-bottom: 1px solid green;
         padding: 19px;
-        height: fit-content;
     }
 
     #topbar-left,
@@ -82,6 +114,7 @@
         text-decoration: none;
         /* bỏ dấu gạch chân */
         padding: 5px;
+        color: royalblue;
     }
 
     .topbar-left-list li:last-child {
@@ -95,16 +128,10 @@
         border-left: unset;
         /* không kẻ đường gạch */
     }
-
     a.active {
         /* a.active chọn phần tử a có class = active */
         /* a .active chọn phần tử "con của a" có class = active */
         color: white !important;
     }
 
-
-    /* Debug khung */
-    /* #topbar div {
-        border: 1px solid red;
-    } */
 </style>
