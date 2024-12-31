@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NHÀ PHÂN PHỐI</title>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/styles.php';
-    include_once __DIR__ . '/../../../handle/dbconnect.php';
+    include_once __DIR__ . '/../../../layouts/styles.php';
+    include_once __DIR__ . '/../../../handle/select.php';
     ?>
 </head>
 
 <body>
-    <?php
-    include_once __DIR__ . '/../../layouts/partials/header.php'
+<?php
+    include_once __DIR__ . '/../../../layouts/header.php'
     ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">
-                <?php
-                include_once __DIR__ . '/../../../backend/layouts/partials/sidebar.php';
+            <?php
+                include_once __DIR__ . '/../../layouts/sidebar.php';
                 ?>
             </div>
             <div class="col-9">
@@ -54,10 +54,8 @@
         </div>
     </div>
     <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
-    ?>
-    <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
+        include_once __DIR__ . '/../../../layouts/footer.php';
+        include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </body>
 
