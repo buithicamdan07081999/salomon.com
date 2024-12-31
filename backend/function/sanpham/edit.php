@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SẢN PHẨM</title>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../layouts/styles.php';
     include_once __DIR__ . '/../../../handle/select.php';
     ?>
 </head>
 
 <body>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/header.php'
+    include_once __DIR__ . '/../../../layouts/header.php'
     ?>
     <?php
     // Lấy lại dữ liệu cũ
@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-3">
                 <?php
-                include_once __DIR__ . '/../../../backend/layouts/partials/sidebar.php';
+                include_once __DIR__ . '/../../layouts/sidebar.php';
                 ?>
             </div>
             <div class="col-9">
@@ -86,7 +86,10 @@
                             <!-- Danh sách tên loại sản phẩm -->
                             <!-- Danh sách tên Khuyến mãi -->
                             <div class="mb-3">
-                                <div><div style="float: left; width: 50%"><label class="form-label">Khuyến mãi:</label></div><div style="float: left; text-align: right; width: 50%"><span style="text-align: right;">Kết thúc khuyến mãi <input type="checkbox" id="off_km" name="off_km" value="Tắt khuyến mãi"></span></div></div>
+                                <div>
+                                    <div style="float: left; width: 50%"><label class="form-label">Khuyến mãi:</label></div>
+                                    <div style="float: left; text-align: right; width: 50%"><span style="text-align: right;">Kết thúc khuyến mãi <input type="checkbox" id="off_km" name="off_km" value="Tắt khuyến mãi"></span></div>
+                                </div>
                                 <select name="km_ma" id="km_ma" class="form-select">
                                     <!-- 1 thêm điều kiện Chưa chọn Khuyến mãi trước đó -->
                                     <?php if ($row_sp_mod['km_ma'] == NULL) : ?>
@@ -213,11 +216,8 @@
         </div>
     </div>
     <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
-    ?>
-    <!-- Fix lỗi: Vì sao không load được icon solid vì chưa khai báo ở style , font awesome chia ra nhiều loại nên cần khai báo thêm -->
-    <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
+        include_once __DIR__ . '/../../../layouts/footer.php';
+        include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </body>
 
