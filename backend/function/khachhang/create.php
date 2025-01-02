@@ -6,21 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHÁCH HÀNG</title>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/styles.php';
-    include_once __DIR__ . '/../../../handle/dbconnect.php';
+    include_once __DIR__ . '/../../../layouts/styles.php';
     include_once __DIR__ . '/../../../handle/select.php';
+    include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </head>
 
 <body>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/header.php'
+    include_once __DIR__ . '/../../../layouts/header.php'
     ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">
-                <?php
-                include_once __DIR__ . '/../../../backend/layouts/partials/sidebar.php';
+            <?php
+                include_once __DIR__ . '/../../layouts/sidebar.php';
                 ?>
             </div>
             <div class="col-9">
@@ -46,7 +46,7 @@
                         <option value="1">Hội viên</option>
                         <option value="0">Khách vẵng lai</option>
                     </select><br />
-                    Admin: 
+                    Admin:
                     <select name="kh_quantri" class="form-control">
                         <option value="1">Quản trị</option>
                         <option value="0">Người dùng</option>
@@ -71,7 +71,7 @@
                     $kh_trangthai = $_POST['kh_trangthai'];
                     $kh_quantri = $_POST['kh_quantri'];
                     if ($kh_cmnd != "" && $kh_makichhoat != "" && $kh_trangthai != "" && $kh_quantri != "" && $kh_tendangnhap != "" && $kh_matkhau != "" && $kh_ten != "" && $kh_gioitinh != "" && $kh_ngaysinh != "" && $kh_diachi != "" && $kh_dienthoai != "" && $kh_email != "") {
-                        $sql = 
+                        $sql =
                             "   INSERT INTO thongtinkhachhang
 	                                (kh_tendangnhap, kh_matkhau, kh_ten, kh_gioitinh, kh_diachi, kh_dienthoai, kh_email, kh_ngaysinh, kh_cmnd, kh_makichhoat, kh_trangthai, kh_quantri)
 	                            VALUES ('$kh_tendangnhap', '$kh_matkhau', '$kh_ten', $kh_gioitinh, '$kh_diachi', $kh_dienthoai, '$kh_email', '$kh_ngaysinh', $kh_cmnd, '$kh_makichhoat', $kh_trangthai, $kh_quantri));";
@@ -88,10 +88,7 @@
         </div>
     </div>
     <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
-    ?>
-    <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
+    include_once __DIR__ . '/../../../layouts/footer.php';
     ?>
 </body>
 

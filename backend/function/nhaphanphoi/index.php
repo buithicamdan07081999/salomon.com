@@ -75,7 +75,6 @@
     <!-- this is contain -->
     <?php
     include_once __DIR__ . '/../../../layouts/footer.php';
-    include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </body>
 

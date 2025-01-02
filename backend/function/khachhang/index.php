@@ -6,26 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHÁCH HÀNG</title>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/styles.php';
-    include_once __DIR__ . '/../../layouts/partials/script.php';
-    include_once __DIR__ . '/../../../handle/dbconnect.php';
+    include_once __DIR__ . '/../../../layouts/styles.php';
     include_once __DIR__ . '/../../../handle/select.php';
+    include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </head>
 
 <body>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/header.php'
+    include_once __DIR__ . '/../../../layouts/header.php'
     ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">
                 <?php
-                include_once __DIR__ . '/../../../backend/layouts/partials/sidebar.php';
+                include_once __DIR__ . '/../../layouts/sidebar.php';
                 ?>
             </div>
             <div class="col-9">
-                <h3>KHÁCH HÀNG</h3><span style="color: red;">(CÒN PHẦN MẬT KHẨU VỚI THÔNG BÁO XÁC NHẬN XÓA)</span><br/><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
+                <h3>KHÁCH HÀNG</h3><span style="color: red;">(CÒN PHẦN MẬT KHẨU VỚI THÔNG BÁO XÁC NHẬN XÓA)</span><br /><a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
                 <a href="create.php" class="btn btn-primary mb-3">Thêm mới <i class="fa-solid fa-plus"></i></a>
                 <?php
                 if (is_array($arrDs_kh)) {
@@ -73,35 +72,9 @@
         </div>
     </div>
     <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
-    ?>
-    <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
+    include_once __DIR__ . '/../../../layouts/footer.php';
     ?>
 
-    <!-- <script>
-        $(document).ready(function() {
-            $('body').on('click', '.sua', function() {
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                        });
-                    }
-                });
-            });
-        });
-    </script> -->
 </body>
 
 </html>

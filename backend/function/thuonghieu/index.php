@@ -70,8 +70,7 @@
         </div>
     </div>
     <?php
-        include_once __DIR__ . '/../../../layouts/footer.php';
-        include_once __DIR__ . '/../../../layouts/script.php';
+    include_once __DIR__ . '/../../../layouts/footer.php';
     ?>
 </body>
 

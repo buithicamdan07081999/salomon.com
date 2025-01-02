@@ -8,17 +8,18 @@
     <?php
     include_once __DIR__ . '/../../../layouts/styles.php';
     include_once __DIR__ . '/../../../handle/select.php';
+    include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </head>
 
 <body>
-<?php
+    <?php
     include_once __DIR__ . '/../../../layouts/header.php'
     ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">
-            <?php
+                <?php
                 include_once __DIR__ . '/../../layouts/sidebar.php';
                 ?>
             </div>
@@ -44,7 +45,7 @@
                     $th_ten = $_POST['th_ten'];
                     $th_mota = $_POST['th_mota'];
 
-                    $sql = "UPDATE thuonghieu SET th_ten = '$th_ten', th_mota = '$th_mota' WHERE th_ma = $th_ma;";                    
+                    $sql = "UPDATE thuonghieu SET th_ten = '$th_ten', th_mota = '$th_mota' WHERE th_ma = $th_ma;";
                     mysqli_query($conn, $sql);
                     echo '<script> location.href="index.php"</script>';
                 }
@@ -53,8 +54,7 @@
         </div>
     </div>
     <?php
-        include_once __DIR__ . '/../../../layouts/footer.php';
-        include_once __DIR__ . '/../../../layouts/script.php';
+    include_once __DIR__ . '/../../../layouts/footer.php';
     ?>
 </body>
 

@@ -6,30 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HÌNH SẢN PHẨM</title>
     <?php
-    // Gọi các file để sử dụng
+    include_once __DIR__ . '/../../../layouts/styles.php';
     include_once __DIR__ . '/../../../handle/select.php';
-    include_once __DIR__ . '/../../layouts/partials/styles.php';
-    include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
+    include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </head>
 
 <body>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/header.php'
+    include_once __DIR__ . '/../../../layouts/header.php'
     ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">
                 <?php
-                include_once __DIR__ . '/../../../backend/layouts/partials/sidebar.php';
+                include_once __DIR__ . '/../../layouts/sidebar.php';
                 ?>
             </div>
             <div class="col-9">
-                <h3>HÌNH SẢN PHẨM <br/>(Chưa xong chức năng sửa hình ảnh)</h3>
+                <h3>HÌNH SẢN PHẨM <br />(Chưa xong chức năng sửa hình ảnh)</h3>
                 <!-- <br/><span style="color: red">Lỗi: <br/>- Khi xóa trong SQL -> Folder ko xóa</span> -->
-                <br/><span style="color: green">Done: <br/>- Khi xóa trong SQL -> Web xóa
-                <br/>- Khi xóa trong Web -> SQL xóa + Folder xóa
-            </span>
+                <br /><span style="color: green">Done: <br />- Khi xóa trong SQL -> Web xóa
+                    <br />- Khi xóa trong Web -> SQL xóa + Folder xóa
+                </span>
                 <a href="../../../index.php" class="btn btn-outline-info mb-3">Trang chủ <i class="fa-solid fa-house"></i></a>
                 <a href="create.php" class="btn btn-primary mb-3">Thêm mới <i class="fa-solid fa-plus"></i></a>
                 <!-- Trình diễn các dữ liệu đã select trong dbconnect -->
@@ -42,7 +41,7 @@
                         <th>Tùy chỉnh</th>
                     </tr>
                     <?php $stt = 1 ?>
-                    <?php foreach ($arrDs_hsp as $hsp) : ?> 
+                    <?php foreach ($arrDs_hsp as $hsp) : ?>
                         <!-- $arrDs_hsp có sẵn trong file dbconnect -->
                         <tr>
                             <td><?= $stt ?></td>
@@ -55,20 +54,20 @@
                                 <!-- gửi bằng đường GET -->
                                 <a href="edit.php?hsp_ma=<?= $hsp['hsp_ma'] ?>" class="btn btn-warning mod">Sửa <i class="fa-regular fa-pen-to-square"></i></a>
                                 <a href="#" class="btn btn-danger del" data-hsp_ma_key="<?= $hsp['hsp_ma'] ?>">Xóa <i class="fa-regular fa-trash-can"></i></a>
-                                <!-- Tiền tố data- (thuộc tính của html) để dễ quản lý -> this.(tên thuộc tính) --> 
+                                <!-- Tiền tố data- (thuộc tính của html) để dễ quản lý -> this.(tên thuộc tính) -->
                                 <!-- ko xài điều hướng của html nữa -> href="#" sử dụng khi có alert yes no -->
                             </td>
                         </tr>
                     <?php
                         $stt++;
-                    endforeach; 
+                    endforeach;
                     ?>
                 </table>
             </div>
         </div>
     </div>
     <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
+    include_once __DIR__ . '/../../../layouts/footer.php';
     ?>
     <script>
         $(document).ready(function() { // giao diện đã render hết rồi mới xử lý

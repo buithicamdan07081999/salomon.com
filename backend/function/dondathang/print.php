@@ -81,7 +81,7 @@ while ($row = mysqli_fetch_array($sql_data_detail, MYSQLI_ASSOC)) {
     <title>Trang in</title>
     <link href="/salomon.com/vendor/paper-css/paper.min.css" type="text/css" rel="stylesheet" />
     <?php
-    include_once __DIR__ . '/../../layouts/partials/styles.php';
+     include_once __DIR__ . '/../../../layouts/styles.php';
     ?>
     <style>
         @page {
@@ -174,8 +174,9 @@ while ($row = mysqli_fetch_array($sql_data_detail, MYSQLI_ASSOC)) {
                 </td>
             </tr>
         </table>
-
-
     </section>
+    <?php
+    include_once __DIR__ . '/../../../layouts/footer.php';
+    ?>
 </body>
 </html>

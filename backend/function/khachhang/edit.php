@@ -6,18 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHÁCH HÀNG</title>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../layouts/styles.php';
     include_once __DIR__ . '/../../../handle/select.php';
-    include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
+    include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </head>
 
 <body>
+    <?php
+    include_once __DIR__ . '/../../../layouts/header.php'
+    ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">
                 <?php
-                include_once __DIR__ . '/../../../backend/layouts/partials/sidebar.php';
+                include_once __DIR__ . '/../../layouts/sidebar.php';
                 ?>
             </div>
             <div class="col-9">
@@ -47,7 +50,7 @@
                 ?>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
                     Tên đăng nhập: <input type="text" name="kh_tendangnhap" value="<?= $kh_row['kh_tendangnhap'] ?>" class="form-control" /><br />
-                    Mật khẩu: <input type="password" name="kh_matkhau"  class="form-control" /><br />
+                    Mật khẩu: <input type="password" name="kh_matkhau" class="form-control" /><br />
                     Tên: <input type="text" name="kh_ten" value="<?= $kh_row['kh_ten'] ?>" class="form-control" /><br />
                     Giới tính:
                     <select name="kh_gioitinh" class="form-control">
@@ -90,8 +93,8 @@
                     $kh_trangthai = $_POST['kh_trangthai'];
                     $kh_quantri = $_POST['kh_quantri'];
                     if ($kh_cmnd != "" && $kh_makichhoat != "" && $kh_trangthai != "" && $kh_quantri != "" && $kh_tendangnhap != "" && $kh_ten != "" && $kh_gioitinh != "" && $kh_ngaysinh != "" && $kh_diachi != "" && $kh_dienthoai != "" && $kh_email != "") {
-                        $sql = 
-                        "   UPDATE thongtinkhachhang
+                        $sql =
+                            "   UPDATE thongtinkhachhang
                             SET
                                 kh_tendangnhap='$kh_tendangnhap',
                                 kh_matkhau='$kh_matkhau',
@@ -117,6 +120,9 @@
             </div>
         </div>
     </div>
+    <?php
+    include_once __DIR__ . '/../../../layouts/footer.php';
+    ?>
 </body>
 
 </html>

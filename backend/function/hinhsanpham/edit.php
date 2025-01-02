@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HÌNH SẢN PHẨM</title>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/styles.php';
+    include_once __DIR__ . '/../../../layouts/styles.php';
     include_once __DIR__ . '/../../../handle/select.php';
+    include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </head>
 
 <body>
     <?php
-    include_once __DIR__ . '/../../layouts/partials/header.php'
+    include_once __DIR__ . '/../../../layouts/header.php'
     ?>
     <?php
     // Lấy lại dữ liệu cũ
@@ -31,7 +32,7 @@
         <div class="row">
             <div class="col-3">
                 <?php
-                include_once __DIR__ . '/../../../backend/layouts/partials/sidebar.php';
+                include_once __DIR__ . '/../../layouts/sidebar.php';
                 ?>
             </div>
             <div class="col-9">
@@ -95,7 +96,7 @@
                             echo 'File upload bị lỗi';
                             die;
                         } else {
-                        // Xóa file hiện tại để tránh rác
+                            // Xóa file hiện tại để tránh rác
                             $upload_dir = realpath(__DIR__ . '/../../../uploads') . DIRECTORY_SEPARATOR; // fix lỗi đường dẫn "$upload_dir = __DIR__ . '/../../../uploads' " ko đúng
                             $file_path_delete = $upload_dir . $row_hsp_mod['hsp_tentaptin'];
                             //var_dump($file_path_delete); die;
@@ -128,8 +129,7 @@
         </div>
     </div>
     <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
-    include_once __DIR__ . '/../../../backend/layouts/partials/script.php';
+    include_once __DIR__ . '/../../../layouts/footer.php';
     ?>
 </body>
 

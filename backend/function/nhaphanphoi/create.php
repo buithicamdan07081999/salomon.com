@@ -8,6 +8,7 @@
     <?php
     include_once __DIR__ . '/../../../layouts/styles.php';
     include_once __DIR__ . '/../../../handle/select.php';
+    include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </head>
 
@@ -50,7 +51,6 @@
     </div>
     <?php
     include_once __DIR__ . '/../../../layouts/footer.php';
-    include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </body>
 
