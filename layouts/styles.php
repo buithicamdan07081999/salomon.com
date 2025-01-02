@@ -1,7 +1,8 @@
 <link href="/kdbd.com/vendor/bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-<link href="/kdbd.com/vendor/fontawesome/js/all.min.js" type="text/css" rel="stylesheet">
+<link href="/kdbd.com/vendor/fontawesome/css/all.min.css" rel="stylesheet">
 <!-- https://bootstrapstudio.io/ -->
 <style>
+
     .clear-fix {
         clear: both;
     }
@@ -15,7 +16,7 @@
         /* Đảm bảo đúng kích thước */
         margin: 0px;
         /* reset hết giá trị mặc định */
-        padding: 0xp;
+        padding: 0px;
         /* reset hết giá trị mặc định */
     }
 
@@ -128,10 +129,10 @@
         border-left: unset;
         /* không kẻ đường gạch */
     }
+
     a.active {
         /* a.active chọn phần tử a có class = active */
         /* a .active chọn phần tử "con của a" có class = active */
         color: white !important;
     }
-
 </style>
