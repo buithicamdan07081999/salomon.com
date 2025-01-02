@@ -12,13 +12,13 @@
 </head>
 
 <body>
-<?php
+    <?php
     include_once __DIR__ . '/../../../layouts/header.php'
     ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-3">
-            <?php
+                <?php
                 include_once __DIR__ . '/../../layouts/sidebar.php';
                 ?>
             </div>
@@ -28,7 +28,7 @@
                     Tên: <input type="text" name="npp_ten" class="form-control" /><br />
                     Mô tả: <input type="text" name="npp_mota" class="form-control" /><br />
                     <a href="index.php" class="btn btn-secondary">Quay về Danh sách <i class="fa-solid fa-backward"></i></a>
-                    <button type="submit" name="btnLuu" class="btn btn-primary">Lưu dữ liệu  <i class="fa-regular fa-floppy-disk"></i></button>
+                    <button type="submit" name="btnLuu" class="btn btn-primary">Lưu dữ liệu <i class="fa-regular fa-floppy-disk"></i></button>
                 </form>
                 <?php
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý

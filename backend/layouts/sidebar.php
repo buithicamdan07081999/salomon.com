@@ -11,9 +11,3 @@
   <!-- chưa code -->
   <a href="/kdbd.com/backend/function/dondathang/index.php" class="list-group-item list-group-item-action">Đơn đặt hàng</a>
   <a href="#" class="list-group-item list-group-item-action">Báo cáo</a>
- 
-  <!-- đường dẫn viết trong PHP là đường dẫn thư mục -->
-   <!-- đường dẫn html thì lầ đường dẫn thư mục gốc có dấu /  -->
- 
-
-</div>

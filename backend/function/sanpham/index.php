@@ -4,11 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SẢN PHẨM</title>
+    <title>SẢN PHẨM TEST</title>
     <?php
     include_once __DIR__ . '/../../../layouts/styles.php';
     include_once __DIR__ . '/../../../handle/select.php';
     ?>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WzZwrD1/c7JyxMH0hF/yCRsvM7NQ7B32GVoVbW7xvUtj76qedG/DEniZtx02qsfA" crossorigin="anonymous">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -97,8 +100,8 @@
     </div>
     <!-- this is contain -->
     <?php
-        include_once __DIR__ . '/../../../layouts/footer.php';
-        include_once __DIR__ . '/../../../layouts/script.php';
+    include_once __DIR__ . '/../../../layouts/footer.php';
+    include_once __DIR__ . '/../../../layouts/script.php';
     ?>
     <script>
         $(document).ready(function() {
@@ -129,6 +132,8 @@
             });
         });
     </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3PaY9JwZ75TeCqf5VhvrPYkzR11GxQlRLgb0EBA9iw0EluoBoRfDFGZ4UYiVHDi" crossorigin="anonymous"></script>
 </body>
 
-</html>
+</html> 
