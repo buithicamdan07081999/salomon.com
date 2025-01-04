@@ -27,6 +27,7 @@
                 <h1>Thêm mới Hình thức thanh toán</h1>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
                     Tên: <input type="text" name="httt_ten" class="form-control" /><br />
+                    Diễn giải: <input type="text" name="httt_diengiai" class="form-control" /><br />
                     <a href="index.php" class="btn btn-secondary">Quay về Danh sách <i class="fa-solid fa-backward"></i></a>
                     <button type="submit" name="btnLuu" class="btn btn-primary">Lưu dữ liệu <i class="fa-regular fa-floppy-disk"></i></button>
                 </form>
@@ -34,9 +35,10 @@
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
                     $httt_ten = $_POST['httt_ten'];
-                    if ($httt_ten != "") {
-                        $sql = "    INSERT INTO hinhthucthanhtoan(httt_ten)
-                                    VALUES ('$httt_ten');";
+                    $httt_diengiai = $_POST['httt_diengiai'];
+                    if ($httt_ten != "" && $httt_diengiai) {
+                        $sql = "    INSERT INTO hinhthucthanhtoan(httt_ten, httt_diengiai)
+                                    VALUES ('$httt_ten','$httt_diengiai');";
                         // 3. Thực thi câu lệnh
                         mysqli_query($conn, $sql);
                         echo '<script> location.href="index.php"</script>';

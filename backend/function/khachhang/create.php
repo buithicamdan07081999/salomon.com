@@ -40,7 +40,6 @@
                     Email: <input type="text" name="kh_email" class="form-control" /><br />
 
                     CCCD: <input type="number" name="kh_cmnd" class="form-control" /><br />
-                    MKH: <input type="text" name="kh_makichhoat" class="form-control" /><br />
                     Status:
                     <select name="kh_trangthai" class="form-control">
                         <option value="1">Hội viên</option>
@@ -67,20 +66,19 @@
                     $kh_dienthoai = $_POST['kh_dienthoai'];
                     $kh_email = $_POST['kh_email'];
                     $kh_cmnd = $_POST['kh_cmnd'];
-                    $kh_makichhoat = $_POST['kh_makichhoat'];
                     $kh_trangthai = $_POST['kh_trangthai'];
                     $kh_quantri = $_POST['kh_quantri'];
-                    if ($kh_cmnd != "" && $kh_makichhoat != "" && $kh_trangthai != "" && $kh_quantri != "" && $kh_tendangnhap != "" && $kh_matkhau != "" && $kh_ten != "" && $kh_gioitinh != "" && $kh_ngaysinh != "" && $kh_diachi != "" && $kh_dienthoai != "" && $kh_email != "") {
+                    if ($kh_cmnd != "" && $kh_trangthai != "" && $kh_quantri != "" && $kh_tendangnhap != "" && $kh_matkhau != "" && $kh_ten != "" && $kh_gioitinh != "" && $kh_ngaysinh != "" && $kh_diachi != "" && $kh_dienthoai != "" && $kh_email != "") {
                         $sql =
                             "   INSERT INTO thongtinkhachhang
-	                                (kh_tendangnhap, kh_matkhau, kh_ten, kh_gioitinh, kh_diachi, kh_dienthoai, kh_email, kh_ngaysinh, kh_cmnd, kh_makichhoat, kh_trangthai, kh_quantri)
-	                            VALUES ('$kh_tendangnhap', '$kh_matkhau', '$kh_ten', $kh_gioitinh, '$kh_diachi', $kh_dienthoai, '$kh_email', '$kh_ngaysinh', $kh_cmnd, '$kh_makichhoat', $kh_trangthai, $kh_quantri));";
+	                                (kh_tendangnhap, kh_matkhau, kh_ten, kh_gioitinh, kh_diachi, kh_dienthoai, kh_email, kh_ngaysinh, kh_cmnd, kh_trangthai, kh_quantri)
+	                            VALUES ('$kh_tendangnhap', '$kh_matkhau', '$kh_ten', $kh_gioitinh, '$kh_diachi', $kh_dienthoai, '$kh_email', '$kh_ngaysinh', $kh_cmnd, $kh_trangthai, $kh_quantri);";
                         // 3. Thực thi câu lệnh
                         mysqli_query($conn, $sql);
                         echo '<script> location.href="index.php"</script>';
-                        var_dump($sql);
+                        //  var_dump($sql);
                     } else {
-                        echo '<script>alert("Dữ liệu không được rỗng!");</script>';
+                        //echo '<script>alert("Dữ liệu không được rỗng!");</script>';
                     }
                 }
                 ?>

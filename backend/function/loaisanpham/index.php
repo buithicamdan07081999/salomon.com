@@ -15,7 +15,7 @@
 <body>
     <!-- add header -->
     <?php
-    include_once __DIR__ . '/../../layouts/partials/header.php'
+    include_once __DIR__ . '/../../../layouts/header.php';
     ?>
     <!-- this is contain -->
     <div class="container-fluid">
@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-3">
                 <?php
-                include_once __DIR__ . '/../../../backend/layouts/partials/sidebar.php';
+                include_once __DIR__ . '/../../layouts/sidebar.php';
                 ?>
             </div>
             <div class="col-9">
@@ -64,7 +64,7 @@
     </div>
     <!-- this is contain -->
     <?php
-    include_once __DIR__ . '/../../../backend/layouts/partials/footer.php';
+    include_once __DIR__ . '/../../../layouts/footer.php';
     ?>
 </body>
 

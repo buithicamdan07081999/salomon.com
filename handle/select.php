@@ -38,8 +38,7 @@ $sql_kh =   "SELECT
                     A.kh_dienthoai, 
                     A.kh_email, 
                     A.kh_ngaysinh, 
-                    A.kh_cmnd, 
-                    A.kh_makichhoat, 
+                    A.kh_cmnd,  
                     A.kh_trangthai, 
                     A.kh_quantri 
                 FROM thongtinkhachhang A
@@ -192,7 +191,6 @@ while ($row = mysqli_fetch_array($data_kh, MYSQLI_ASSOC)) {
         'kh_email' => $row['kh_email'],
         'kh_ngaysinh' => $row['kh_ngaysinh'],
         'kh_cmnd' => $row['kh_cmnd'],
-        'kh_makichhoat' => $row['kh_makichhoat'],
         'kh_trangthai' => $row['kh_trangthai'],
         'kh_quantri' => $row['kh_quantri'],
     );

@@ -29,16 +29,16 @@
                 <table class="table table-hover table-bordered">
                     <tr>
                         <th>STT</th>
-                        <th>Mã</th>
                         <th>Tên</th>
+                        <th>Nội dung</th>
                         <th>Tùy chỉnh</th>
                     </tr>
                     <?php $stt = 1 ?>
                     <?php foreach ($arrDs_httt as $httt) : ?>
                         <tr>
                             <td><?= $stt ?></td>
-                            <td><?= $httt['httt_ma'] ?></td>
                             <td><?= $httt['httt_ten'] ?></td>
+                            <td><?= $httt['httt_diengiai'] ?></td>
                             <td>
                                 <!-- gửi bằng đường GET -->
                                 <a href="edit.php?httt_ma=<?= $httt['httt_ma'] ?>" class="btn btn-warning">Sửa <i class="fa-regular fa-pen-to-square"></i></a>

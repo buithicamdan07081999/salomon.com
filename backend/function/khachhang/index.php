@@ -32,8 +32,8 @@
                     <table class="table table-hover table-bordered">
                         <tr>
                             <th>STT</th>
-                            <th>Tên đăng nhập</th>
                             <th>Tên</th>
+                            <th>Tên đăng nhập</th>
                             <th>GT</th>
                             <th>Ngày sinh</th>
                             <th>Địa chỉ</th>

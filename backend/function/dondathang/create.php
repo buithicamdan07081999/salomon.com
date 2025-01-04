@@ -135,12 +135,17 @@
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
                     // Lấy dữ liệu từ sự kiện POST
-                    $lsp_ten = $_POST['lsp_ten'];
-                    $lsp_mota = $_POST['lsp_mota'];
-                    if ($lsp_ten != "" && $lsp_mota != "") {
+                    $dh_ngaylap = $_POST['dh_ngaylap'];
+                    $dh_ngaygiao = $_POST['dh_ngaygiao'];
+                    $dh_noigiao = $_POST['dh_noigiao'];
+                    $dh_trangthaithanhtoan = $_POST['dh_trangthaithanhtoan'];
+                    $kh_ma = $_POST['kh_ma'];
+                    $sp_ma = $_POST['sp_ma'];
+                    $tttt_ma = $_POST['tttt_ma'];
+                    if ($kh_ma != "" && $sp_ma != "") {
                         $sql =
-                            "INSERT INTO dondathang(dh_ngaylap, dh_ngaygiao, dh_noigiao, dh_trangthaithanhtoan, kh_ma, sp_ma)
-                        VALUES (NOW(),'$dh_ngaygiao','$dh_noigiao','$dh_trangthaithanhtoan','$kh_ma', '$sp_ma')   ";
+                            "INSERT INTO dondathang(dh_ngaylap, dh_ngaygiao, dh_noigiao, dh_trangthaithanhtoan, kh_ma, sp_ma, tttt_ma)
+                        VALUES ('$dh_ngaylap','$dh_ngaygiao','$dh_noigiao','$dh_trangthaithanhtoan','$kh_ma', '$sp_ma', '$tttt_ma')   ";
                         //Thực thi
                         mysqli_query($conn, $sql);
                         echo '<script> location.href="index.php"</script>';

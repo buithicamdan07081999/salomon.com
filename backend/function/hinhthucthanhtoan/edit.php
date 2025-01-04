@@ -34,6 +34,7 @@
                 ?>
                 <form name="frmThemMoi" id="frmThemMoi" method="post" action="">
                     Tên: <input type="text" name="httt_ten" value="<?= $data_array['httt_ten'] ?>" class="form-control" /><br />
+                    Diễn giải: <input type="text" name="httt_diengiai" value="<?= $data_array['httt_diengiai'] ?>" class="form-control" /><br />
                     <a href="index.php" class="btn btn-secondary">Quay về Danh sách <i class="fa-solid fa-backward"></i></a>
                     <button type="submit" name="btnLuu" class="btn btn-primary">Lưu dữ liệu <i class="fa-regular fa-floppy-disk"></i></button>
                 </form>
@@ -41,7 +42,8 @@
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
                     $httt_ten = $_POST['httt_ten'];
-                    $sql = "UPDATE hinhthucthanhtoan SET httt_ten = '$httt_ten' WHERE httt_ma = $httt_ma;";
+                    $httt_diengiai = $_POST['httt_diengiai'];
+                    $sql = "UPDATE hinhthucthanhtoan SET httt_ten = '$httt_ten', httt_diengiai = '$httt_diengiai' WHERE httt_ma = $httt_ma;";
                     // 3. Thực thi câu lệnh
                     mysqli_query($conn, $sql);
                     echo '<script> location.href="index.php"</script>';

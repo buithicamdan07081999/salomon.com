@@ -48,7 +48,7 @@
                             <td><?= $hsp['sp_ten'] ?></td>
                             <td><?= number_format($hsp['sp_gia'], 0, '.', ',')  ?></td>
                             <td>
-                                <img src="/salomon.com/uploads/<?= $hsp['hsp_tentaptin'] ?>" alt="" class="hinh-sanpham">
+                                <img src="/kdbd.com/uploads/<?= $hsp['hsp_tentaptin'] ?>" alt="" class="hinh-sanpham">
                             </td>
                             <td>
                                 <!-- gửi bằng đường GET -->

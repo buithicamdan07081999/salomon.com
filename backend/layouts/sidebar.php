@@ -10,5 +10,5 @@
   <a href="/kdbd.com/backend/function/hinhsanpham/index.php" class="list-group-item list-group-item-action">Hình sản phẩm</a>
   <!-- chưa code -->
   <a href="/kdbd.com/backend/function/dondathang/index.php" class="list-group-item list-group-item-action">Đơn đặt hàng</a>
-  <a href="#" class="list-group-item list-group-item-action">Báo cáo</a>
+  <a href="/kdbd.com/backend/function/pages/dashboard.php" class="list-group-item list-group-item-action">Báo cáo</a>
 </div>

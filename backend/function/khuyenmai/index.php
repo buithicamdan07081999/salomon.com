@@ -7,17 +7,16 @@
     <title>KHUYẾN MÃI</title>
     <?php
     include_once __DIR__ . '/../../../layouts/styles.php';
-    include_once __DIR__ . '/../../../handle/dbconnect.php';
-    include_once __DIR__ . '/../../../backend/layouts/script.php';
+    include_once __DIR__ . '/../../../handle/select.php';
+    include_once __DIR__ . '/../../../layouts/script.php';
     ?>
 </head>
 
 <body>
     <!-- add header -->
     <?php
-    include_once __DIR__ . '/../../../layouts/header.php'
+    include_once __DIR__ . '/../../../layouts/header.php';
     ?>
-
     <!-- this is contain -->
     <div class="container-fluid">
         <div class="row">
@@ -80,9 +79,8 @@
         </div>
     </div>
     <!-- this is contain -->
-
     <?php
-    include_once __DIR__ . '/../../../backend/layouts/footer.php';
+    include_once __DIR__ . '/../../../layouts/footer.php';
     ?>
 </body>
 
