@@ -2,6 +2,18 @@
 <link href="/kdbd.com/vendor/fontawesome/css/all.min.css" rel="stylesheet">
 <!-- https://bootstrapstudio.io/ -->
 <style>
+    ul.header {
+        display: inline;
+        margin: 0;
+        padding: 0;
+    }
+
+    .list-group-item.active {
+        background-color: rgb(0, 255, 221);
+        color: white;
+    }
+
+    /* chọn dòng nào dòng đó đổi màu */
 
     .clear-fix {
         clear: both;
@@ -135,4 +147,22 @@
         /* a .active chọn phần tử "con của a" có class = active */
         color: white !important;
     }
+
+
+    /* dghakisdnsad */
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown {
+            margin-left: 40rem;
+            margin-right: 40rem;
+        }
+
+        .name {
+            text-align: center;
+            color: green;
+        }
+
 </style>

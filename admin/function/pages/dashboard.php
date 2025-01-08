@@ -6,6 +6,7 @@ if (session_id() === '') {
   session_start();
 }
 ?>
+<!-- https://nentang.vn/app/edu/khoa-hoc/thiet-ke-lap-trinh-web-admin/lap-trinh-can-ban-php/lessons/ajax-la-gi-ky-thuat-su-dung-ajax-voi-jquery -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -106,7 +107,7 @@ if (session_id() === '') {
       $(document).ready(function() {
         // ----------------- Tổng số mặt hàng --------------------------
         function getDuLieuBaoCaoTongSoMatHang() {
-          $.ajax('/kdbd.com/backend/api/baocao_sanpham.php', {
+          $.ajax('/kdbd.com/admin/api/baocao_sanpham.php', {
             success: function(data) {
               var dataObj = JSON.parse(data);
               var htmlString = `<h1>${dataObj.SoLuong}</h1>`;
@@ -125,7 +126,7 @@ if (session_id() === '') {
 
         // ----------------- Tổng số khách hàng --------------------------
         function getDuLieuBaoCaoTongSoKhachHang() {
-          $.ajax('/kdbd.com/backend/api/baocao_khachhang.php', {
+          $.ajax('/kdbd.com/admin/api/baocao_khachhang.php', {
             success: function(data) {
               var dataObj = JSON.parse(data);
               var htmlString = `<h1>${dataObj.SoLuong}</h1>`;
@@ -144,7 +145,7 @@ if (session_id() === '') {
 
         // ----------------- Tổng số đơn hàng --------------------------
         function getDuLieuBaoCaoTongSoDonHang() {
-          $.ajax('/kdbd.com/backend/api/baocao_dondathang.php', {
+          $.ajax('/kdbd.com/admin/api/baocao_dondathang.php', {
             success: function(data) {
               var dataObj = JSON.parse(data);
               var htmlString = `<h1>${dataObj.SoLuong}</h1>`;
@@ -170,7 +171,7 @@ if (session_id() === '') {
 
         function renderChartThongKeLoaiSanPham() {
           $.ajax({
-            url: '/kdbd.com/backend/api/baocao_loaisanpham.php',
+            url: '/kdbd.com/admin/api/baocao_loaisanpham.php',
             type: "GET",
             success: function(response) {
               var data = JSON.parse(response);

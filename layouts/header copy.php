@@ -4,11 +4,14 @@
   <div class="container-fluid" id="topbar" style="background-color: #343a40; height: 50px;">
     <!-- start topbar-left -->
     <div id="topbar-left">
-      <!-- <ul class="topbar-left-list navbar-nav me-auto mb-2 mb-lg-0"> -->
       <ul class="topbar-left-list navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
+          <!-- <a class="nav-link active" aria-current="page" href="/kdbd.com/home/index.php">Home</a> -->
           <a class="nav-link active" aria-current="page" href="/kdbd.com/index.php">Home</a>
-        </li>        
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/kdbd.com/admin/function/dondathang/index.php">Đơn đặt hàng</a>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/kdbd.com/admin/function/sanpham/index.php">Sản phẩm</a>
         </li>
@@ -46,30 +49,19 @@
 </nav>
 <!-- end topbar -->
 
-<div class="dropdown">
-        <a class="btn btn-secondary dropdown-toggle" 
-           href="#" 
-           role="button" 
-           id="dropdownMenuLink"
-           data-bs-toggle="dropdown" 
-           aria-expanded="false">
-            Dropdown link
-        </a>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-    </div>
-    <script>
-        $(document).ready(function () {
-            $('.dropdown').hover(function () {
-                $(this).addClass('show');
-                $(this).find('.dropdown-menu').addClass('show');
-            }, function () {
-                $(this).removeClass('show');
-                $(this).find('.dropdown-menu').removeClass('show');
-            });
-        });
-    </script>
+
+<!-- https://www.geeksforgeeks.org/how-to-make-menu-dropdown-on-hover-using-bootstrap/ -->
+<script>
+  $(document).ready(function() {
+    // Hiển thị submenu khi hover bằng jQuery
+    $('.menu-item').hover(
+      function() {
+        $(this).find('.dropdown-menu').stop(true, true).slideDown(200);
+      },
+      function() {
+        $(this).find('.dropdown-menu').stop(true, true).slideUp(200);
+      }
+    );
+  });
+</script>
