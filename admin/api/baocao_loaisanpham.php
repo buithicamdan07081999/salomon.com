@@ -6,7 +6,8 @@ $data= [];
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
     $data[] = array(
-        'SoLuong' => $row['SoLuong']
+        'SoLuong' => $row['SoLuong'],
+        'TenLoaiSanPham' => "Loại sản phẩm"
     );
 }
 // Dữ liệu JSON, từ array PHP -> JSON 

@@ -94,14 +94,11 @@ if (session_id() === '') {
                 </div><!-- row -->
                 <div class="row">
                   <!-- Biểu đồ thống kê loại sản phẩm -->
-                  <div class="col-sm-6 col-lg-6">
-                    <canvas id="chartOfobjChartThongKeLoaiSanPham"></canvas>
-                    <button class="btn btn-outline-primary btn-sm form-control" id="refreshThongKeLoaiSanPham">Refresh dữ liệu</button>
-                  </div><!-- col -->
-
-                </div><!-- row -->
-              </div>
-              <!-- End block content -->
+                  <div class="col-sm-6 col-lg-6"><canvas id="chartOfobjChartThongKeLoaiSanPham"></canvas></div>
+                  <div class="col-sm-6 col-lg-6"><canvas id="chartOfobjChartThongKeSanPham"></canvas></div>
+                  <!-- col -->
+                  <button class="btn btn-outline-primary btn-sm form-control" id="refreshThongKeAll">Refresh dữ liệu</button>
+                  <!-- End block content -->
             </main>
           </div>
         </div>
@@ -209,19 +206,23 @@ if (session_id() === '') {
       var $objChartThongKeLoaiSanPham; //xóa biến cũ để vẽ 1 biến mới 
       var $chartOfobjChartThongKeLoaiSanPham = document.getElementById("chartOfobjChartThongKeLoaiSanPham").getContext("2d"); // bản đồ 2D
 
+      var $objChartThongKeSanPham; //xóa biến cũ để vẽ 1 biến mới 
+      var $chartOfobjChartThongKeSanPham = document.getElementById("chartOfobjChartThongKeSanPham").getContext("2d"); // bản đồ 2D
+
       function renderChartThongKeLoaiSanPham() {
+        // ajax loại sản phẩm
         $.ajax({
           url: '/kdbd.com/admin/api/baocao_loaisanpham.php',
           type: "GET",
-          success: function(response) {
-            var data = JSON.parse(response);
-            var myLabels = [];
-            var myData = [];
+          success: function(data_lsp) {
+            var data = JSON.parse(data_lsp);
+            var lsp_ten = [];
+            var lsp_data = [];
             $(data).each(function() {
-              myLabels.push((this.TenLoaiSanPham));
-              myData.push(this.SoLuong);
+              lsp_ten.push((this.TenLoaiSanPham));
+              lsp_data.push(this.SoLuong);
             });
-            myData.push(0); // tạo dòng số liệu 0
+            lsp_data.push(0); // tạo dòng số liệu 0
             if (typeof $objChartThongKeLoaiSanPham !== "undefined") {
               $objChartThongKeLoaiSanPham.destroy();
             }
@@ -229,9 +230,9 @@ if (session_id() === '') {
               // Kiểu biểu đồ muốn vẽ. Các bạn xem thêm trên trang ChartJS
               type: "bar",
               data: {
-                labels: myLabels,
+                labels: lsp_ten,
                 datasets: [{
-                  data: myData,
+                  data: lsp_data,
                   borderColor: "#9ad0f5",
                   backgroundColor: "#9ad0f5",
                   borderWidth: 1
@@ -251,10 +252,60 @@ if (session_id() === '') {
             });
           }
         });
+        // end ajax loại sản phẩm
       };
-      $('#refreshThongKeLoaiSanPham').click(function(event) {
+
+      // thống kê sản phẩm
+      function renderChartThongKeSanPham() {
+        // ajax sản phẩm
+        $.ajax({
+          url: '/kdbd.com/admin/api/baocao_sanpham.php',
+          type: "GET",
+          success: function(data_sp_raw) {
+            var data_sp = JSON.parse(data_sp_raw);
+            var sp_ten = [];
+            var sp_data = [];
+            $(data_sp).each(function() {
+              sp_ten.push((this.TenSanPham));
+              sp_data.push(this.SoLuong);
+            });
+            sp_data.push(0); // tạo dòng số liệu 0
+            if (typeof $objChartThongKeSanPham !== "undefined") {
+              $objChartThongKeSanPham.destroy();
+            }
+            $objChartThongKeSanPham = new Chart($chartOfobjChartThongKeSanPham, {
+              // Kiểu biểu đồ muốn vẽ. Các bạn xem thêm trên trang ChartJS
+              type: "bar",
+              data: {
+                labels: sp_ten,
+                datasets: [{
+                  data: sp_data,
+                  borderColor: "rgba(255, 99, 132, 0.2)",
+                  backgroundColor: "rgb(255, 99, 132)",
+                  borderWidth: 1
+                }]
+              },
+              // Cấu hình dành cho biểu đồ của ChartJS
+              options: {
+                legend: {
+                  display: false
+                },
+                title: {
+                  display: true,
+                  text: "Thống kê Sản phẩm"
+                },
+                responsive: true
+              }
+            });
+          }
+        });
+      };
+
+
+      $('#refreshThongKeAll').click(function(event) {
         event.preventDefault();
         renderChartThongKeLoaiSanPham();
+        renderChartThongKeSanPham();
       });
 
       // Mới mở web (khi trang web load xong)
@@ -264,7 +315,7 @@ if (session_id() === '') {
       getDuLieuBaoCaoTongSoDonHang();
       getDuLieuBaoCaoTongLoaiSanPham();
       renderChartThongKeLoaiSanPham();
-
+      renderChartThongKeSanPham();
     });
   </script>
 </body>
