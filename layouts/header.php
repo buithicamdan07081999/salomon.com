@@ -29,8 +29,8 @@
     <!-- start topbar-right -->
     <div id="topbar-right">
       <ul class="topbar-right-list">
-        <!-- <li><a class="nav-link active" aria-current="page" href="/kdbd.com/admin/index.php">Liên hệ</a></li> -->
-        <li><a class="nav-link active" aria-current="page" href="/kdbd.com/admin/index.php">Về chúng tôi</a></li>
+        <li><a class="nav-link active" aria-current="page" href="/kdbd.com/admin/contact.php">Liên hệ</a></li>
+        <li><a class="nav-link active" aria-current="page" href="/kdbd.com/home/about.php">Về chúng tôi</a></li>
         <?php
         // Đã đăng nhập rồi -> hiển thị tên Người dùng và menu Đăng xuất
         if (isset($_SESSION['logged']) && !empty($_SESSION['logged'])) : ?>
@@ -45,7 +45,7 @@
   <!-- end topbar-right -->
 </nav>
 <!-- end topbar -->
-
+<!-- 
 <div class="dropdown">
         <a class="btn btn-secondary dropdown-toggle" 
            href="#" 
@@ -72,4 +72,4 @@
                 $(this).find('.dropdown-menu').removeClass('show');
             });
         });
-    </script>
+    </script> -->

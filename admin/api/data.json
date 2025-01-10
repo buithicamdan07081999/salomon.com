@@ -1,0 +1,21 @@
+{
+    // "thuộc tính" : "giá trị" / property:value ---- thuộc tính là biến
+    "name": "Bùi Thị Cẩm Đan",
+    "birthday": "07/07/1999",
+    "phone": "0961818458",
+    // thuộc tính dạng mảng
+    "địa chỉ": [
+        {
+            "tinh": "TP HCM",
+            "huyen": "TP Thu Duc",
+            "xa": "Le Hien Mai"
+        },
+        {
+            "tinh": "TP CanTho",
+            "huyen": "TP NinhKieu",
+            "xa": "Le 30/4"
+        }
+    ],
+    "diem": 9,
+    "gioitinh": false
+}

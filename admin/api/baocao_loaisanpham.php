@@ -1,6 +1,6 @@
 <?php
 include_once(__DIR__.'/../../handle/select.php');
-$sql = "select count(*) as SoLuong from `loaisanpham`";
+$sql = "select count(*) as SoLuong from loaisanpham";
 $result = mysqli_query($conn, $sql);
 $data= [];
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))

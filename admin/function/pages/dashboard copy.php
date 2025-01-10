@@ -32,80 +32,63 @@ if (session_id() === '') {
         ?>
       </div>
       <div class="col-9">
-        <div class="container-fluid">
-          <div class="row">
-            <main role="main" class="col-md-10 ml-sm-auto px-4 mb-2">
-              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">DASHBOARD</h1>
-              </div>
-
-              <!-- Block content -->
-              <div class="container-fluid">
-                <div class="row">
-                  <!-- Tổng số mặt hàng -->
-                  <div class="col-sm-6 col-lg-3">
-                    <div class="card text-white bg-primary mb-2">
-                      <div class="card-body pb-0">
-                        <div class="text-value" id="baocao_sanpham">
-                        </div>
-                        <div>Tổng số mặt hàng</div>
-                      </div>
-                    </div>
-                    <button class="btn btn-primary btn-sm form-control" id="refreshBaoCaoSanPham">Refresh dữ liệu</button>
-                  </div>
-                  <!-- Tổng số mặt hàng -->
-                  <!-- Tổng số khách hàng -->
-                  <div class="col-sm-6 col-lg-3">
-                    <div class="card text-white bg-success mb-2">
-                      <div class="card-body pb-0">
-                        <div class="text-value" id="baocao_khachhang">
-                        </div>
-                        <div>Tổng số khách hàng</div>
-                      </div>
-                    </div>
-                    <button class="btn btn-success btn-sm form-control" id="refreshBaoCaoKhachHang">Refresh dữ liệu</button>
-                  </div>
-                  <!-- Tổng số khách hàng -->
-                  <!-- Tổng số đơn hàng -->
-                  <div class="col-sm-6 col-lg-3">
-                    <div class="card text-white bg-warning mb-2">
-                      <div class="card-body pb-0">
-                        <div class="text-value" id="baocao_dondathang">
-                        </div>
-                        <div>Tổng số đơn hàng</div>
-                      </div>
-                    </div>
-                    <button class="btn btn-warning btn-sm form-control" id="refreshBaoCaoDonHang">Refresh dữ liệu</button>
-                  </div>
-                  <!-- Tổng số đơn hàng -->
-                  <!-- Tổng số loại sản phẩm -->
-                  <div class="col-sm-6 col-lg-3">
-                    <div class="card text-white bg-danger mb-2">
-                      <div class="card-body pb-0">
-                        <div class="text-value" id="baocao_loaisanpham">
-                        </div>
-                        <div>Tổng loại sản phẩm</div>
-                      </div>
-                    </div>
-                    <button class="btn btn-danger btn-sm form-control" id="refreshLoaiSanPham">Refresh dữ liệu</button>
-                  </div>
-                  <!-- Tổng số loại sản phẩm -->
-                  <div id="ketqua"></div>
-                </div><!-- row -->
-                <div class="row">
-                  <!-- Biểu đồ thống kê loại sản phẩm -->
-                  <div class="col-sm-6 col-lg-6">
-                    <canvas id="chartOfobjChartThongKeLoaiSanPham"></canvas>
-                    <button class="btn btn-outline-primary btn-sm form-control" id="refreshThongKeLoaiSanPham">Refresh dữ liệu</button>
-                  </div><!-- col -->
-
-                </div><!-- row -->
-              </div>
-              <!-- End block content -->
-            </main>
+        <main role="main" class="col-md-12 ml-sm-auto px-4 mb-2">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Thống kê</h1>
           </div>
-        </div>
+          <div class="container-fluid">
+            <div class="row">
+              <!-- Tổng số mặt hàng -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card text-white bg-primary mb-2">
+                  <div class="card-body pb-0">
+                    <div class="text-value" id="baocao_sanpham">
+                    </div>
+                    <div>Tổng số mặt hàng</div>
+                  </div>
+                </div>
+                <button class="btn btn-primary btn-sm form-control" id="refreshBaoCaoSanPham">Refresh dữ liệu</button>
+              </div>
+              <!-- Tổng số mặt hàng -->
 
+              <!-- Tổng số khách hàng -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card text-white bg-success mb-2">
+                  <div class="card-body pb-0">
+                    <div class="text-value" id="baocao_khachhang">
+                    </div>
+                    <div>Tổng số khách hàng</div>
+                  </div>
+                </div>
+                <button class="btn btn-success btn-sm form-control" id="refreshBaoCaoKhachHang">Refresh dữ liệu</button>
+              </div>
+              <!-- Tổng số khách hàng -->
+
+              <!-- Tổng số đơn hàng -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card text-white bg-warning mb-2">
+                  <div class="card-body pb-0">
+                    <div class="text-value" id="baocao_dondathang"> <!-- tạo ID -->
+                    </div>
+                    <div>Tổng số đơn hàng</div>
+                  </div>
+                </div>
+                <!-- tạo button để lấy sự kiên  -->
+                <button class="btn btn-warning btn-sm form-control" id="refreshBaoCaoDonHang">Refresh dữ liệu</button>
+              </div><!-- Tổng số đơn hàng -->
+              <div id="ketqua"></div>
+            </div><!-- row -->
+            <div class="row">
+              <!-- Biểu đồ thống kê loại sản phẩm -->
+              <div class="col-sm-6 col-lg-6">
+                <canvas id="chartOfobjChartThongKeLoaiSanPham"></canvas>
+                <button class="btn btn-outline-primary btn-sm form-control" id="refreshThongKeLoaiSanPham">Refresh dữ liệu</button>
+              </div><!-- col -->
+
+            </div><!-- row -->
+          </div>
+          <!-- End block content -->
+        </main>
       </div>
     </div>
   </div>
@@ -118,7 +101,7 @@ if (session_id() === '') {
   <!-- end footer -->
 
 
-  <script src="/kdbd.com/vendor/Chartjs/Chart.min.js"></script>
+  <script src="/kdbd.com/vendor/Chart.js/Chart.min.js"></script>
   <script>
     $(document).ready(function() {
       // ----------------- Tổng số mặt hàng --------------------------
@@ -183,31 +166,12 @@ if (session_id() === '') {
         getDuLieuBaoCaoTongSoDonHang();
       });
 
-      // ----------------- Tổng Loai sản phẩm --------------------------
-      function getDuLieuBaoCaoTongLoaiSanPham() {
-        $.ajax('/kdbd.com/admin/api/baocao_loaisanpham.php', {
-          success: function(data) {
-            var dataObj = JSON.parse(data);
-            var htmlString = `<h1>${dataObj.SoLuong}</h1>`;
-            console.log(htmlString);
-            $('#baocao_loaisanpham').html(htmlString);
-          },
-          error: function() {
-            var htmlString = `<h1>Không tìm thấy dữ liệu</h1>`;
-            $('#baocao_loaisanpham').html(htmlString);
-          }
-        });
-      }
-      $('#refreshLoaiSanPham').click(function(event) {
-        event.preventDefault();
-        getDuLieuBaoCaoTongLoaiSanPham();
-      });
-
 
       // ------------------ Vẽ biểu đồ thống kê Loại sản phẩm -----------------
       // Vẽ biểu đổ Thống kê Loại sản phẩm sử dụng ChartJS
-      var $objChartThongKeLoaiSanPham; //xóa biến cũ để vẽ 1 biến mới 
-      var $chartOfobjChartThongKeLoaiSanPham = document.getElementById("chartOfobjChartThongKeLoaiSanPham").getContext("2d"); // bản đồ 2D
+      var $objChartThongKeLoaiSanPham; //xóa biến cũ để vẽ 1 biến mới
+      var $chartOfobjChartThongKeLoaiSanPham = document.getElementById("chartOfobjChartThongKeLoaiSanPham").getContext(
+        "2d"); // bản đồ 2D
 
       function renderChartThongKeLoaiSanPham() {
         $.ajax({
@@ -232,8 +196,8 @@ if (session_id() === '') {
                 labels: myLabels,
                 datasets: [{
                   data: myData,
-                  borderColor: "#9ad0f5",
-                  backgroundColor: "#9ad0f5",
+                  borderColor: "black",
+                  backgroundColor: "yellow",
                   borderWidth: 1
                 }]
               },
@@ -262,7 +226,6 @@ if (session_id() === '') {
       getDuLieuBaoCaoTongSoMatHang();
       getDuLieuBaoCaoTongSoKhachHang();
       getDuLieuBaoCaoTongSoDonHang();
-      getDuLieuBaoCaoTongLoaiSanPham();
       renderChartThongKeLoaiSanPham();
 
     });

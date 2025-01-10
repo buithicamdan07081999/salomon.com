@@ -9,5 +9,5 @@ while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         'SoLuong' => $row['SoLuong']
     );
 }
-// Dữ liệu JSON, từ array PHP -> JSON 
+// Chuyển từ array PHP -> JSON 
 echo json_encode($data[0]);

@@ -49,8 +49,6 @@
 </nav>
 <!-- end topbar -->
 
-
-
 <!-- https://www.geeksforgeeks.org/how-to-make-menu-dropdown-on-hover-using-bootstrap/ -->
 <script>
   $(document).ready(function() {

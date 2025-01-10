@@ -9,7 +9,7 @@
     }
 
     .list-group-item.active {
-        background-color: rgb(0, 255, 221);
+        background-color: rgb(0, 17, 255);
         color: white;
     }
 
