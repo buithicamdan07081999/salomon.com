@@ -12,7 +12,6 @@
         background-color: rgb(0, 17, 255);
         color: white;
     }
-
     /* chọn dòng nào dòng đó đổi màu */
 
     .clear-fix {

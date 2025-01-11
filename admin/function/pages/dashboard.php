@@ -38,12 +38,11 @@ if (session_id() === '') {
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">DASHBOARD</h1>
               </div>
-
               <!-- Block content -->
               <div class="container-fluid">
                 <div class="row">
                   <!-- Tổng số mặt hàng -->
-                  <div class="col-sm-6 col-lg-3">
+                  <div class="col-sm-4 col-lg-4">
                     <div class="card text-white bg-primary mb-2">
                       <div class="card-body pb-0">
                         <div class="text-value" id="baocao_sanpham">
@@ -55,7 +54,7 @@ if (session_id() === '') {
                   </div>
                   <!-- Tổng số mặt hàng -->
                   <!-- Tổng số khách hàng -->
-                  <div class="col-sm-6 col-lg-3">
+                  <div class="col-sm-4 col-lg-4">
                     <div class="card text-white bg-success mb-2">
                       <div class="card-body pb-0">
                         <div class="text-value" id="baocao_khachhang">
@@ -67,7 +66,7 @@ if (session_id() === '') {
                   </div>
                   <!-- Tổng số khách hàng -->
                   <!-- Tổng số đơn hàng -->
-                  <div class="col-sm-6 col-lg-3">
+                  <div class="col-sm-4 col-lg-4">
                     <div class="card text-white bg-warning mb-2">
                       <div class="card-body pb-0">
                         <div class="text-value" id="baocao_dondathang">
@@ -78,24 +77,12 @@ if (session_id() === '') {
                     <button class="btn btn-warning btn-sm form-control" id="refreshBaoCaoDonHang">Refresh dữ liệu</button>
                   </div>
                   <!-- Tổng số đơn hàng -->
-                  <!-- Tổng số loại sản phẩm -->
-                  <div class="col-sm-6 col-lg-3">
-                    <div class="card text-white bg-danger mb-2">
-                      <div class="card-body pb-0">
-                        <div class="text-value" id="baocao_loaisanpham">
-                        </div>
-                        <div>Tổng loại sản phẩm</div>
-                      </div>
-                    </div>
-                    <button class="btn btn-danger btn-sm form-control" id="refreshLoaiSanPham">Refresh dữ liệu</button>
-                  </div>
-                  <!-- Tổng số loại sản phẩm -->
+
                   <div id="ketqua"></div>
                 </div><!-- row -->
                 <div class="row">
                   <!-- Biểu đồ thống kê loại sản phẩm -->
-                  <div class="col-sm-6 col-lg-6"><canvas id="chartOfobjChartThongKeLoaiSanPham"></canvas></div>
-                  <div class="col-sm-6 col-lg-6"><canvas id="chartOfobjChartThongKeSanPham"></canvas></div>
+                  <div class="col-sm-12 col-lg-12"><canvas id="chartOfobjChartThongKeLoaiSanPham"></canvas></div>                  
                   <!-- col -->
                   <button class="btn btn-outline-primary btn-sm form-control" id="refreshThongKeAll">Refresh dữ liệu</button>
                   <!-- End block content -->
@@ -180,25 +167,6 @@ if (session_id() === '') {
         getDuLieuBaoCaoTongSoDonHang();
       });
 
-      // ----------------- Tổng Loai sản phẩm --------------------------
-      function getDuLieuBaoCaoTongLoaiSanPham() {
-        $.ajax('/kdbd.com/admin/api/baocao_loaisanpham.php', {
-          success: function(data) {
-            var dataObj = JSON.parse(data);
-            var htmlString = `<h1>${dataObj.SoLuong}</h1>`;
-            console.log(htmlString);
-            $('#baocao_loaisanpham').html(htmlString);
-          },
-          error: function() {
-            var htmlString = `<h1>Không tìm thấy dữ liệu</h1>`;
-            $('#baocao_loaisanpham').html(htmlString);
-          }
-        });
-      }
-      $('#refreshLoaiSanPham').click(function(event) {
-        event.preventDefault();
-        getDuLieuBaoCaoTongLoaiSanPham();
-      });
 
 
       // ------------------ Vẽ biểu đồ thống kê Loại sản phẩm -----------------
@@ -206,23 +174,21 @@ if (session_id() === '') {
       var $objChartThongKeLoaiSanPham; //xóa biến cũ để vẽ 1 biến mới 
       var $chartOfobjChartThongKeLoaiSanPham = document.getElementById("chartOfobjChartThongKeLoaiSanPham").getContext("2d"); // bản đồ 2D
 
-      var $objChartThongKeSanPham; //xóa biến cũ để vẽ 1 biến mới 
-      var $chartOfobjChartThongKeSanPham = document.getElementById("chartOfobjChartThongKeSanPham").getContext("2d"); // bản đồ 2D
-
       function renderChartThongKeLoaiSanPham() {
         // ajax loại sản phẩm
         $.ajax({
           url: '/kdbd.com/admin/api/baocao_loaisanpham.php',
           type: "GET",
-          success: function(data_lsp) {
-            var data = JSON.parse(data_lsp);
+          success: function(lsp) {
+            console.log(lsp);
+            var data_lsp = JSON.parse(lsp);
             var lsp_ten = [];
-            var lsp_data = [];
-            $(data).each(function() {
+            var lsp_sl = [];
+            $(data_lsp).each(function() {
               lsp_ten.push((this.TenLoaiSanPham));
-              lsp_data.push(this.SoLuong);
+              lsp_sl.push(this.SoLuong);
             });
-            lsp_data.push(0); // tạo dòng số liệu 0
+            lsp_sl.push(0); // tạo dòng số liệu 0
             if (typeof $objChartThongKeLoaiSanPham !== "undefined") {
               $objChartThongKeLoaiSanPham.destroy();
             }
@@ -232,10 +198,25 @@ if (session_id() === '') {
               data: {
                 labels: lsp_ten,
                 datasets: [{
-                  data: lsp_data,
-                  borderColor: "#9ad0f5",
-                  backgroundColor: "#9ad0f5",
-                  borderWidth: 1
+                  data: lsp_sl,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                  ],
+                  borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                  ],
                 }]
               },
               // Cấu hình dành cho biểu đồ của ChartJS
@@ -255,57 +236,9 @@ if (session_id() === '') {
         // end ajax loại sản phẩm
       };
 
-      // thống kê sản phẩm
-      function renderChartThongKeSanPham() {
-        // ajax sản phẩm
-        $.ajax({
-          url: '/kdbd.com/admin/api/baocao_sanpham.php',
-          type: "GET",
-          success: function(data_sp_raw) {
-            var data_sp = JSON.parse(data_sp_raw);
-            var sp_ten = [];
-            var sp_data = [];
-            $(data_sp).each(function() {
-              sp_ten.push((this.TenSanPham));
-              sp_data.push(this.SoLuong);
-            });
-            sp_data.push(0); // tạo dòng số liệu 0
-            if (typeof $objChartThongKeSanPham !== "undefined") {
-              $objChartThongKeSanPham.destroy();
-            }
-            $objChartThongKeSanPham = new Chart($chartOfobjChartThongKeSanPham, {
-              // Kiểu biểu đồ muốn vẽ. Các bạn xem thêm trên trang ChartJS
-              type: "bar",
-              data: {
-                labels: sp_ten,
-                datasets: [{
-                  data: sp_data,
-                  borderColor: "rgba(255, 99, 132, 0.2)",
-                  backgroundColor: "rgb(255, 99, 132)",
-                  borderWidth: 1
-                }]
-              },
-              // Cấu hình dành cho biểu đồ của ChartJS
-              options: {
-                legend: {
-                  display: false
-                },
-                title: {
-                  display: true,
-                  text: "Thống kê Sản phẩm"
-                },
-                responsive: true
-              }
-            });
-          }
-        });
-      };
-
-
       $('#refreshThongKeAll').click(function(event) {
         event.preventDefault();
         renderChartThongKeLoaiSanPham();
-        renderChartThongKeSanPham();
       });
 
       // Mới mở web (khi trang web load xong)
@@ -313,9 +246,7 @@ if (session_id() === '') {
       getDuLieuBaoCaoTongSoMatHang();
       getDuLieuBaoCaoTongSoKhachHang();
       getDuLieuBaoCaoTongSoDonHang();
-      getDuLieuBaoCaoTongLoaiSanPham();
       renderChartThongKeLoaiSanPham();
-      renderChartThongKeSanPham();
     });
   </script>
 </body>
