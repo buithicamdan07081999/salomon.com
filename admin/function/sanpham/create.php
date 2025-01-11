@@ -109,7 +109,7 @@
                 // Nếu người dùng có bấm nút Lưu -> thì mới xử lý
                 if (isset($_POST['btnLuu'])) {
                     date_default_timezone_set('Asia/Ho_Chi_Minh');
-                    $sp_ten = $_POST['sp_ten'];
+                    $sp_ten = htmlentities($_POST['sp_ten']) ;
                     $lsp_ma = $_POST['lsp_ma'];
                     $km_ma = empty($_POST['km_ma']) ? 'NULL' : $_POST['km_ma']; // nếu Km ko chọn thì để null 
                     $sp_mota_ngan = $_POST['sp_mota_ngan'];
