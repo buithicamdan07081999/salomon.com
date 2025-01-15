@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript</title>
+</head>
+
+<body>
+    <div id="container"></div>
+</body>
+
+<script>
+    const BIRTHDAY = '07.08.1999'; // make birthday uppercase?
+    //const age = someCode(BIRTHDAY); // make age uppercase?
+    var namediv = document.createElement("div");
+    namediv.textContent = BIRTHDAY;
+    document.body.appendChild(namediv);
+
+    // Tạo một phần tử mới
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Đây là nội dung được thêm.";
+
+    // Thêm vào trong phần tử div có id là 'container'
+    const container = document.getElementById("container");
+    container.appendChild(paragraph);
+
+    // // Ví dụ về dấu ngoặc trong chuỗi
+    // let name = "John";
+    // // embed a variable
+    // alert(`Hello, ${name}!`); // Hello, John!
+
+    // // embed an expression
+    // alert(`the result is ${1 + 2}`); // the result is 3
+
+
+
+    // prompt 
+    let age = prompt('How old are you?', 100);
+    alert(`You are ${age} years old!`); // You are 100 years old!
+    let name = prompt("What is your name?", "");
+    alert(name);
+
+    // confirm 
+    let isBoss = confirm("Are you the boss?");
+    alert(isBoss); // true if OK is pressed
+
+    // number
+    alert(Number("   123   ")); // 123
+    alert(Number("123z"));      // NaN (error reading a number at "z")
+    alert(Number(true));        // 1
+    alert(Number(false));       // 0
+
+    // chuyển đổi số
+    let apples = "2";
+    let oranges = "3";
+
+    // both values converted to numbers before the binary plus
+    alert(+apples + +oranges); // 5
+
+    // the longer variant
+    // alert( Number(apples) + Number(oranges) ); // 5
+
+    //     Lý do là vì lệnh prompt trả về dữ liệu đầu vào của người dùng dưới dạng một chuỗi.
+
+    // Vì vậy các biến có giá trị tương ứng "1"và "2".
+
+    //     let a = "1"; // prompt("First number?", 1);
+    //     let b = "2"; // prompt("Second number?", 2);
+
+    //     alert(a + b); // 12
+    // Điều chúng ta nên làm là chuyển đổi chuỗi thành số trước +.Ví dụ, sử dụng Number()hoặc thêm +.
+
+    // Ví dụ, ngay trước prompt:
+
+    //     let a = +prompt("First number?", 1);
+    //     let b = +prompt("Second number?", 2);
+
+    //     alert(a + b); // 3
+    // Hoặc trong alert:
+
+    //     let a = prompt("First number?", 1);
+    //     let b = prompt("Second number?", 2);
+
+    //     alert(+a + +b); // 3
+
+    alert(null == undefined); // true
+    alert(null == 0); // (2) false
+    alert(null >= 0); // (3) true
+
+    // 5 > 4 → true
+    // "apple" > "pineapple" → false
+    // "2" > "12" → true
+    // undefined == null → true
+    // undefined === null → false
+    // null == "\n0\n" → false
+    // null === +"\n0\n" → false
+
+
+    let year = prompt('In which year was ECMAScript-2015 specification published?', '');
+
+if (year == 2015) alert( 'You are right!' );
+
+</script>
+
+</html>
+
+
+<!-- https://javascript.info/types
+
+Infinitybiểu thị cho Vô cực toán học ∞.
+alert( 1 / 0 ); // Infinity
+NaNbiểu thị lỗi tính toán.
+alert( "not a number" / 2 ); // NaN, such division is erroneous -->

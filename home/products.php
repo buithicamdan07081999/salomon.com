@@ -120,6 +120,9 @@
 
         <!-- Tính năng Marketing -->
         <div class="container marketing">
+            <div class="row">
+                <a href="/KDBD.COM/Example_JS/addElement.html">Trang JavaScript</a>
+            </div>
             <!-- Three columns of text below the carousel -->
             <div class="row">
                 <div class="col-lg-4 text-center">
